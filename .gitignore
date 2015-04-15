@@ -4,6 +4,13 @@
 Temp/
 Library/
 
+
+# ============= #
+# Binary assets #
+# ============= #
+Binaries/
+
+
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
 # ===================================== #
