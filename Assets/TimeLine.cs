@@ -13,11 +13,36 @@ namespace AssemblyCSharp
 	public class TimeLine
 	{
 		public int objectsAppearEventMS, objectsDisappearEventMS;
+		private float[] eventsTime;
+
+
+		private int numberOfEvents;
+
 		public TimeLine ()
 		{
-			objectsAppearEventMS = 4000;
-			objectsDisappearEventMS = 10000;
 
+			eventsTime = new float[]{
+								0.0f, //event "zero" is by default the simulation start
+								4.0f, //first event - object appears
+								10.0f //second event - object disappears
+								};
+			numberOfEvents = eventsTime.Length;
+
+
+
+		}
+		public float getEventTime(int eventIndex)
+		{
+			if (0 <= eventIndex && eventIndex < numberOfEvents)
+				return eventsTime [eventIndex];
+			else
+				return -1; //error
+
+		}
+
+		public int getNumberOfEvents()
+		{
+			return numberOfEvents;
 		}
 
 
