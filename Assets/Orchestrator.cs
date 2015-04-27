@@ -11,7 +11,7 @@ public class Orchestrator : MonoBehaviour
 	private GameObject sphere;
 	private float timer;
 	private int nextEventIndex;
-	bool firstEventHappened, secondEventHappened;
+//	bool firstEventHappened, secondEventHappened;
 
 	// Use this for initialization
 	void Start ()
@@ -23,8 +23,8 @@ public class Orchestrator : MonoBehaviour
 
 		timer = 0;
 		nextEventIndex = 1;
-		firstEventHappened = false;
-		secondEventHappened = false;
+//		firstEventHappened = false;
+//		secondEventHappened = false;
 
 	}
 	
@@ -35,48 +35,62 @@ public class Orchestrator : MonoBehaviour
 		//TODO perhaps we could use Time.deltaTime directly instead of relying on the variable timer. 
 		timer += Time.deltaTime; 
 
-//		if (timer > timeLine.getEventTime(nextEventIndex) / 1000)
-//		{
-//
-//			//TODO query evnextEventIndex instructions
-//
-//			//TODO perform the instructions (create, destroy, move). call a new function.
-//
-//			if (nextEventIndex++ = timeLine.getNumberOfEvents())
-//			{
-//				//stop simulation
-//				Time.timeScale = 0;
-//
-//				//quit?
-//				//Application.Quit();
-//			}
-//		}
+		if (timer > timeLine.getEventTime(nextEventIndex))
+		{
 
+			//query evnextEventIndex instructions & perform the instructions (create, destroy, move). call a new function.
+			switch (timeLine.getEventKind(nextEventIndex))
+			{
+			case EventKind.invalid:
+				//send error message
+				break;
 
-		if (timer > timeLine.getEventTime (1)) {
-			//wait objectsAppearEventMS to make objects appear
-			//(temp) create a temporary object
-			if (!firstEventHappened) { 
-				firstEventHappened = true;
-
+			case EventKind.appears:
 				cube = objectFactory.CreateCube();
 				cube.AddComponent<Rigidbody>();
 				cube.transform.position = new Vector3 (5, 5, 5);
+				break;
 
-				sphere = objectFactory.CreateSphere();
-				sphere.AddComponent<Rigidbody>();
-				sphere.transform.position = new Vector3 (2, 5, 2);
+			case EventKind.disappears:
+				Destroy (cube);
+				break;
+			default:
+				break;
 
-			} else {
-				//wait objectsDisappearEventMS to make objects disappear
-				//destroy temporary object
-				if (!secondEventHappened && timer > timeLine.getEventTime (2)) {
-					secondEventHappened = true;
-					Destroy (cube);
-				}
 			}
 
-		} 
+			if (nextEventIndex++ == timeLine.getNumberOfEvents())
+			{
+				//stop simulation
+				Time.timeScale = 0;
+
+				//quit?
+				//Application.Quit();
+			}
+		}
+
+
+//		if (timer > timeLine.getEventTime (1)) {
+//			//wait objectsAppearEventMS to make objects appear
+//			//(temp) create a temporary object
+//			if (!firstEventHappened) { 
+//				firstEventHappened = true;
+//
+//
+//				sphere = objectFactory.CreateSphere();
+//				sphere.AddComponent<Rigidbody>();
+//				sphere.transform.position = new Vector3 (2, 5, 2);
+//
+//			} else {
+//				//wait objectsDisappearEventMS to make objects disappear
+//				//destroy temporary object
+//				if (!secondEventHappened && timer > timeLine.getEventTime (2)) {
+//					secondEventHappened = true;
+//					Destroy (cube);
+//				}
+//			}
+//
+//		} 
 
 		 
 	}
