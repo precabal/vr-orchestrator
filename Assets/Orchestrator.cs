@@ -59,13 +59,13 @@ public class Orchestrator : MonoBehaviour
 			break;
 			
 		case EventKind.show:
-			foreach ( GameObject g in objects )
-				g.SetActive(true);
+			foreach ( GameObject o in objects )
+				o.SetActive(true);
 			break;
 			
 		case EventKind.hide:
-			foreach ( GameObject g in objects )
-				g.SetActive(false);
+			foreach ( GameObject o in objects )
+				o.SetActive(false);
 			break;
 
 		default:
@@ -73,7 +73,6 @@ public class Orchestrator : MonoBehaviour
 			break;
 			
 		}
-		objects.GetValue(0)
 	}
 
 }

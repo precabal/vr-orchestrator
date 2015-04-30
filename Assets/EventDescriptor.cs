@@ -10,14 +10,21 @@
 using System;
 namespace AssemblyCSharp
 {
-	public enum EventKind { start, appears, disappears, moves, invalid};
-	public enum ObjectKind { sphere, cube, beacon};
+	public enum EventKind { start, show, hide, move, invalid};
+	//public enum ObjectKind { sphere, cube, beacon};
+
 	public struct EventDescriptor
 	{
 		public float eventTime;
-		public ObjectKind objectKind;
+		//public ObjectKind objectKind;
 		public EventKind eventKind;
+		public EventDescriptor(float eventTime, EventKind eventKind)
+		{
+			this.eventTime = eventTime;
+			this.eventKind = eventKind;
+		}
 
 	}
+
 }
 

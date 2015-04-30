@@ -35,7 +35,7 @@ namespace AssemblyCSharp
 		
 		public GameObject[] getObjects(String specifier)
 		{
-			GameObject[] selectedObjects;
+			GameObject[] selectedObjects = null;
 			switch(specifier)
 			{
 			case "swarm":
@@ -60,9 +60,9 @@ namespace AssemblyCSharp
 		}
 		public void destroyObjects()
 		{
-			foreach (object o in gameObjects)
-				Destroy (o);
-
+			foreach (object o in gameObjects) {
+			}
+				//destroy object.
 		}
 	}
 }
