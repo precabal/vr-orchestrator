@@ -30,22 +30,27 @@ namespace AssemblyCSharp
 			gameObjects[0] = objectFactory.CreateCube();
 			gameObjects[0].AddComponent<Rigidbody>();
 			gameObjects[0].transform.position = new Vector3 (5, 5, 5);
+
+			//gameObjects[0].tag
+
 			
 		}
 		
 		public GameObject[] getObjects(String specifier)
 		{
+			//TODO consider the case where a single object wants to be selected. better to use tag? see http://docs.unity3d.com/ScriptReference/GameObject.Find.html
 			GameObject[] selectedObjects = null;
+
 			switch(specifier)
 			{
 			case "swarm":
-				//return swarm labeled objects
+				selectedObjects = GameObject.FindGameObjectsWithTag("swarm");
 				break;
 			case "room":
-				//return objects that compose the room
+				selectedObjects = GameObject.FindGameObjectsWithTag("room");
 				break;
 			case "beacons":
-				//return beacon labeled objects
+				selectedObjects = GameObject.FindGameObjectsWithTag("beacon");
 				break;
 			case "all":
 					selectedObjects = gameObjects;

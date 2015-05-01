@@ -16,7 +16,7 @@ namespace AssemblyCSharp
 		
 		public Orchestra orchestra;
 		public SingleTimeLine[] timeLines;
-		private int numberOfTimelines;
+		private int numberOfTimelines = 4;
 		private static float simulationLength = 60f; 
 		
 		public GlobalTimeLine ()
@@ -24,8 +24,7 @@ namespace AssemblyCSharp
 			orchestra = new Orchestra();
 			//crea Objetos: Cubo, Venado, linea
 			orchestra.initialize();   
-			
-			timeLines = new SingleTimeLine[4];
+			timeLines = new SingleTimeLine[numberOfTimelines];
 			populateTimelines();
 		}
 		

@@ -16,17 +16,13 @@ using System.Collections.Generic;
 {
 	public class SingleTimeLine
 	{
-
-		//private EventDescriptor[] events;
 		private List<EventDescriptor> events = new List<EventDescriptor> ();
-
-		private int numberOfEvents;
 		private int nextEvent;
-
 		private GameObject[] objectReferences;
 
 		public SingleTimeLine ()
 		{
+			objectReferences = null;
 			nextEvent = 0;
 		}
 
@@ -38,7 +34,7 @@ using System.Collections.Generic;
 
 		public float getEventTime(int eventIndex)
 		{
-			if (0 <= eventIndex && eventIndex < numberOfEvents)
+			if (0 <= eventIndex && eventIndex < events.Count)
 				return events [eventIndex].eventTime;
 			else
 				return -1; //error
@@ -47,7 +43,7 @@ using System.Collections.Generic;
 
 		public EventKind getEventKind(int eventIndex)
 		{
-			if (0 <= eventIndex && eventIndex < numberOfEvents)
+			if (0 <= eventIndex && eventIndex < events.Count)
 				return events [eventIndex].eventKind;
 			else
 				return EventKind.invalid; //error
@@ -57,7 +53,7 @@ using System.Collections.Generic;
 
 		public int getNumberOfEvents()
 		{
-			return numberOfEvents;
+			return events.Count; 
 		}
 
 
