@@ -17,6 +17,7 @@ namespace AssemblyCSharp
 	{
 		public float eventTime;
 		//public ObjectKind objectKind;
+		//TODO: describir la accion con una clase q implementa de interfaz comun
 		public EventKind eventKind;
 		public EventDescriptor(float eventTime, EventKind eventKind)
 		{
