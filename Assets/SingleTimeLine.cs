@@ -67,7 +67,12 @@ using System.Collections.Generic;
 		
 		public float getNextEventTime()
 		{
-			return events [nextEvent].eventTime;
+			if (nextEvent < this.getNumberOfEvents()) {
+				return events [nextEvent].eventTime;
+			} else {
+				//TODO hacer esto mas elegante para no tener que preguntar este if todas las veces
+				return float.PositiveInfinity;
+			}
 		}
 		public EventKind getNextAction()
 		{

@@ -28,8 +28,14 @@ namespace AssemblyCSharp
 		{
 			//call ObjectFactory to instantiate prefabs
 			gameObjects[0] = objectFactory.CreateCube();
+			//gameObjects[0].SetActive(false);
+			Renderer rend;
+			rend = gameObjects [0].GetComponent<Renderer>();
+			rend.enabled = false;
+
 			gameObjects[0].AddComponent<Rigidbody>();
 			gameObjects[0].transform.position = new Vector3 (5, 5, 5);
+			gameObjects[0].tag = "beacons";
 
 			//gameObjects[0].tag
 
@@ -44,16 +50,16 @@ namespace AssemblyCSharp
 			switch(specifier)
 			{
 			case "swarm":
-				selectedObjects = GameObject.FindGameObjectsWithTag("swarm");
+				//selectedObjects = GameObject.FindGameObjectsWithTag("swarm");
 				break;
 			case "room":
-				selectedObjects = GameObject.FindGameObjectsWithTag("room");
+				//selectedObjects = GameObject.FindGameObjectsWithTag("room");
 				break;
 			case "beacons":
-				selectedObjects = GameObject.FindGameObjectsWithTag("beacon");
+				selectedObjects = GameObject.FindGameObjectsWithTag("beacons");
 				break;
 			case "all":
-					selectedObjects = gameObjects;
+				selectedObjects = gameObjects;
 				break;
 			default:
 				//TODO igual que all

@@ -17,7 +17,7 @@ namespace AssemblyCSharp
 		public Orchestra orchestra;
 		public SingleTimeLine[] timeLines;
 		private int numberOfTimelines = 4;
-		private static float simulationLength = 60f; 
+		private float simulationLength = 60f; 
 		
 		public GlobalTimeLine ()
 		{
@@ -34,7 +34,7 @@ namespace AssemblyCSharp
 			
 			timeLines[0] = new SingleTimeLine(orchestra.getObjects("beacons"));
 			timeLines[0].addEvent( new EventDescriptor(4.0f, EventKind.show) );
-			timeLines[0].addEvent( new EventDescriptor (51.0f, EventKind.hide) ); 
+			timeLines[0].addEvent( new EventDescriptor (8.0f, EventKind.hide) ); 
 			
 			timeLines[1] = new SingleTimeLine(orchestra.getObjects("swarm"));
 			timeLines[1].addEvent( new EventDescriptor(8.0f, EventKind.show) );
@@ -66,6 +66,11 @@ namespace AssemblyCSharp
 		public void destroyObjects()
 		{
 			orchestra.destroyObjects();
+		}
+		public SingleTimeLine[] getTimeLines()
+		{
+			return timeLines;
+		
 		}
 
 	}

@@ -19,8 +19,8 @@ public class Orchestrator : MonoBehaviour
 			
 		//Create (or get) an isntance of the Global TimeLine class
 		globalTimeLine = new GlobalTimeLine();
-
-
+		timer = 0f;
+		timer = timer + 2;
 	}
 	
 	// Update is called once per frame
@@ -31,47 +31,70 @@ public class Orchestrator : MonoBehaviour
 		timer += Time.deltaTime; 
 		int i = 0;
 
-		if ( timer > globalTimeLine.getSimulationLength() ) {
+		if ( timer > globalTimeLine.getSimulationLength() ) 
+		{
 			Time.timeScale = 0;
 
 			globalTimeLine.destroyObjects();
 			//Application.Quit ();
 		}
-		for(SingleTimeLine currentTimeLine = globalTimeLine.getSingleTimeLine(i); i < globalTimeLine.getNumberOfTimeLines(); i++)
+
+		foreach (SingleTimeLine singleTimeLine in globalTimeLine.getTimeLines())
 		{
-			if ( timer > currentTimeLine.getNextEventTime() ) 
+			if ( timer > singleTimeLine.getNextEventTime() ) 
 			{
-				performEvent(currentTimeLine.getNextAction(), currentTimeLine.getObjectReferences());
-				currentTimeLine.updateNextEvent();
+				performEvent(singleTimeLine.getNextAction(), singleTimeLine.getObjectReferences());
+				singleTimeLine.updateNextEvent();
 			}
-		
+
 		}
 
+
+//		for(SingleTimeLine currentTimeLine = globalTimeLine.getSingleTimeLine(i); i < globalTimeLine.getNumberOfTimeLines(); i++)
+//		{
+//			if ( timer > currentTimeLine.getNextEventTime() ) 
+//			{
+//				performEvent(currentTimeLine.getNextAction(), currentTimeLine.getObjectReferences());
+//				currentTimeLine.updateNextEvent();
+//			}
+//		
+//		}
+//
 	}
 
 	private void performEvent (EventKind action, GameObject[] objects)
 	{
-		
-		switch (action)
-		{
-		case EventKind.invalid:
+		if (objects != null) {
+			switch (action) {
+			case EventKind.invalid:
 			//send error message
-			break;
+				break;
 			
-		case EventKind.show:
-			foreach ( GameObject o in objects )
-				o.SetActive(true);
-			break;
-			
-		case EventKind.hide:
-			foreach ( GameObject o in objects )
-				o.SetActive(false);
-			break;
+			case EventKind.show:
 
-		default:
-			//TODO do something?
-			break;
+				Renderer rend;
 			
+				foreach (GameObject o in objects){
+					rend = o.GetComponent<Renderer>();
+					rend.enabled = true;
+				}
+
+				//o.SetActive (true);
+
+				break;
+			
+			case EventKind.hide:
+				foreach (GameObject o in objects)
+					o.SetActive (false);
+				break;
+
+			default:
+			//TODO do something?
+				break;
+			
+			}
+		} else {
+			//warn of null objects.
 		}
 	}
 
