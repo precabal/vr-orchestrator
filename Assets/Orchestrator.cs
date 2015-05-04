@@ -6,27 +6,22 @@ public class Orchestrator : MonoBehaviour
 {
 	public GameObject spherePrefab;
 
-	private ObjectFactory objectFactory;
-	private TimeLine timeLine;
-	private GameObject cube;
+	public GlobalTimeLine globalTimeLine;	
+	
 	private GameObject sphere;
 	private float timer;
+
 	private int nextEventIndex;
 //	bool firstEventHappened, secondEventHappened;
 
 	// Use this for initialization
 	void Start ()
 	{
-		//Create an instance of Factory
-		objectFactory = new ObjectFactory ();	
-		//Create (or get) an isntance of the TimeLine class
-		timeLine = new TimeLine ();
-
-		timer = 0;
-		nextEventIndex = 1;
-//		firstEventHappened = false;
-//		secondEventHappened = false;
-
+			
+		//Create (or get) an isntance of the Global TimeLine class
+		globalTimeLine = new GlobalTimeLine();
+		timer = 0f;
+		timer = timer + 2;
 	}
 	
 	// Update is called once per frame
@@ -35,63 +30,73 @@ public class Orchestrator : MonoBehaviour
 
 		//TODO perhaps we could use Time.deltaTime directly instead of relying on the variable timer. 
 		timer += Time.deltaTime; 
+		int i = 0;
 
-		if (timer > timeLine.getEventTime(nextEventIndex))
+		if ( timer > globalTimeLine.getSimulationLength() ) 
 		{
+			Time.timeScale = 0;
 
-			//query evnextEventIndex instructions & perform the instructions (create, destroy, move). call a new function.
-			switch (timeLine.getEventKind(nextEventIndex))
+			globalTimeLine.destroyObjects();
+			//Application.Quit ();
+		}
+
+		foreach (SingleTimeLine singleTimeLine in globalTimeLine.getTimeLines())
+		{
+			if ( timer > singleTimeLine.getNextEventTime() ) 
 			{
-			case EventKind.invalid:
-				//send error message
-				break;
-
-			case EventKind.appears:
-				sphere = objectFactory.CreateSphereFromPrefab(spherePrefab);
-				sphere.transform.position = new Vector3 (5, 5, 5);
-				break;
-
-			case EventKind.disappears:
-				Destroy (sphere);
-				break;
-			default:
-				break;
-
+				performEvent(singleTimeLine.getNextAction(), singleTimeLine.getObjectReferences());
+				singleTimeLine.updateNextEvent();
 			}
 
-			if (nextEventIndex++ == timeLine.getNumberOfEvents())
-			{
-				//stop simulation
-				Time.timeScale = 0;
-
-				//quit?
-				//Application.Quit();
-			}
 		}
 
 
-//		if (timer > timeLine.getEventTime (1)) {
-//			//wait objectsAppearEventMS to make objects appear
-//			//(temp) create a temporary object
-//			if (!firstEventHappened) { 
-//				firstEventHappened = true;
-//
-//
-//				sphere = objectFactory.CreateSphere();
-//				sphere.AddComponent<Rigidbody>();
-//				sphere.transform.position = new Vector3 (2, 5, 2);
-//
-//			} else {
-//				//wait objectsDisappearEventMS to make objects disappear
-//				//destroy temporary object
-//				if (!secondEventHappened && timer > timeLine.getEventTime (2)) {
-//					secondEventHappened = true;
-//					Destroy (cube);
-//				}
+//		for(SingleTimeLine currentTimeLine = globalTimeLine.getSingleTimeLine(i); i < globalTimeLine.getNumberOfTimeLines(); i++)
+//		{
+//			if ( timer > currentTimeLine.getNextEventTime() ) 
+//			{
+//				performEvent(currentTimeLine.getNextAction(), currentTimeLine.getObjectReferences());
+//				currentTimeLine.updateNextEvent();
 //			}
+//		
+//		}
 //
-//		} 
-
-		 
 	}
+
+	private void performEvent (EventKind action, GameObject[] objects)
+	{
+		if (objects != null) {
+			switch (action) {
+			case EventKind.invalid:
+			//send error message
+				break;
+			
+			case EventKind.show:
+
+				Renderer rend;
+			
+				foreach (GameObject o in objects){
+					rend = o.GetComponent<Renderer>();
+					rend.enabled = true;
+				}
+
+				//o.SetActive (true);
+
+				break;
+			
+			case EventKind.hide:
+				foreach (GameObject o in objects)
+					o.SetActive (false);
+				break;
+
+			default:
+			//TODO do something?
+				break;
+			
+			}
+		} else {
+			//warn of null objects.
+		}
+	}
+
 }
