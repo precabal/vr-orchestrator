@@ -14,6 +14,13 @@ namespace AssemblyCSharp
 		{
 			return GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		}
+
+		public GameObject CreateSphereFromPrefab(GameObject spherePrefab)
+		{
+			GameObject sphere = (GameObject)GameObject.Instantiate(spherePrefab, new Vector3(0, 0, 0), Quaternion.identity);
+
+			return sphere;
+		}
 	}
 }
 
