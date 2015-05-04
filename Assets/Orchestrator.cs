@@ -4,6 +4,7 @@ using AssemblyCSharp;
 
 public class Orchestrator : MonoBehaviour
 {
+	public GameObject spherePrefab;
 
 	private ObjectFactory objectFactory;
 	private TimeLine timeLine;
@@ -46,13 +47,12 @@ public class Orchestrator : MonoBehaviour
 				break;
 
 			case EventKind.appears:
-				cube = objectFactory.CreateCube();
-				cube.AddComponent<Rigidbody>();
-				cube.transform.position = new Vector3 (5, 5, 5);
+				sphere = objectFactory.CreateSphereFromPrefab(spherePrefab);
+				sphere.transform.position = new Vector3 (5, 5, 5);
 				break;
 
 			case EventKind.disappears:
-				Destroy (cube);
+				Destroy (sphere);
 				break;
 			default:
 				break;
