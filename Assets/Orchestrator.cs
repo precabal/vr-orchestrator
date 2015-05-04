@@ -4,11 +4,7 @@ using AssemblyCSharp;
 
 public class Orchestrator : MonoBehaviour
 {
-	public GameObject spherePrefab;
-
 	public GlobalTimeLine globalTimeLine;	
-	
-	private GameObject sphere;
 	private float timer;
 
 	private int nextEventIndex;
@@ -21,7 +17,7 @@ public class Orchestrator : MonoBehaviour
 		//Create (or get) an isntance of the Global TimeLine class
 		globalTimeLine = new GlobalTimeLine();
 		timer = 0f;
-		timer = timer + 2;
+
 	}
 	
 	// Update is called once per frame
@@ -50,17 +46,6 @@ public class Orchestrator : MonoBehaviour
 
 		}
 
-
-//		for(SingleTimeLine currentTimeLine = globalTimeLine.getSingleTimeLine(i); i < globalTimeLine.getNumberOfTimeLines(); i++)
-//		{
-//			if ( timer > currentTimeLine.getNextEventTime() ) 
-//			{
-//				performEvent(currentTimeLine.getNextAction(), currentTimeLine.getObjectReferences());
-//				currentTimeLine.updateNextEvent();
-//			}
-//		
-//		}
-//
 	}
 
 	private void performEvent (EventKind action, GameObject[] objects)

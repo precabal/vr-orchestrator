@@ -17,11 +17,13 @@ namespace AssemblyCSharp
 		private ObjectFactory objectFactory;
 		private GameObject[] gameObjects;
 
+		public GameObject spherePrefab;
+
 
 		public Orchestra ()
 		{
 			objectFactory = new ObjectFactory ();
-			gameObjects = new GameObject[1];
+			gameObjects = new GameObject[2];
 		}
 
 		public void initialize()
@@ -38,7 +40,11 @@ namespace AssemblyCSharp
 			gameObjects[0].tag = "beacons";
 
 			//gameObjects[0].tag
-
+			spherePrefab = Resources.Load ("sphPref") as GameObject;
+			gameObjects[1] = objectFactory.CreateSphereFromPrefab(spherePrefab);
+			Resources.UnloadAsset (spherePrefab);
+			//gameObjects[1].transform.position = new Vector3 (5, 5, 5);
+			
 			
 		}
 		

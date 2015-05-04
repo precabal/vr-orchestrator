@@ -17,9 +17,9 @@ namespace AssemblyCSharp
 
 		public GameObject CreateSphereFromPrefab(GameObject spherePrefab)
 		{
-			GameObject sphere = (GameObject)GameObject.Instantiate(spherePrefab, new Vector3(0, 0, 0), Quaternion.identity);
-
+			GameObject sphere = MonoBehaviour.Instantiate(spherePrefab, new Vector3(0, 0, 0), Quaternion.identity) as GameObject;
 			return sphere;
+
 		}
 	}
 }

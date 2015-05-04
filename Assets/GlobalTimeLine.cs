@@ -28,7 +28,6 @@ namespace AssemblyCSharp
 			populateTimelines();
 		}
 		
-		
 		private void populateTimelines()
 		{
 			
