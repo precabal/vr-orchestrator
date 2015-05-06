@@ -18,16 +18,16 @@ using System.Collections.Generic;
 	{
 		private List<EventDescriptor> events = new List<EventDescriptor> ();
 		private int nextEvent;
-		private GameObject[] objectReferences;
+		private List<GameObject> objectReferences;
 
 		public SingleTimeLine ()
 		{
-			objectReferences = null;
+			objectReferences = new List<GameObject>();
 			nextEvent = 0;
 		}
 
-		public SingleTimeLine(GameObject[] objectRefs){
-			objectReferences = objectRefs;
+		public SingleTimeLine(List<GameObject> objects){
+			objectReferences = objects;
 			nextEvent = 0;
 		}
 
@@ -80,7 +80,7 @@ using System.Collections.Generic;
 			
 		}
 		
-		public GameObject[] getObjectReferences()
+		public List<GameObject> getObjectReferences()
 		{
 			return objectReferences;
 		}

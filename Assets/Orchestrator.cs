@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using AssemblyCSharp;
+using System.Collections.Generic;
 
 public class Orchestrator : MonoBehaviour
 {
@@ -26,7 +27,6 @@ public class Orchestrator : MonoBehaviour
 
 		//TODO perhaps we could use Time.deltaTime directly instead of relying on the variable timer. 
 		timer += Time.deltaTime; 
-		int i = 0;
 
 		if ( timer > globalTimeLine.getSimulationLength() ) 
 		{
@@ -48,9 +48,10 @@ public class Orchestrator : MonoBehaviour
 
 	}
 
-	private void performEvent (EventKind action, GameObject[] objects)
+	private void performEvent (EventKind action, List<GameObject> objects)
 	{
-		if (objects != null) {
+		if (objects != null)
+		{
 			switch (action) {
 			case EventKind.invalid:
 			//send error message
