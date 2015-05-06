@@ -9,49 +9,64 @@
 // ------------------------------------------------------------------------------
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AssemblyCSharp
 {
 	public class Orchestra
 	{
 		private ObjectFactory objectFactory;
-		private GameObject[] gameObjects;
+		private List<GameObject> gameObjects;
 
 		public GameObject spherePrefab;
 
 
 		public Orchestra ()
 		{
-			objectFactory = new ObjectFactory ();
-			gameObjects = new GameObject[2];
+			objectFactory = new ObjectFactory();
+			gameObjects = new List<GameObject>();
 		}
 
 		public void initialize()
 		{
 			//call ObjectFactory to instantiate prefabs
-			gameObjects[0] = objectFactory.CreateCube();
-			//gameObjects[0].SetActive(false);
+			GameObject cube = objectFactory.CreateCube(); 
+			cube.AddComponent<Rigidbody>();
+			cube.transform.position = new Vector3 (5, 5, 5);
+			cube.tag = "beacons";
+
 			Renderer rend;
-			rend = gameObjects [0].GetComponent<Renderer>();
+			rend = cube.GetComponent<Renderer>();
 			rend.enabled = false;
 
-			gameObjects[0].AddComponent<Rigidbody>();
-			gameObjects[0].transform.position = new Vector3 (5, 5, 5);
-			gameObjects[0].tag = "beacons";
+			gameObjects.Add (cube); 
+			//gameObjects[0].SetActive(false);			
 
 			//gameObjects[0].tag
-			spherePrefab = Resources.Load ("sphPref") as GameObject;
-			gameObjects[1] = objectFactory.CreateSphereFromPrefab(spherePrefab);
-			Resources.UnloadAsset (spherePrefab);
+			spherePrefab = Resources.Load("sphPref") as GameObject;
+
 			//gameObjects[1].transform.position = new Vector3 (5, 5, 5);
+			System.Random random = new System.Random();
+
+			for (int i = 0; i < 10; i++)
+			{
+				GameObject sphere = objectFactory.CreateSphereFromPrefab(spherePrefab);
+				sphere.transform.position = new Vector3(random.Next(-5, 5), random.Next(1, 5), random.Next(-5, 5));
+				sphere.tag = "spheres";
+
+				gameObjects.Add(sphere);
+			}
+
+			Resources.UnloadAsset(spherePrefab);
 			
 			
 		}
 		
-		public GameObject[] getObjects(String specifier)
+		public List<GameObject> getObjects(String specifier)
 		{
 			//TODO consider the case where a single object wants to be selected. better to use tag? see http://docs.unity3d.com/ScriptReference/GameObject.Find.html
-			GameObject[] selectedObjects = null;
+			List<GameObject> selectedObjects = null;
 
 			switch(specifier)
 			{
@@ -62,7 +77,10 @@ namespace AssemblyCSharp
 				//selectedObjects = GameObject.FindGameObjectsWithTag("room");
 				break;
 			case "beacons":
-				selectedObjects = GameObject.FindGameObjectsWithTag("beacons");
+				selectedObjects = GameObject.FindGameObjectsWithTag("beacons").ToList();
+				break;
+			case "spheres":
+				selectedObjects = GameObject.FindGameObjectsWithTag("spheres").ToList();
 				break;
 			case "all":
 				selectedObjects = gameObjects;
@@ -72,12 +90,13 @@ namespace AssemblyCSharp
 				break;
 				
 			}
-			return selectedObjects;
-			
+			return selectedObjects;	
 		}
+
 		public void destroyObjects()
 		{
-			foreach (object o in gameObjects) {
+			foreach (object o in gameObjects)
+			{
 			}
 				//destroy object.
 		}

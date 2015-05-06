@@ -16,7 +16,7 @@ namespace AssemblyCSharp
 		
 		public Orchestra orchestra;
 		public SingleTimeLine[] timeLines;
-		private int numberOfTimelines = 4;
+		private int numberOfTimelines = 5;
 		private float simulationLength = 60f; 
 		
 		public GlobalTimeLine ()
@@ -43,6 +43,10 @@ namespace AssemblyCSharp
 			
 			timeLines[3] = new SingleTimeLine(orchestra.getObjects("all"));
 			timeLines[3].addEvent( new EventDescriptor(200.0f, EventKind.hide) );
+
+			timeLines[4] = new SingleTimeLine(orchestra.getObjects("spheres"));
+			timeLines[4].addEvent( new EventDescriptor(4.0f, EventKind.show) );
+			timeLines[4].addEvent( new EventDescriptor (8.0f, EventKind.hide) );
 			
 		}
 		
