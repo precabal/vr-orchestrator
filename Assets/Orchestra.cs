@@ -13,6 +13,7 @@ namespace AssemblyCSharp
 
 		public Orchestra ()
 		{
+			Initialize ();
 		}
 
 		public void Initialize()
@@ -28,12 +29,9 @@ namespace AssemblyCSharp
 			rend.enabled = false;
 
 			_gameObjects.Add (cube); 
-			//gameObjects[0].SetActive(false);			
 
-			//gameObjects[0].tag
 			_spherePrefab = Resources.Load("sphPref") as GameObject;
 
-			//gameObjects[1].transform.position = new Vector3 (5, 5, 5);
 			System.Random random = new System.Random();
 
 			for (int i = 0; i < 10; i++)

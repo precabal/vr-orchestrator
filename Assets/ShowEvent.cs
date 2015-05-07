@@ -21,10 +21,7 @@ namespace AssemblyCSharp
 
 		public void PerformEvent(List<GameObject> objects)
 		{
-			foreach (GameObject obj in objects)
-			{
-				obj.GetComponent<Renderer>().enabled = true;
-			}
+			objects.ForEach (o => o.GetComponent<Renderer>().enabled = true);
 		}
 	}
 }

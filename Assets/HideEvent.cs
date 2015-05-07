@@ -21,8 +21,7 @@ namespace AssemblyCSharp
 
 		public void PerformEvent(List<GameObject> objects)
 		{
-			foreach (GameObject obj in objects)
-				obj.SetActive(false);
+			objects.ForEach (o => o.SetActive (false));
 		}
 	}
 }

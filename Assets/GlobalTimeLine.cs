@@ -27,7 +27,6 @@ namespace AssemblyCSharp
 
 		public GlobalTimeLine ()
 		{
-			_orchestra.Initialize();
 			PopulateTimelines();
 		}
 		
