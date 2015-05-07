@@ -7,7 +7,7 @@ namespace AssemblyCSharp
 	public interface IEvent
 	{
 		float EventTime{ get; set; }
-		void PerformEvent(List<GameObject> objects);
+		void Perform(List<GameObject> objects);
 	}
 }
 

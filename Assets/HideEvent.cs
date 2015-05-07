@@ -19,7 +19,7 @@ namespace AssemblyCSharp
 			_eventTime = eventTime;
 		}
 
-		public void PerformEvent(List<GameObject> objects)
+		public void Perform(List<GameObject> objects)
 		{
 			objects.ForEach (o => o.SetActive (false));
 		}

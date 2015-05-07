@@ -46,12 +46,12 @@ namespace AssemblyCSharp
 			return _events[_currentEventIndex].EventTime;
 		}
 
-		public IEvent GetNextEvent()
+		public void PerformNextEvent()
 		{
 			if (_currentEventIndex >= _events.Count)
 				throw new System.AccessViolationException("There are no more events");
-
-			return _events [_currentEventIndex++];
+			
+			_events[_currentEventIndex++].Perform(ObjectReferences);
 		}
 
 	}

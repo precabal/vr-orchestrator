@@ -32,7 +32,7 @@ public class Orchestrator : MonoBehaviour
 		{
 			if ( _timer > singleTimeLine.GetNextEventTime() ) 
 			{
-				singleTimeLine.GetNextEvent().PerformEvent(singleTimeLine.ObjectReferences);
+				singleTimeLine.PerformNextEvent();
 			}
 		}
 
