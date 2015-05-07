@@ -21,7 +21,7 @@ namespace AssemblyCSharp
 		
 		public void PerformEvent(List<GameObject> objects)
 		{
-			objects.ForEach (o => o.GetComponent<Rigidbody> ().useGravity = true);
+			objects.ForEach (o => o.GetComponent<Rigidbody>().useGravity = true);
 		}
 	}
 }
