@@ -54,9 +54,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _absorption: .199999988
   _dampening: .5
+  _reflectionRWall: 1
+  _reflectionFWall: 1
+  _reflectionLWall: 1
+  _reflectionBWall: 1
+  _reflectionFloor: 1
+  _reflectionCeiling: 1
   _diffuseZone: 1
   _showGuides: 0
   _pivotSelect: 0
+  _Presets: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
