@@ -30,7 +30,7 @@ namespace AssemblyCSharp
 
 			_gameObjects.Add (cube); 
 
-			_spherePrefab = Resources.Load("sphPref") as GameObject;
+			_spherePrefab = Resources.Load("sphere_prefab") as GameObject;
 
 			System.Random random = new System.Random();
 
