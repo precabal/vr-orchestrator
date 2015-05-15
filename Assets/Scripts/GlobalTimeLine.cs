@@ -40,7 +40,8 @@ namespace AssemblyCSharp
 			SingleTimeLine spheresTimeLine = new SingleTimeLine (_orchestra.GetObjects ("spheres"));
 			spheresTimeLine.AddEvent( new ShowEvent(4.0f) );
 			spheresTimeLine.AddEvent( new AddGravityEvent(5.0f) );
-			spheresTimeLine.AddEvent( new HideEvent(8.0f) );
+			spheresTimeLine.AddEvent( new MoveEvent(8.0f, new Vector3(0, 0, 0), 0.0f ));
+			spheresTimeLine.AddEvent( new HideEvent(20.0f) );
 			_timeLines.Add (spheresTimeLine);
 
 			SingleTimeLine allTimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));

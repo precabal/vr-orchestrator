@@ -19,10 +19,8 @@ namespace AssemblyCSharp
 
 		public void Initialize()
 		{
-			InitializeBeacons ();
-			//InitializeRandomSpheres ();
-
-
+			//InitializeBeacons ();
+			InitializeRandomSpheres ();
 		}
 
 		public void InitializeBeacons()
