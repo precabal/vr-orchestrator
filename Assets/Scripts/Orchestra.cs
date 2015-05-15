@@ -34,19 +34,19 @@ namespace AssemblyCSharp
 			_gameObjects.Add (beacon1); 
 
 			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
-			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
 			beacon2.transform.position = new Vector3(10,20,-10);
 			beacon2.tag = "beacons";
 			_gameObjects.Add (beacon2);
 
 			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
-			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2]);
 			beacon3.transform.position = new Vector3(-10,20,10);
 			beacon3.tag = "beacons";
 			_gameObjects.Add (beacon3);
 
 			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
-			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3]);
 			beacon4.transform.position = new Vector3(-10,20,-10);
 			beacon4.tag = "beacons";
 			_gameObjects.Add (beacon4);
