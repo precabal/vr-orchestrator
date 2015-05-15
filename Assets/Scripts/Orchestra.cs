@@ -10,6 +10,7 @@ namespace AssemblyCSharp
 		private ObjectFactory _objectFactory = new ObjectFactory();
 		private List<GameObject> _gameObjects = new List<GameObject>();
 		private GameObject _spherePrefab;
+		private GameObject[] _beacons = new GameObject[4];
 
 		public Orchestra ()
 		{
@@ -18,34 +19,60 @@ namespace AssemblyCSharp
 
 		public void Initialize()
 		{
-			//call ObjectFactory to instantiate prefabs
-			GameObject cube = _objectFactory.CreateCube(); 
-			cube.AddComponent<Rigidbody>();
-			cube.transform.position = new Vector3 (5, 5, 5);
-			cube.tag = "beacons";
+			InitializeBeacons ();
+			//InitializeRandomSpheres ();
 
-			Renderer rend;
-			rend = cube.GetComponent<Renderer>();
-			rend.enabled = false;
 
-			_gameObjects.Add (cube); 
+		}
 
+		public void InitializeBeacons()
+		{
+			_beacons[0] = Resources.Load("beacon_1_prefab") as GameObject;
+			GameObject beacon1 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			beacon1.transform.position = new Vector3(10,20,10);
+			beacon1.tag = "beacons";
+			_gameObjects.Add (beacon1); 
+
+			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
+			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			beacon2.transform.position = new Vector3(10,20,-10);
+			beacon2.tag = "beacons";
+			_gameObjects.Add (beacon2);
+
+			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
+			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			beacon3.transform.position = new Vector3(-10,20,10);
+			beacon3.tag = "beacons";
+			_gameObjects.Add (beacon3);
+
+			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
+			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[0]);
+			beacon4.transform.position = new Vector3(-10,20,-10);
+			beacon4.tag = "beacons";
+			_gameObjects.Add (beacon4);
+
+			//TODO: see if we can unload assets here: Resources.UnloadAsset(_beacons[i]);
+		}
+
+		public void InitializeRandomSpheres()
+		{
 			_spherePrefab = Resources.Load("sphere_prefab") as GameObject;
-
+			
 			System.Random random = new System.Random();
-
+			
 			for (int i = 0; i < 10; i++)
 			{
-				GameObject sphere = _objectFactory.CreateSphereFromPrefab(_spherePrefab);
+				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab);
 				sphere.transform.position = new Vector3(random.Next(-5, 5), random.Next(1, 5), random.Next(-5, 5));
 				sphere.tag = "spheres";
-
+				
 				_gameObjects.Add(sphere);
 			}
 
-//			Resources.UnloadAsset(_spherePrefab);
+			//TODO: see if we can unload asset here: Resources.UnloadAsset(_spherePrefab);
+
 		}
-		
+
 		public List<GameObject> GetObjects(String specifier)
 		{
 			//TODO consider the case where a single object wants to be selected. better to use tag? see http://docs.unity3d.com/ScriptReference/GameObject.Find.html
@@ -78,8 +105,9 @@ namespace AssemblyCSharp
 
 		public void DestroyObjects()
 		{
-			foreach (object obj in _gameObjects)
+			foreach (GameObject obj in _gameObjects)
 			{
+				MonoBehaviour.Destroy(obj);
 			}
 		}
 	}
