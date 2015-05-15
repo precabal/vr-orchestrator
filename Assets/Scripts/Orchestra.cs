@@ -34,29 +34,29 @@ namespace AssemblyCSharp
 			beacon1.tag = "beacons";
 			beacon1.AddComponent<TBE_Source> ();
 			TBE_Source tbeSource = beacon1.GetComponent<TBE_Source> ();
-			AudioClip aC = Resources.Load ("AudioClip.wav") as AudioClip;
+			AudioClip aC = Resources.Load("Binaries/audioTracks/CYMBALS_03") as AudioClip;
 			tbeSource.clip = aC;
 
 			_gameObjects.Add (beacon1); 
 
 
-			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
-			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
-			beacon2.transform.position = new Vector3(10,20,-10);
-			beacon2.tag = "beacons";
-			_gameObjects.Add (beacon2);
-
-			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
-			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2]);
-			beacon3.transform.position = new Vector3(-10,20,10);
-			beacon3.tag = "beacons";
-			_gameObjects.Add (beacon3);
-
-			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
-			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3]);
-			beacon4.transform.position = new Vector3(-10,20,-10);
-			beacon4.tag = "beacons";
-			_gameObjects.Add (beacon4);
+//			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
+//			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
+//			beacon2.transform.position = new Vector3(10,20,-10);
+//			beacon2.tag = "beacons";
+//			_gameObjects.Add (beacon2);
+//
+//			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
+//			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2]);
+//			beacon3.transform.position = new Vector3(-10,20,10);
+//			beacon3.tag = "beacons";
+//			_gameObjects.Add (beacon3);
+//
+//			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
+//			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3]);
+//			beacon4.transform.position = new Vector3(-10,20,-10);
+//			beacon4.tag = "beacons";
+//			_gameObjects.Add (beacon4);
 
 			//TODO: see if we can unload assets here: Resources.UnloadAsset(_beacons[i]);
 		}
