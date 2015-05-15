@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using TBE_3DCore;
 
 namespace AssemblyCSharp
 {
@@ -31,7 +32,13 @@ namespace AssemblyCSharp
 			GameObject beacon1 = _objectFactory.CreateFromPrefab(_beacons[0]);
 			beacon1.transform.position = new Vector3(10,20,10);
 			beacon1.tag = "beacons";
+			beacon1.AddComponent<TBE_Source> ();
+			TBE_Source tbeSource = beacon1.GetComponent<TBE_Source> ();
+			AudioClip aC = Resources.Load ("AudioClip.wav") as AudioClip;
+			tbeSource.clip = aC;
+
 			_gameObjects.Add (beacon1); 
+
 
 			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
 			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
