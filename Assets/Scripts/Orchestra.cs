@@ -34,6 +34,7 @@ namespace AssemblyCSharp
 			TBE_Source tbeSource = beacon1.GetComponent<TBE_Source> ();
 			AudioClip aC = Resources.Load("Binaries/audioTracks/newGtr") as AudioClip;
 			tbeSource.clip = aC;
+			tbeSource.Play ();
 
 			_gameObjects.Add (beacon1); 
 
