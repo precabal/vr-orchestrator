@@ -32,7 +32,7 @@ public class MoveComponent : MonoBehaviour
 	{
 		Rigidbody rb = this.GetComponent<Rigidbody> ();
 
-		_timer += Time.deltaTime;
+	
 
 		if (_timer <= _translationTime/2)
 		{
@@ -45,7 +45,9 @@ public class MoveComponent : MonoBehaviour
 		else
 		{
 			rb.velocity = Vector3.zero;
+			this.transform.position = _finalPosition;
 		}
+		_timer += Time.deltaTime;
 
 	}
 }
