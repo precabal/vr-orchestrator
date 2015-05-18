@@ -41,7 +41,8 @@ namespace AssemblyCSharp
 		public float GetNextEventTime()
 		{
 			if (_currentEventIndex >= _events.Count)
-				throw new System.AccessViolationException("There are no more events");
+				//throw new System.AccessViolationException("There are no more events");
+				return float.MaxValue;
 
 			return _events[_currentEventIndex].EventTime;
 		}
