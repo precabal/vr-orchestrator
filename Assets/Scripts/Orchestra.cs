@@ -20,19 +20,19 @@ namespace AssemblyCSharp
 
 		public void Initialize()
 		{
-			//InitializeBeacons ();
-			InitializeRandomSpheres ();
+			InitializeBeacons ();
+			//InitializeRandomSpheres ();
 		}
 
 		public void InitializeBeacons()
 		{
-			_beacons[0] = Resources.Load("beacon_1_prefab") as GameObject;
+			_beacons[0] = Resources.Load("sphere_prefab") as GameObject;
 			GameObject beacon1 = _objectFactory.CreateFromPrefab(_beacons[0]);
-			beacon1.transform.position = new Vector3(10,20,10);
+			beacon1.transform.position = new Vector3(-6,2,4);
 			beacon1.tag = "beacons";
-			beacon1.AddComponent<TBE_Source> ();
+			//beacon1.AddComponent<TBE_Source> ();
 			TBE_Source tbeSource = beacon1.GetComponent<TBE_Source> ();
-			AudioClip aC = Resources.Load("Binaries/audioTracks/CYMBALS_03") as AudioClip;
+			AudioClip aC = Resources.Load("Binaries/audioTracks/newGtr") as AudioClip;
 			tbeSource.clip = aC;
 
 			_gameObjects.Add (beacon1); 

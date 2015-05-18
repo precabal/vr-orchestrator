@@ -12,6 +12,8 @@ GameObject:
   - 135: {fileID: 13556338}
   - 23: {fileID: 2308538}
   - 54: {fileID: 5400180}
+  - 122: {fileID: 12261368}
+  - 114: {fileID: 11498094}
   m_Layer: 0
   m_Name: sphere_prefab
   m_TagString: Untagged
@@ -77,6 +79,50 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &11498094
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -607568035, guid: 97a56801bcfe6ee47903a70dd64bdc23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClip: {fileID: 0}
+  _mixerGroup: {fileID: 0}
+  _playOnAwake: 1
+  _bypassLisEffects: 0
+  _mute: 0
+  _loop: 0
+  _volume: 1
+  _pitch: 1
+  _minimumDistance: 1
+  _maximumDistance: 1000
+  _rollOffFactor: 1
+  _maxDistanceMute: 0
+  _dopplerIntensity: .100000001
+  _roomToggle: 1
+  _erRoomObject: {fileID: 0}
+  _detectRoomTrigger: 1
+  _dopplerToggle: 1
+  _channelSelect: 0
+  _reverbToggle: 0
+  _sourcePannerType: 0
+  _roomPannerType: 0
+  _attenMode: 0
+--- !u!122 &12261368
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102878}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 1
 --- !u!135 &13556338
 SphereCollider:
   m_ObjectHideFlags: 1

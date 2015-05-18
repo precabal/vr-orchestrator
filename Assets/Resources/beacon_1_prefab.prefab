@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 446082}
   - 33: {fileID: 3391572}
   - 23: {fileID: 2357854}
+  - 122: {fileID: 12244692}
   m_Layer: 0
   m_Name: beacon_1_prefab
   m_TagString: Untagged
@@ -60,6 +61,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137606}
   m_Mesh: {fileID: 4300000, guid: 4cac736489a5c479e90d0bcc39eb5772, type: 3}
+--- !u!122 &12244692
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137606}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
