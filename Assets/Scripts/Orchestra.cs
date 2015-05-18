@@ -58,7 +58,7 @@ namespace AssemblyCSharp
 			
 			System.Random random = new System.Random();
 			
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 1; i++)
 			{
 				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab);
 				sphere.transform.position = new Vector3(random.Next(-5, 5), random.Next(1, 5), random.Next(-5, 5));
