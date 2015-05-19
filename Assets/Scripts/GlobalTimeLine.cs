@@ -34,6 +34,7 @@ namespace AssemblyCSharp
 		{
 			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
 			beaconsTimeLine.AddEvent( new ShowEvent(4.0f) );
+			beaconsTimeLine.AddEvent( new PlayEvent(6.0f) );
 			//beaconsTimeLine.AddEvent( new HideEvent(8.0f) );
 			_timeLines.Add (beaconsTimeLine);
 

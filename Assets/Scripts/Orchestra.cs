@@ -39,7 +39,7 @@ namespace AssemblyCSharp
 			AudioClip aC = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_09.19.13 m2 TRACKnoBASS_01") as AudioClip;
 			
 			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = aC;
-			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<OSPAudioSource> ().Play ();
+			//sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<OSPAudioSource> ().Play ();
 
 		
 
