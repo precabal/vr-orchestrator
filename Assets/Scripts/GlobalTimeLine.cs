@@ -7,6 +7,7 @@ namespace AssemblyCSharp
 	public class GlobalTimeLine
 	{
 		private Orchestra _orchestra = new Orchestra();
+		private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
 		private float _simulationLength = 60f; 
 
@@ -32,6 +33,13 @@ namespace AssemblyCSharp
 		
 		private void PopulateTimelines()
 		{
+
+			SingleTimeLine tilesTimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles"));
+			tilesTimeLine.AddEvent (new ShowEvent (2.0f));
+			tilesTimeLine.AddEvent (new RotateEvent (3.0f, new Vector3 (180, 0, 0), 1f));
+
+			_timeLines.Add (tilesTimeLine);
+
 			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
 			beaconsTimeLine.AddEvent( new ShowEvent(4.0f) );
 			//beaconsTimeLine.AddEvent( new HideEvent(8.0f) );

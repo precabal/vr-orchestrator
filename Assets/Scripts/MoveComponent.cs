@@ -32,8 +32,6 @@ public class MoveComponent : MonoBehaviour
 	{
 		Rigidbody rb = this.GetComponent<Rigidbody> ();
 
-	
-
 		if (_timer <= _translationTime/2)
 		{
 			rb.velocity = rb.velocity + _acceleration * Time.deltaTime;
