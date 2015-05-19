@@ -31,45 +31,50 @@ namespace AssemblyCSharp
 
 		public void InitializeSoundSources()
 		{
+			AudioClip trackNoBassClip_L = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.L") as AudioClip;
+			AudioClip trackNoBassClip_R = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.R") as AudioClip;
+			AudioClip baseSoundsClip = Resources.Load("Binaries/audioTracks/base") as AudioClip;
 
-			GameObject sphereSwarm = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject);
-			//TODO: these two next lines should be handled by the above method from ObjectFactory
-			sphereSwarm.transform.position = new Vector3(2,3,5);
-			sphereSwarm.tag = "swarm";
-			
-			AudioClip audioClip = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_09.19.13 m2 TRACKnoBASS_01") as AudioClip;
-			
-			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
+			//Source #1 - L
+			GameObject sphereSwarmL = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(5,3,2), "swarm");			
+			sphereSwarmL.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = trackNoBassClip_L;
+			_gameObjects.Add (sphereSwarmL);
+
+			//Source #1 - R
+			GameObject sphereSwarmR = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(5,3,-2), "swarm");			
+			sphereSwarmR.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = trackNoBassClip_R;
+			_gameObjects.Add (sphereSwarmR);
 
 
+			//Source #2 (Stereo, 2D)
+			GameObject baseSounds = _objectFactory.CreateFromPrefab(Resources.Load("OSPAudioSource_prefab") as GameObject);
+			baseSounds.GetComponent<AudioSource> ().clip = baseSoundsClip;
+			baseSounds.GetComponent<AudioSource> ().spatialBlend = 0;
+			baseSounds.GetComponent<OSPAudioSource> ().Bypass = true;
+			_gameObjects.Add (baseSounds);
+
+			//Source #3 - L
+			//Source #3 - R
+				
 		}
 
 		public void InitializeBeacons()
 		{
 
 			_beacons[0] = Resources.Load("beacon_1_prefab") as GameObject;
-			GameObject beacon1 = _objectFactory.CreateFromPrefab(_beacons[0]);
-			beacon1.transform.position = new Vector3(10,20,10);
-			beacon1.tag = "beacons";
+			GameObject beacon1 = _objectFactory.CreateFromPrefab(_beacons[0], new Vector3(10,20,10), "beacons");
 			_gameObjects.Add (beacon1); 
 
-
 			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
-			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
-			beacon2.transform.position = new Vector3(10,20,-10);
-			beacon2.tag = "beacons";
+			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1], new Vector3(10,20,-10), "beacons");
 			_gameObjects.Add (beacon2);
 
 			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
-			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2]);
-			beacon3.transform.position = new Vector3(-10,20,10);
-			beacon3.tag = "beacons";
+			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2], new Vector3(-10,20,10), "beacons");
 			_gameObjects.Add (beacon3);
 
 			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
-			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3]);
-			beacon4.transform.position = new Vector3(-10,20,-10);
-			beacon4.tag = "beacons";
+			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3], new Vector3(-10,20,-10), "beacons");
 			_gameObjects.Add (beacon4);
 
 			//TODO: see if we can unload assets here: Resources.UnloadAsset(_beacons[i]);
@@ -81,13 +86,12 @@ namespace AssemblyCSharp
 			_spherePrefab = Resources.Load("sphere_prefab") as GameObject;
 			
 			System.Random random = new System.Random();
-			
+
+			Vector3 position;
 			for (int i = 0; i < 1; i++)
 			{
-				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab);
-				sphere.transform.position = new Vector3(random.Next(-5, 5), random.Next(1, 5), random.Next(-5, 5));
-				sphere.tag = "spheres";
-				
+				position = new Vector3(random.Next(-5, 5), random.Next(1, 5), random.Next(-5, 5));
+				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab, position, "spheres");
 				_gameObjects.Add(sphere);
 			}
 
