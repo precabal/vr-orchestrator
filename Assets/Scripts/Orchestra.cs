@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using TBE_3DCore;
+//using TBE_3DCore;
 
 namespace AssemblyCSharp
 {
@@ -20,43 +20,58 @@ namespace AssemblyCSharp
 
 		public void Initialize()
 		{
-			InitializeBeacons ();
+
+			InitializeSoundSources ();
+
+			//InitializeBeacons ();
 			//InitializeRandomSpheres ();
 
+		}
+
+		public void InitializeSoundSources()
+		{
+
+			//_beacons[0] = Resources.Load("sphere_prefab") as GameObject;
+			GameObject sphereSwarm = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject);
+			sphereSwarm.transform.position = new Vector3(2,3,5);
+			sphereSwarm.tag = "swarm";
+			
+			AudioClip aC = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_09.19.13 m2 TRACKnoBASS_01") as AudioClip;
+			
+			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = aC;
+			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<OSPAudioSource> ().Play ();
+
+		
 
 		}
 
 		public void InitializeBeacons()
 		{
+
 			_beacons[0] = Resources.Load("beacon_1_prefab") as GameObject;
 			GameObject beacon1 = _objectFactory.CreateFromPrefab(_beacons[0]);
 			beacon1.transform.position = new Vector3(10,20,10);
 			beacon1.tag = "beacons";
-			beacon1.AddComponent<TBE_Source> ();
-			TBE_Source tbeSource = beacon1.GetComponent<TBE_Source> ();
-			AudioClip aC = Resources.Load("Binaries/audioTracks/CYMBALS_03") as AudioClip;
-			tbeSource.clip = aC;
-
 			_gameObjects.Add (beacon1); 
 
 
-//			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
-//			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
-//			beacon2.transform.position = new Vector3(10,20,-10);
-//			beacon2.tag = "beacons";
-//			_gameObjects.Add (beacon2);
-//
-//			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
-//			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2]);
-//			beacon3.transform.position = new Vector3(-10,20,10);
-//			beacon3.tag = "beacons";
-//			_gameObjects.Add (beacon3);
-//
-//			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
-//			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3]);
-//			beacon4.transform.position = new Vector3(-10,20,-10);
-//			beacon4.tag = "beacons";
-//			_gameObjects.Add (beacon4);
+			_beacons[1] = Resources.Load("beacon_2_prefab") as GameObject;
+			GameObject beacon2 = _objectFactory.CreateFromPrefab(_beacons[1]);
+			beacon2.transform.position = new Vector3(10,20,-10);
+			beacon2.tag = "beacons";
+			_gameObjects.Add (beacon2);
+
+			_beacons[2] = Resources.Load("beacon_3_prefab") as GameObject;
+			GameObject beacon3 = _objectFactory.CreateFromPrefab(_beacons[2]);
+			beacon3.transform.position = new Vector3(-10,20,10);
+			beacon3.tag = "beacons";
+			_gameObjects.Add (beacon3);
+
+			_beacons[3] = Resources.Load("beacon_4_prefab") as GameObject;
+			GameObject beacon4 = _objectFactory.CreateFromPrefab(_beacons[3]);
+			beacon4.transform.position = new Vector3(-10,20,-10);
+			beacon4.tag = "beacons";
+			_gameObjects.Add (beacon4);
 
 			//TODO: see if we can unload assets here: Resources.UnloadAsset(_beacons[i]);
 		}
@@ -88,7 +103,7 @@ namespace AssemblyCSharp
 			switch(specifier)
 			{
 			case "swarm":
-				//selectedObjects = GameObject.FindGameObjectsWithTag("swarm");
+				selectedObjects = GameObject.FindGameObjectsWithTag("swarm").ToList();
 				break;
 			case "room":
 				//selectedObjects = GameObject.FindGameObjectsWithTag("room");

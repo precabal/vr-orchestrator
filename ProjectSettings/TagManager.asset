@@ -6,6 +6,7 @@ TagManager:
   tags:
   - beacons
   - spheres
+  - swarm
   layers:
   - Default
   - TransparentFX

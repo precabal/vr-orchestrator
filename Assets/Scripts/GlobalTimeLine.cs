@@ -32,9 +32,9 @@ namespace AssemblyCSharp
 		
 		private void PopulateTimelines()
 		{
-			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("beacons"));
+			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
 			beaconsTimeLine.AddEvent( new ShowEvent(4.0f) );
-			beaconsTimeLine.AddEvent( new HideEvent(8.0f) );
+			//beaconsTimeLine.AddEvent( new HideEvent(8.0f) );
 			_timeLines.Add (beaconsTimeLine);
 
 			SingleTimeLine spheresTimeLine = new SingleTimeLine (_orchestra.GetObjects ("spheres"));
