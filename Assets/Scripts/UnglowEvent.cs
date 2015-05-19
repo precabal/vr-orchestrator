@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System;
 namespace AssemblyCSharp
 {
 	public class UnglowEvent : IEvent
