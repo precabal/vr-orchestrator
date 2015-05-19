@@ -24,6 +24,7 @@ namespace AssemblyCSharp
 			InitializeSoundSources ();
 
 			//InitializeBeacons ();
+
 			//InitializeRandomSpheres ();
 
 		}
@@ -31,17 +32,15 @@ namespace AssemblyCSharp
 		public void InitializeSoundSources()
 		{
 
-			//_beacons[0] = Resources.Load("sphere_prefab") as GameObject;
 			GameObject sphereSwarm = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject);
+			//TODO: these two next lines should be handled by the above method from ObjectFactory
 			sphereSwarm.transform.position = new Vector3(2,3,5);
 			sphereSwarm.tag = "swarm";
 			
-			AudioClip aC = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_09.19.13 m2 TRACKnoBASS_01") as AudioClip;
+			AudioClip audioClip = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_09.19.13 m2 TRACKnoBASS_01") as AudioClip;
 			
-			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = aC;
-			//sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<OSPAudioSource> ().Play ();
+			sphereSwarm.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
 
-		
 
 		}
 
@@ -76,6 +75,7 @@ namespace AssemblyCSharp
 			//TODO: see if we can unload assets here: Resources.UnloadAsset(_beacons[i]);
 		}
 
+		//TODO: pass the number of spheres as a parameter
 		public void InitializeRandomSpheres()
 		{
 			_spherePrefab = Resources.Load("sphere_prefab") as GameObject;
@@ -94,6 +94,12 @@ namespace AssemblyCSharp
 			//TODO: see if we can unload asset here: Resources.UnloadAsset(_spherePrefab);
 
 		}
+
+
+
+		//TODO: maybe implement the GetObjects function as a static one, in order to make a subfilter of the returned group?
+		/* for example: groupOfObjects = GetObjects("swarm") and then:
+		/ subGroupOfObject = GetObjects("soundSources",groupOfObjects), or GetObjects("soundSources","swarm") */
 
 		public List<GameObject> GetObjects(String specifier)
 		{

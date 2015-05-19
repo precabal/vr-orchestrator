@@ -29,6 +29,8 @@ namespace AssemblyCSharp
 				{
 					child.gameObject.GetComponent<OSPAudioSource> ().Play();
 				}
+
+				//TODO: evaluate the case where this is a normal AudioSource?
 			}
 
 		}

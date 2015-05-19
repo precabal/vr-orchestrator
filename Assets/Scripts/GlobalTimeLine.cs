@@ -33,6 +33,7 @@ namespace AssemblyCSharp
 		private void PopulateTimelines()
 		{
 			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
+			//TODO: maybe implement the GetObjects function as a static one, in order to make a subfilter of the returned group?
 			beaconsTimeLine.AddEvent( new ShowEvent(4.0f) );
 			beaconsTimeLine.AddEvent( new PlayEvent(6.0f) );
 			//beaconsTimeLine.AddEvent( new HideEvent(8.0f) );
