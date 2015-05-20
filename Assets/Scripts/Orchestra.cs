@@ -31,30 +31,61 @@ namespace AssemblyCSharp
 
 		public void InitializeSoundSources()
 		{
-			AudioClip trackNoBassClip_L = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.L") as AudioClip;
-			AudioClip trackNoBassClip_R = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.R") as AudioClip;
+			AudioClip leadSynth_R = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.L") as AudioClip;
+			AudioClip leadSynth_L = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.R") as AudioClip;
 			AudioClip baseSoundsClip = Resources.Load("Binaries/audioTracks/base") as AudioClip;
+			AudioClip hihat1 = Resources.Load("Binaries/audioTracks/HI_HAT_CL_RR_02") as AudioClip;
+			AudioClip hihat2 = Resources.Load("Binaries/audioTracks/HI_HAT_OPEN_RR_02") as AudioClip;
+			AudioClip cymbal1 = Resources.Load("Binaries/audioTracks/CYMBALS_03") as AudioClip;
+			AudioClip cymbal2 = Resources.Load("Binaries/audioTracks/CYMBAL DLY_01") as AudioClip;
+			//AudioClip snare1 = Resources.Load("Binaries/audioTracks/SNARE_1_RR_02") as AudioClip;
+			//AudioClip snare2 = Resources.Load("Binaries/audioTracks/SNARE_2_RR_02") as AudioClip;
+			//AudioClip snare3 = Resources.Load("Binaries/audioTracks/SNARE1_VERB_02") as AudioClip;
 
-			//Source #1 - L
-			GameObject sphereSwarmL = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(5,3,2), "swarm");			
-			sphereSwarmL.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = trackNoBassClip_L;
+				
+					
+					
+			
+			//Source #1 -Lead Synth L
+			GameObject sphereSwarmL = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(5,3,-2), "swarm");			
+			sphereSwarmL.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = leadSynth_L;
 			_gameObjects.Add (sphereSwarmL);
 
-			//Source #1 - R
-			GameObject sphereSwarmR = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(5,3,-2), "swarm");			
-			sphereSwarmR.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = trackNoBassClip_R;
+			//Source #1 - Lead Synth R
+			GameObject sphereSwarmR = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(5,3,2), "swarm");			
+			sphereSwarmR.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = leadSynth_R;
 			_gameObjects.Add (sphereSwarmR);
 
 
-			//Source #2 (Stereo, 2D)
+			//Source #2 - Base (Stereo, 2D)
 			GameObject baseSounds = _objectFactory.CreateFromPrefab(Resources.Load("OSPAudioSource_prefab") as GameObject);
 			baseSounds.GetComponent<AudioSource> ().clip = baseSoundsClip;
 			baseSounds.GetComponent<AudioSource> ().spatialBlend = 0;
+			baseSounds.GetComponent<AudioSource> ().volume = 0.1f;
 			baseSounds.GetComponent<OSPAudioSource> ().Bypass = true;
+
+
 			_gameObjects.Add (baseSounds);
 
-			//Source #3 - L
-			//Source #3 - R
+			//Source #3 - Hihat 1
+			GameObject hihat1Obj = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(3,5,-2), "swarm");			
+			hihat1Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = hihat1;
+			_gameObjects.Add (hihat1Obj);
+
+			//Source #4 - Hihat 2
+			GameObject hihat2Obj = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(3,5,-2), "swarm");			
+			hihat2Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = hihat2;
+			_gameObjects.Add (hihat2Obj);
+
+			//Source #5 - Cymbal 1
+			GameObject cymbal1Obj = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(-3,4,-2), "swarm");			
+			cymbal1Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = cymbal1;
+			_gameObjects.Add (cymbal1Obj);
+			
+			//Source #6 - Cymbal 2
+			GameObject cymbal2Obj = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(-3,4,2), "swarm");			
+			cymbal2Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = cymbal2;
+			_gameObjects.Add (cymbal2Obj);
 				
 		}
 
