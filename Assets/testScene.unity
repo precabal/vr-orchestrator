@@ -165,6 +165,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d53ef12ff84fde40844012985b2902d, type: 2}
+      propertyPath: enableReverb
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d53ef12ff84fde40844012985b2902d, type: 2}
+      propertyPath: dimensions.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d53ef12ff84fde40844012985b2902d, type: 2}
+      propertyPath: dimensions.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d53ef12ff84fde40844012985b2902d, type: 2}
+      propertyPath: dimensions.z
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 3d53ef12ff84fde40844012985b2902d, type: 2}
+      propertyPath: enableReflections
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3d53ef12ff84fde40844012985b2902d, type: 2}
   m_IsPrefabParent: 0

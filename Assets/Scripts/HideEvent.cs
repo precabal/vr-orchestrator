@@ -21,7 +21,8 @@ namespace AssemblyCSharp
 
 		public void Perform(List<GameObject> objects)
 		{
-			objects.ForEach (o => o.SetActive (false));
+			//objects.ForEach (o => o.SetActive (false));
+			objects.ForEach (o => o.GetComponent<Renderer>().enabled = false);
 		}
 	}
 }

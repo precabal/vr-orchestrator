@@ -37,37 +37,27 @@ namespace AssemblyCSharp
 			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
 			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
 			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.5f, 120f/118f));
-
 			_timeLines.Add (tilesATimeLine);
-
 
 			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
 			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
 			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 180), 1f, 240/118f));
-			
 			_timeLines.Add (tilesBTimeLine);
 
-
-
-
-			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
-			//TODO: maybe implement the GetObjects function as a static one, in order to make a subfilter of the returned group?
-			beaconsTimeLine.AddEvent( new ShowEvent(4.0f) );
-
-			//beaconsTimeLine.AddEvent( new HideEvent(8.0f) );
-			_timeLines.Add (beaconsTimeLine);
+			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
+			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 20f));
+			swarmTimeLine.AddEvent( new ShowEvent(4.0f) );
+			_timeLines.Add (swarmTimeLine);
 
 			SingleTimeLine spheresTimeLine = new SingleTimeLine (_orchestra.GetObjects ("spheres"));
-			spheresTimeLine.AddEvent( new ShowEvent(4.0f) );
-			//spheresTimeLine.AddEvent( new AddGravityEvent(5.0f) );
-			spheresTimeLine.AddEvent( new MoveEvent(8.0f, new Vector3(0f, 3f, 0f), 1f));
-			spheresTimeLine.AddEvent( new HideEvent(20.0f) );
+			spheresTimeLine.AddEvent( new ShowEvent(3.0f) );
+			spheresTimeLine.AddEvent( new HideEvent(9.0f) );
 			_timeLines.Add (spheresTimeLine);
 
-			SingleTimeLine allTimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
-			allTimeLine.AddEvent( new PlayEvent(6.0f) );
-			allTimeLine.AddEvent( new HideEvent(200.0f) );
-			_timeLines.Add (allTimeLine);
+			SingleTimeLine allObjectsTimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
+			allObjectsTimeLine.AddEvent( new PlayEvent(6.0f) );
+			allObjectsTimeLine.AddEvent( new HideEvent(200.0f) );
+			_timeLines.Add (allObjectsTimeLine);
 
 		}
 		
