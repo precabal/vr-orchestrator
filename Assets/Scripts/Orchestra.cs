@@ -112,23 +112,11 @@ namespace AssemblyCSharp
 
 			switch(specifier)
 			{
-			case "swarm":
-				selectedObjects = GameObject.FindGameObjectsWithTag("swarm").ToList();
-				break;
-			case "room":
-				//selectedObjects = GameObject.FindGameObjectsWithTag("room");
-				break;
-			case "beacons":
-				selectedObjects = GameObject.FindGameObjectsWithTag("beacons").ToList();
-				break;
-			case "spheres":
-				selectedObjects = GameObject.FindGameObjectsWithTag("spheres").ToList();
-				break;
 			case "all":
 				selectedObjects = _gameObjects;
 				break;
 			default:
-				//TODO igual que all
+				selectedObjects = GameObject.FindGameObjectsWithTag(specifier).ToList();
 				break;
 				
 			}
