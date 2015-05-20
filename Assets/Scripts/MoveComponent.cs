@@ -3,20 +3,11 @@ using System.Collections;
 
 public class MoveComponent : MonoBehaviour
 {
-	private static Vector3 _finalPosition;
-	private static float _translationTime;
+	public Vector3 _finalPosition;
+	public float _translationTime;
 	private float _timer;
 	private Vector3 _acceleration;
 
-	public static MoveComponent CreateComponent(GameObject target, Vector3 finalPosition, float translationTime)
-	{
-		MoveComponent mc = target.AddComponent<MoveComponent> ();
-
-		_finalPosition = finalPosition;
-		_translationTime = translationTime;
-
-		return mc;
-	}
 
 	void Start ()
 	{

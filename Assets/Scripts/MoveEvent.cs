@@ -27,8 +27,15 @@ namespace AssemblyCSharp
 		{
 			foreach (GameObject obj in objects)
 			{
-				MoveComponent mc = MoveComponent.CreateComponent(obj, _finalPosition, _translationTime);
+				CreateComponent(obj, _finalPosition, _translationTime);
 			}
+		}
+		public void CreateComponent(GameObject target, Vector3 finalPosition, float translationTime)
+		{
+			MoveComponent moveComponent = target.AddComponent<MoveComponent> ();
+			moveComponent._finalPosition = finalPosition;
+			moveComponent._translationTime = translationTime;
+
 		}
 	}
 }
