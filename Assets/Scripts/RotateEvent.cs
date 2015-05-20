@@ -28,8 +28,17 @@ namespace AssemblyCSharp
 		{
 			foreach (GameObject obj in objects)
 			{
-				RotateComponent rc = RotateComponent.CreateComponent(obj, _rotationAngle, _rotationTime, _rotationPeriod);
+				CreateComponent(obj, _rotationAngle, _rotationTime, _rotationPeriod);
 			}
+		}
+
+		private void CreateComponent(GameObject target, Vector3 rotationAngle, float rotationTime, float rotationPeriod)
+		{
+			RotateComponent rotateComponent = target.AddComponent<RotateComponent> ();
+			rotateComponent._rotationAngle = rotationAngle;
+			rotateComponent._rotationTime = rotationTime;
+			rotateComponent._rotationPeriod = rotationPeriod;
+
 		}
 	}
 }
