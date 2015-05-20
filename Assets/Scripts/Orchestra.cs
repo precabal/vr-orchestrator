@@ -38,8 +38,8 @@ namespace AssemblyCSharp
 			AudioClip hihat2 = Resources.Load("Binaries/audioTracks/HI_HAT_OPEN_RR_02") as AudioClip;
 			AudioClip cymbal1 = Resources.Load("Binaries/audioTracks/CYMBALS_03") as AudioClip;
 			AudioClip cymbal2 = Resources.Load("Binaries/audioTracks/CYMBAL DLY_01") as AudioClip;
-			//AudioClip snare1 = Resources.Load("Binaries/audioTracks/SNARE_1_RR_02") as AudioClip;
-			//AudioClip snare2 = Resources.Load("Binaries/audioTracks/SNARE_2_RR_02") as AudioClip;
+			AudioClip snare1 = Resources.Load("Binaries/audioTracks/SNARE_1_RR_02") as AudioClip;
+			AudioClip snare2 = Resources.Load("Binaries/audioTracks/SNARE_2_RR_02") as AudioClip;
 			//AudioClip snare3 = Resources.Load("Binaries/audioTracks/SNARE1_VERB_02") as AudioClip;
 
 				
@@ -87,8 +87,21 @@ namespace AssemblyCSharp
 			cymbal2Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = cymbal2;
 			_gameObjects.Add (cymbal2Obj);
 				
-		}
 
+			//Source #7 - Snare 1
+			GameObject snare1Obj = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(-3,8,-2), "swarm");			
+			snare1Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = snare1;
+			_gameObjects.Add (snare1Obj);
+			
+			//Source #8 - Cymbal 2
+			GameObject snare2Obj = _objectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(-3,8,2), "swarm");			
+			snare2Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = snare2;
+			_gameObjects.Add (snare2Obj);
+
+			
+			
+		}
+		
 		public void InitializeBeacons()
 		{
 

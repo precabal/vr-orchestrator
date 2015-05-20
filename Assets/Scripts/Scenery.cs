@@ -10,6 +10,7 @@ namespace AssemblyCSharp
 		private ObjectFactory _objectFactory = new ObjectFactory();
 		private List<GameObject> _gameObjects = new List<GameObject>();
 		private int _baseNumberOfTiles = 20;
+		private System.Random random = new System.Random ();
 
 		public Scenery ()
 		{
@@ -33,7 +34,8 @@ namespace AssemblyCSharp
 					GameObject tile = _objectFactory.CreateFromPrefab(tilePrefab);
 					tile.transform.position = new Vector3(i - _baseNumberOfTiles/2, 0, j - _baseNumberOfTiles/2);
 
-					tagTile(tile, i, j, true);
+					tagTile(tile, i, j, "random");
+					tagTile(tile, i, j, "scatter");
 
 					_gameObjects.Add(tile);
 				}
@@ -41,28 +43,39 @@ namespace AssemblyCSharp
 
 		}
 
-		private void tagTile(GameObject tile, int i, int j, Boolean scatter)
+		private void tagTile(GameObject tile, int i, int j, String mode)
 		{
-			if (scatter) {
-				System.Random random = new System.Random ();
-				if (random.Next (0, 2) == 1) {
-					if ((i + j) % 2 == 0) {
-						tile.tag = "tilesA";
-					} else {
-						tile.tag = "tilesB";
-					}
-				}
-			}
-			else
+			switch(mode)
 			{
+			case "chessboard":
 				if ((i + j) % 2 == 0) {
 					tile.tag = "tilesA";
 				} else {
 					tile.tag = "tilesB";
 				}
+				break;
+			case "random":
+
+				if (random.Next (0, 2) == 1) 
+				{
+					tile.tag = "tilesA";
+				}
+				else
+				{
+					tile.tag = "tilesB";
+				}
+				break;
+			case "scatter":
+				
+				if (random.Next (0, 3) != 1) 
+				{
+					tile.tag = "tilesC";
+				}
+				break;
+			default:
+				break;
 			}
-
-
+			//For keeping the middle tiles still no matter what.
 			if( (Math.Abs(i-(_baseNumberOfTiles-1)*0.5f) <= 1) && (Math.Abs(j-(_baseNumberOfTiles-1)*0.5f) <=1 ) )
 			{
 				tile.tag = "tilesC";
