@@ -36,7 +36,7 @@ namespace AssemblyCSharp
 
 			SingleTimeLine tilesTimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles"));
 			tilesTimeLine.AddEvent (new ShowEvent (2.0f));
-			tilesTimeLine.AddEvent (new RotateEvent (3.0f, new Vector3 (180, 0, 0), 1f));
+			tilesTimeLine.AddEvent (new RotateEvent (3.0f, new Vector3 (180, 0, 0), 1f, 2f));
 
 			_timeLines.Add (tilesTimeLine);
 
