@@ -100,7 +100,6 @@ namespace AssemblyCSharp
 		}
 
 
-
 		//TODO: maybe implement the GetObjects function as a static one, in order to make a subfilter of the returned group?
 		/* for example: groupOfObjects = GetObjects("swarm") and then:
 		/ subGroupOfObject = GetObjects("soundSources",groupOfObjects), or GetObjects("soundSources","swarm") */
@@ -122,6 +121,7 @@ namespace AssemblyCSharp
 			}
 			return selectedObjects;	
 		}
+
 
 		public void DestroyObjects()
 		{

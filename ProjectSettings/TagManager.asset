@@ -7,7 +7,9 @@ TagManager:
   - beacons
   - spheres
   - swarm
-  - tiles
+  - tilesA
+  - tilesB
+  - tilesC
   layers:
   - Default
   - TransparentFX

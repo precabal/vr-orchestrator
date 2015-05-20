@@ -8,7 +8,7 @@ namespace AssemblyCSharp
 	public class Scenery
 	{
 		private ObjectFactory _objectFactory = new ObjectFactory();
-		private List<GameObject> _tiles = new List<GameObject>();
+		private List<GameObject> _gameObjects = new List<GameObject>();
 
 		public Scenery ()
 		{
@@ -30,9 +30,16 @@ namespace AssemblyCSharp
 				{
 					GameObject tile = _objectFactory.CreateFromPrefab(tilePrefab);
 					tile.transform.position = new Vector3(i - 5, 2, j - 5);
-					tile.tag = "tiles";
+
+					if((i+j)%2==0)
+					{
+						tile.tag = "tilesA";
+					}else
+					{
+						tile.tag = "tilesB";
+					}
 					
-					_tiles.Add(tile);
+					_gameObjects.Add(tile);
 				}
 			}
 
@@ -44,17 +51,24 @@ namespace AssemblyCSharp
 			
 			switch(specifier)
 			{
+			//TODO case "random":
+			case "all":
+				selectedObjects = _gameObjects;
+				break;
 			case "tiles":
-				selectedObjects = GameObject.FindGameObjectsWithTag("tiles").ToList();
+				selectedObjects = GameObject.FindGameObjectsWithTag("tilesA").ToList();
+				selectedObjects.AddRange(GameObject.FindGameObjectsWithTag("tilesB").ToList());
+				selectedObjects.AddRange(GameObject.FindGameObjectsWithTag("tilesC").ToList());
 				break;
 			default:
-				//TODO igual que all
+				selectedObjects = GameObject.FindGameObjectsWithTag(specifier).ToList();
 				break;
 				
 			}
 			return selectedObjects;	
 		}
-
+	
+		
 	}
 }
 

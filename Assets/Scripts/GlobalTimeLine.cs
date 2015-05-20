@@ -34,11 +34,21 @@ namespace AssemblyCSharp
 		private void PopulateTimelines()
 		{
 
-			SingleTimeLine tilesTimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles"));
-			tilesTimeLine.AddEvent (new ShowEvent (2.0f));
-			tilesTimeLine.AddEvent (new RotateEvent (3.0f, new Vector3 (180, 0, 0), 1f, 2f));
+			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
+			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
+			tilesATimeLine.AddEvent (new RotateEvent (3.0f, new Vector3 (180, 0, 0), 1f, 2f));
 
-			_timeLines.Add (tilesTimeLine);
+			_timeLines.Add (tilesATimeLine);
+
+
+			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
+			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
+			tilesBTimeLine.AddEvent (new RotateEvent (3.0f, new Vector3 (0, 0, 180), 1f, 4f));
+			
+			_timeLines.Add (tilesBTimeLine);
+
+
+
 
 			SingleTimeLine beaconsTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
 			//TODO: maybe implement the GetObjects function as a static one, in order to make a subfilter of the returned group?
