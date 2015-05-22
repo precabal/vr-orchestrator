@@ -43,8 +43,9 @@ public class RotateComponent : MonoBehaviour
 		if ( (0 <= _rotationCount - _offsetInSteps) && (_rotationCount - _offsetInSteps < _numberOfStepsToRotate) )
 		{
 			this.transform.Rotate (_rotationStep);
-			_rotationCount++;
+
 		}
+		_rotationCount++;
 		_timer += Time.deltaTime;
 	}
 }
