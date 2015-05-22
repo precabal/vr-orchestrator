@@ -9,7 +9,7 @@ namespace AssemblyCSharp
 	{
 		private ObjectFactory _objectFactory = new ObjectFactory();
 		private List<GameObject> _gameObjects = new List<GameObject>();
-		private int _baseNumberOfTiles = 20;
+		private int _baseNumberOfTiles = 22;
 		private System.Random random = new System.Random ();
 
 		public Scenery ()
@@ -56,18 +56,23 @@ namespace AssemblyCSharp
 				break;
 			case "random":
 
-				if (random.Next (0, 2) == 1) 
+				switch (random.Next (0, 3))
 				{
+				case 0: 
 					tile.tag = "tilesA";
-				}
-				else
-				{
+					break;
+				case 1:
 					tile.tag = "tilesB";
+					break;
+				case 2:
+					tile.tag = "tiles3_2";
+					break;
 				}
+
 				break;
 			case "scatter":
 				
-				if (random.Next (0, 3) != 1) 
+				if (random.Next (0, 7) != 1) 
 				{
 					tile.tag = "tilesC";
 				}
