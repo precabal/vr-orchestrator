@@ -35,6 +35,7 @@ public class MoveComponent : MonoBehaviour
 		{
 			rb.velocity = Vector3.zero;
 			this.transform.position = _finalPosition;
+			Destroy(this);
 		}
 		_timer += Time.deltaTime;
 

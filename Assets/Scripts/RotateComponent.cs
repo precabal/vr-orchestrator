@@ -5,7 +5,7 @@ using System;
 public class RotateComponent : MonoBehaviour
 {
 	public Vector3 _rotationAngle;
-	public  float _rotationTime;
+	public float _rotationTime;
 	public float _rotationPeriod;
 	public float _percentageOffset;
 
@@ -28,7 +28,7 @@ public class RotateComponent : MonoBehaviour
 		_numberOfStepsToRotate = (int)Math.Floor(_rotationTime / Time.fixedDeltaTime);
 		_numberOfStepsInPeriod = (int)Math.Floor(_rotationPeriod / Time.fixedDeltaTime);
 		_offsetInSteps = (int)Math.Floor (_percentageOffset * (float)_numberOfStepsInPeriod);
-		Debug.Log (_offsetInSteps);
+		//Debug.Log (_offsetInSteps);
 		_rotationStep = _rotationAngle / _numberOfStepsToRotate;
 		_timer = 0f;
 	}

@@ -51,10 +51,10 @@ namespace AssemblyCSharp
 			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 180), 0.4f, 120f/118f));
 			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 180), 0.4f, 4*120f/118f, 0.875f));
 			_timeLines.Add (tiles3_2TimeLine);
-			
-			
+
 			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
-			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 20f));
+			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 5f));
+			swarmTimeLine.AddEvent( new OrbitEvent(12.0f,45) );
 			swarmTimeLine.AddEvent( new ShowEvent(4.0f) );
 			_timeLines.Add (swarmTimeLine);
 
