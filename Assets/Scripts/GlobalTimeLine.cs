@@ -37,14 +37,22 @@ namespace AssemblyCSharp
 			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
 			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
 			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 2*120f/118f));
-			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 4*120f/118f, 0.125f));
+
 			_timeLines.Add (tilesATimeLine);
 
 			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
 			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
-			//tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 4*120f/118f, 0.125f));
+			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 180), 0.4f, 2*120f/118f));
+			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 180), 0.4f, 4*120f/118f, 0.125f));
 			_timeLines.Add (tilesBTimeLine);
 
+			SingleTimeLine tiles3_2TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles3_2"));
+			tiles3_2TimeLine.AddEvent (new ShowEvent (2.0f));
+			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 180), 0.4f, 120f/118f));
+			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 180), 0.4f, 4*120f/118f, 0.875f));
+			_timeLines.Add (tiles3_2TimeLine);
+			
+			
 			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
 			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 20f));
 			swarmTimeLine.AddEvent( new ShowEvent(4.0f) );

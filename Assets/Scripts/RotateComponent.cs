@@ -16,7 +16,7 @@ public class RotateComponent : MonoBehaviour
 	private int _offsetInSteps;
 
 	private float _timer;
-
+	//private float _epsilon = float.Epsilon;
 
 
 	
@@ -36,7 +36,7 @@ public class RotateComponent : MonoBehaviour
 	void FixedUpdate ()
 	{
 
-		if (_timer >= _rotationPeriod) {
+		if (_timer >= _rotationPeriod - 2*float.Epsilon) {
 			_rotationCount = 0;
 			_timer = 0;
 		}
