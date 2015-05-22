@@ -10,6 +10,7 @@ TagManager:
   - tilesA
   - tilesB
   - tilesC
+  - tiles3_2
   layers:
   - Default
   - TransparentFX
