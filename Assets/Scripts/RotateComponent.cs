@@ -11,7 +11,8 @@ public class RotateComponent : MonoBehaviour
 
 	private Vector3 _rotationStep;
 	private int _rotationCount;
-	private int _numberOfSteps;
+	private int _numberOfStepsToRotate;
+	private float _numberOfStepsInPeriod;
 	private int _offsetInSteps;
 
 	private float _timer;
@@ -24,9 +25,11 @@ public class RotateComponent : MonoBehaviour
 		//TODO: force that _rotationTime to be a multiple of Time.fixedDeltaTime
 		//if (Math.IEEERemainder(_rotationTime,Time.fixedDeltaTime) > 0)
 
-		_numberOfSteps = (int)Math.Floor(_rotationTime / Time.fixedDeltaTime);
-		_offsetInSteps = (int)Math.Floor (_percentageOffset * (float)_numberOfSteps);
-		_rotationStep = _rotationAngle / _numberOfSteps;
+		_numberOfStepsToRotate = (int)Math.Floor(_rotationTime / Time.fixedDeltaTime);
+		_numberOfStepsInPeriod = (int)Math.Floor(_rotationPeriod / Time.fixedDeltaTime);
+		_offsetInSteps = (int)Math.Floor (_percentageOffset * (float)_numberOfStepsInPeriod);
+		Debug.Log (_offsetInSteps);
+		_rotationStep = _rotationAngle / _numberOfStepsToRotate;
 		_timer = 0f;
 	}
 	
@@ -37,7 +40,7 @@ public class RotateComponent : MonoBehaviour
 			_rotationCount = 0;
 			_timer = 0;
 		}
-		if ( (0 <= _rotationCount - _offsetInSteps) && (_rotationCount - _offsetInSteps < _numberOfSteps) )
+		if ( (0 <= _rotationCount - _offsetInSteps) && (_rotationCount - _offsetInSteps < _numberOfStepsToRotate) )
 		{
 			this.transform.Rotate (_rotationStep);
 			_rotationCount++;

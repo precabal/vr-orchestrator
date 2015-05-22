@@ -36,13 +36,13 @@ namespace AssemblyCSharp
 
 			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
 			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
-			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 2*120f/118f));
-			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 4*120f/118f, 0.25f));
+			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 2*120f/118f, 0.25f));
+			//tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 4*120f/118f, 0.25f));
 			_timeLines.Add (tilesATimeLine);
 
 			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
 			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
-			//tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 180), 1f, 240/118f));
+			//tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (180, 0, 0), 0.4f, 4*120f/118f, 0.125f));
 			_timeLines.Add (tilesBTimeLine);
 
 			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
