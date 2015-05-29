@@ -21,11 +21,11 @@ namespace AssemblyCSharp
 		public void Initialize()
 		{
 
-			InitializeSoundSources ();
+			//InitializeSoundSources ();
 
 			//InitializeBeacons ();
 
-			//InitializeRandomSpheres ();
+			InitializeRandomSpheres ();
 
 		}
 
@@ -124,9 +124,10 @@ namespace AssemblyCSharp
 			System.Random random = new System.Random();
 
 			Vector3 position;
-			for (int i = 0; i < 1; i++)
+			for (int i = 0; i < 800; i++)
 			{
-				position = new Vector3(random.Next(-5, 5), random.Next(1, 5), random.Next(-5, 5));
+				position = new Vector3(random.Next(-200, 200), random.Next(1, 200), random.Next(-200, 200));
+
 				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab, position, "spheres");
 				_gameObjects.Add(sphere);
 			}
@@ -134,11 +135,6 @@ namespace AssemblyCSharp
 			//TODO: see if we can unload asset here: Resources.UnloadAsset(_spherePrefab);
 
 		}
-
-
-		//TODO: maybe implement the GetObjects function as a static one, in order to make a subfilter of the returned group?
-		/* for example: groupOfObjects = GetObjects("swarm") and then:
-		/ subGroupOfObject = GetObjects("soundSources",groupOfObjects), or GetObjects("soundSources","swarm") */
 
 		public List<GameObject> GetObjects(String specifier)
 		{
