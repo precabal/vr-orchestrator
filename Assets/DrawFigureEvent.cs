@@ -8,7 +8,7 @@ namespace AssemblyCSharp
 	{
 		private float _eventTime;
 		private Figure _figure;
-		private float _speed = 25.0f;
+		private float _speed = 45.0f;
 		public float EventTime
 		{
 			get { return _eventTime; }

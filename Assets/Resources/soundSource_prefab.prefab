@@ -29,6 +29,7 @@ GameObject:
   - 135: {fileID: 13595828}
   - 23: {fileID: 2343744}
   - 54: {fileID: 5445720}
+  - 122: {fileID: 12237268}
   m_Layer: 0
   m_Name: soundSource_prefab
   m_TagString: Untagged
@@ -192,6 +193,17 @@ MonoBehaviour:
   priority: 0
   frequencyHint: 0
   useSimple: 0
+--- !u!122 &12237268
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163374}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 1
 --- !u!135 &13595828
 SphereCollider:
   m_ObjectHideFlags: 1

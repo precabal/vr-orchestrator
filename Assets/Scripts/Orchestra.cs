@@ -12,6 +12,8 @@ namespace AssemblyCSharp
 		private List<GameObject> _gameObjects = new List<GameObject>();
 		private GameObject _spherePrefab;
 		private GameObject[] _beacons = new GameObject[4];
+		private int _numberOfSpheres = 800;
+		private int _spaceDimension = 200;
 
 		public Orchestra ()
 		{
@@ -21,11 +23,11 @@ namespace AssemblyCSharp
 		public void Initialize()
 		{
 
-			//InitializeSoundSources ();
+			InitializeSoundSources ();
 
 			//InitializeBeacons ();
 
-			InitializeRandomSpheres ();
+			//InitializeRandomSpheres ();
 
 		}
 
@@ -124,11 +126,14 @@ namespace AssemblyCSharp
 			System.Random random = new System.Random();
 
 			Vector3 position;
-			for (int i = 0; i < 800; i++)
+			for (int i = 0; i < _numberOfSpheres; i++)
 			{
-				position = new Vector3(random.Next(-200, 200), random.Next(1, 200), random.Next(-200, 200));
+				position = new Vector3(random.Next(-_spaceDimension, _spaceDimension), random.Next(1, _spaceDimension), random.Next(-_spaceDimension, _spaceDimension));
 
-				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab, position, "spheres");
+				//scale goes between [-0.25, -.25) 
+				float scale = 0.5f*((float)random.NextDouble() - 0.5f);
+
+				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab, position, "spheres", scale);
 				_gameObjects.Add(sphere);
 			}
 
