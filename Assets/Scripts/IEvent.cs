@@ -8,6 +8,8 @@ namespace AssemblyCSharp
 	{
 		float EventTime{ get; set; }
 		void Perform(List<GameObject> objects);
+	
 	}
+
 }
 

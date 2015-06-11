@@ -10,7 +10,6 @@ namespace AssemblyCSharp
 		private List<GameObject> _objects;
 		private int _currentEventIndex = 0;
 
-
 		public List<GameObject> ObjectReferences
 		{
 			get { return _objects;}

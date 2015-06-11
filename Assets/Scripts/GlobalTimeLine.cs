@@ -94,44 +94,60 @@ namespace AssemblyCSharp
 		private void PopulateTimelines()
 		{
 
-			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
-			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
-			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 0), 180, 0.4f, 2*120f/118f));
+//			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
+//			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
+//			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 0), 180, 0.4f, 2*120f/118f));
+//
+//			_timeLines.Add (tilesATimeLine);
+//
+//			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
+//			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
+//			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
+//			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
+//			_timeLines.Add (tilesBTimeLine);
+//
+//			SingleTimeLine tiles3_2TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles3_2"));
+//			tiles3_2TimeLine.AddEvent (new ShowEvent (2.0f));
+//			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
+//			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
+//			_timeLines.Add (tiles3_2TimeLine);
+//
+//			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
+//
+//			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 5f));
+//			swarmTimeLine.AddEvent( new OrbitEvent(12.0f,45) );
+//			swarmTimeLine.AddEvent( new ShowEvent(4.0f) );
+//
+//			_timeLines.Add (swarmTimeLine);
+//
+//			SingleTimeLine spheresTimeLine = new SingleTimeLine (_orchestra.GetObjects ("spheres"));
+//			spheresTimeLine.AddEvent( new ShowEvent(3.0f) );
+//			spheresTimeLine.AddEvent( new GlowEvent(6.0f) );
+//			//spheresTimeLine.AddEvent( new HideEvent(9.0f) );
+//			//spheresTimeLine.AddEvent (new DrawFigureEvent (8.0f, _headFigure));
+//			//spheresTimeLine.AddEvent (new DrawFigureEvent (17.0f, _godFigure));
+//			_timeLines.Add (spheresTimeLine);
+//
+//			SingleTimeLine allObjectsTimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
+//			allObjectsTimeLine.AddEvent( new PlayAudioEvent(6.0f) );
+//			allObjectsTimeLine.AddEvent( new HideEvent(200.0f) );
+//			_timeLines.Add (allObjectsTimeLine);
 
-			_timeLines.Add (tilesATimeLine);
+			float[] envelope = new float[32];
+			for (int i  = 0; i< 16; i++) 
+			{
+				envelope[i] = (float)2f*i/31f;
+			}
+			for (int i  = 31; i >= 16; i--) 
+			{
+				envelope[i] = (float)2f*(32 - i - 1)/31f;
+			}
 
-			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
-			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
-			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
-			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
-			_timeLines.Add (tilesBTimeLine);
 
-			SingleTimeLine tiles3_2TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles3_2"));
-			tiles3_2TimeLine.AddEvent (new ShowEvent (2.0f));
-			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
-			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
-			_timeLines.Add (tiles3_2TimeLine);
 
-			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
-
-			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 5f));
-			swarmTimeLine.AddEvent( new OrbitEvent(12.0f,45) );
-			swarmTimeLine.AddEvent( new ShowEvent(4.0f) );
-
-			_timeLines.Add (swarmTimeLine);
-
-			SingleTimeLine spheresTimeLine = new SingleTimeLine (_orchestra.GetObjects ("spheres"));
-			spheresTimeLine.AddEvent( new ShowEvent(3.0f) );
-			spheresTimeLine.AddEvent( new GlowEvent(6.0f) );
-			//spheresTimeLine.AddEvent( new HideEvent(9.0f) );
-			//spheresTimeLine.AddEvent (new DrawFigureEvent (8.0f, _headFigure));
-			//spheresTimeLine.AddEvent (new DrawFigureEvent (17.0f, _godFigure));
-			_timeLines.Add (spheresTimeLine);
-
-			SingleTimeLine allObjectsTimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
-			allObjectsTimeLine.AddEvent( new PlayEvent(6.0f) );
-			allObjectsTimeLine.AddEvent( new HideEvent(200.0f) );
-			_timeLines.Add (allObjectsTimeLine);
+			SingleTimeLine lightningTestGroup = new SingleTimeLine (_orchestra.GetObjects ("lightningMaster"));
+			lightningTestGroup.AddEvent (new LightningEvent (5.0f, _orchestra.GetObjects ("lightning1"), envelope));
+			_timeLines.Add (lightningTestGroup);
 
 		}
 		
