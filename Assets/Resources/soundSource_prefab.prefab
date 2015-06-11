@@ -29,6 +29,7 @@ GameObject:
   - 135: {fileID: 13595828}
   - 23: {fileID: 2343744}
   - 54: {fileID: 5445720}
+  - 122: {fileID: 12237268}
   m_Layer: 0
   m_Name: soundSource_prefab
   m_TagString: Untagged
@@ -43,8 +44,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163374}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.171462059, y: 1.52050352, z: .115805626}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: .300000012, y: .300000012, z: .300000012}
   m_Children:
   - {fileID: 433292}
   m_Father: {fileID: 0}
@@ -192,6 +193,17 @@ MonoBehaviour:
   priority: 0
   frequencyHint: 0
   useSimple: 0
+--- !u!122 &12237268
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 163374}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 1.5
 --- !u!135 &13595828
 SphereCollider:
   m_ObjectHideFlags: 1

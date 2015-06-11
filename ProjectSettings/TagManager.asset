@@ -11,6 +11,8 @@ TagManager:
   - tilesB
   - tilesC
   - tiles3_2
+  - lightning1
+  - lightningMaster
   layers:
   - Default
   - TransparentFX

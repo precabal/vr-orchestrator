@@ -12,6 +12,7 @@ GameObject:
   - 135: {fileID: 13509408}
   - 23: {fileID: 2332658}
   - 54: {fileID: 5455026}
+  - 122: {fileID: 12290546}
   m_Layer: 0
   m_Name: sphere_prefab
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104228}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.171462059, y: 1.52050352, z: .115805626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,6 +78,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!122 &12290546
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104228}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 3
 --- !u!135 &13509408
 SphereCollider:
   m_ObjectHideFlags: 1

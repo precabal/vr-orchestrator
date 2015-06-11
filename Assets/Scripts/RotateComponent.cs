@@ -4,12 +4,13 @@ using System;
 
 public class RotateComponent : MonoBehaviour
 {
-	public Vector3 _rotationAngle;
+	public Vector3 _rotationAxis;
+	public float _rotationAngle;
 	public float _rotationTime;
 	public float _rotationPeriod;
 	public float _percentageOffset;
 
-	private Vector3 _rotationStep;
+	private float _rotationStep;
 	private int _rotationCount;
 	private int _numberOfStepsToRotate;
 	private float _numberOfStepsInPeriod;
@@ -42,7 +43,8 @@ public class RotateComponent : MonoBehaviour
 		}
 		if ( (0 <= _rotationCount - _offsetInSteps) && (_rotationCount - _offsetInSteps < _numberOfStepsToRotate) )
 		{
-			this.transform.Rotate (_rotationStep);
+			//this.transform.Rotate (_rotationStep);
+			this.transform.RotateAround(this.transform.position, this._rotationAxis, _rotationStep);
 
 		}
 		_rotationCount++;

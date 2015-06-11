@@ -12,6 +12,11 @@ namespace AssemblyCSharp
 		private List<GameObject> _gameObjects = new List<GameObject>();
 		private GameObject _spherePrefab;
 		private GameObject[] _beacons = new GameObject[4];
+		private int _numberOfSpheres = 100;
+		private int _spaceDimension = 12;
+		private int offsetX = 40;
+		private int offsetY = 20;
+		private int offsetZ = 40;
 
 		public Orchestra ()
 		{
@@ -124,13 +129,19 @@ namespace AssemblyCSharp
 			System.Random random = new System.Random();
 
 			Vector3 position;
-			for (int i = 0; i < 800; i++)
+			for (int i = 0; i < _numberOfSpheres; i++)
 			{
-				position = new Vector3(random.Next(-200, 200), random.Next(1, 200), random.Next(-200, 200));
+				position = new Vector3(random.Next(-_spaceDimension+offsetX, _spaceDimension+offsetX), random.Next(1, _spaceDimension+offsetY), random.Next(-_spaceDimension+offsetZ, _spaceDimension+offsetZ));
 
-				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab, position, "spheres");
+				//scale goes between [-0.25, -.25) 
+				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
+
+				GameObject sphere = _objectFactory.CreateFromPrefab(_spherePrefab, position, "lightning1", scale);
 				_gameObjects.Add(sphere);
 			}
+
+			GameObject masterSphere = _objectFactory.CreateFromPrefab(_spherePrefab, new Vector3(offsetX, offsetY, offsetZ), "lightningMaster", 0.5f);
+			_gameObjects.Add(masterSphere);
 
 			//TODO: see if we can unload asset here: Resources.UnloadAsset(_spherePrefab);
 

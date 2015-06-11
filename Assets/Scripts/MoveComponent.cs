@@ -7,10 +7,13 @@ public class MoveComponent : MonoBehaviour
 	public float _translationTime;
 	private float _timer;
 	private Vector3 _acceleration;
-
+	Rigidbody rb;
 
 	void Start ()
 	{
+		rb = this.GetComponent<Rigidbody> ();
+		//rb.velocity = Vector3.zero;
+
 		Vector3 translation = _finalPosition - this.transform.position;
 		float accelerationMagnitude = 4 * translation.magnitude / Mathf.Pow ((float)_translationTime, 2);
 
@@ -21,7 +24,7 @@ public class MoveComponent : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		Rigidbody rb = this.GetComponent<Rigidbody> ();
+
 
 		if (_timer <= _translationTime/2)
 		{
@@ -39,5 +42,11 @@ public class MoveComponent : MonoBehaviour
 		}
 		_timer += Time.deltaTime;
 
+	}
+
+	public void StopMovement()
+	{
+		rb.velocity = Vector3.zero;
+		Destroy(this);
 	}
 }

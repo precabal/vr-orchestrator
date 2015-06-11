@@ -9,7 +9,7 @@ namespace AssemblyCSharp
 	{
 		private ObjectFactory _objectFactory = new ObjectFactory();
 		private List<GameObject> _gameObjects = new List<GameObject>();
-		private int _baseNumberOfTiles = 22;
+		private int _baseNumberOfTiles = 14;
 		private System.Random random = new System.Random ();
 
 		public Scenery ()
@@ -27,12 +27,15 @@ namespace AssemblyCSharp
 		{
 			GameObject tilePrefab = Resources.Load("tile_prefab") as GameObject;
 
+			float tileDimensionX = tilePrefab.transform.localScale.x;
+			float tileDimensionZ = tilePrefab.transform.localScale.z;
+
 			for (int i = 0; i < _baseNumberOfTiles; i++)
 			{
 				for (int j = 0; j < _baseNumberOfTiles; j++)
 				{
 					GameObject tile = _objectFactory.CreateFromPrefab(tilePrefab);
-					tile.transform.position = new Vector3(i - _baseNumberOfTiles/2, 0, j - _baseNumberOfTiles/2);
+					tile.transform.position = new Vector3( tileDimensionX*(i - _baseNumberOfTiles/2), 0, tileDimensionZ*(j - _baseNumberOfTiles/2));
 
 					tagTile(tile, i, j, "random");
 					tagTile(tile, i, j, "scatter");
@@ -72,7 +75,7 @@ namespace AssemblyCSharp
 				break;
 			case "scatter":
 				
-				if (random.Next (0, 7) != 1) 
+				if (random.Next (0, 8) != 1) 
 				{
 					tile.tag = "tilesC";
 				}

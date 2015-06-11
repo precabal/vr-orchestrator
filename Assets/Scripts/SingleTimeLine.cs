@@ -36,8 +36,16 @@ namespace AssemblyCSharp
 		public void AddEvent(IEvent e)
 		{
 			_events.Add(e);
+			_events.Sort (IEventComparison);
+
+		}
+		private int IEventComparison(IEvent x, IEvent y)
+		{
+			return (int)(x.EventTime - y.EventTime);
+				
 		}
 		
+
 		public float GetNextEventTime()
 		{
 			if (_currentEventIndex >= _events.Count)

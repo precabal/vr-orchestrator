@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class PlayEvent : IEvent
+	public class PlayAudioEvent : IEvent
 	{
 		private float _eventTime;
 		
@@ -14,7 +14,7 @@ namespace AssemblyCSharp
 			set { _eventTime = value; }
 		}
 		
-		public PlayEvent(float eventTime)
+		public PlayAudioEvent(float eventTime)
 		{
 			_eventTime = eventTime;
 		}

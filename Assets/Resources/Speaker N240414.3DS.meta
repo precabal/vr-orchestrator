@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: ecd445368ee234a80865486e8b5482fd
+timeCreated: 1433167083
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Box01
+    100002: ChamferBox
+    100004: ChamferCy0
+    100006: ChamferCy1
+    100008: ChamferCyl
+    100010: Cylinder01
+    100012: Cylinder02
+    100014: Cylinder03
+    100016: Group02
+    100018: Group03
+    100020: Group04
+    100022: KLINKNAGEL
+    100024: Loft02
+    100026: //RootNode
+    100028: Sphere01
+    100030: Sphere02
+    100032: Sphere03
+    100034: Sphere04
+    100036: Sphere05
+    100038: Sphere06
+    100040: Sphere07
+    100042: Tube03
+    400000: Box01
+    400002: ChamferBox
+    400004: ChamferCy0
+    400006: ChamferCy1
+    400008: ChamferCyl
+    400010: Cylinder01
+    400012: Cylinder02
+    400014: Cylinder03
+    400016: Group02
+    400018: Group03
+    400020: Group04
+    400022: KLINKNAGEL
+    400024: Loft02
+    400026: //RootNode
+    400028: Sphere01
+    400030: Sphere02
+    400032: Sphere03
+    400034: Sphere04
+    400036: Sphere05
+    400038: Sphere06
+    400040: Sphere07
+    400042: Tube03
+    2300000: Box01
+    2300002: ChamferBox
+    2300004: ChamferCy0
+    2300006: ChamferCy1
+    2300008: ChamferCyl
+    2300010: Cylinder01
+    2300012: Cylinder02
+    2300014: Cylinder03
+    2300016: Loft02
+    2300018: Sphere01
+    2300020: Sphere02
+    2300022: Sphere03
+    2300024: Sphere04
+    2300026: Sphere05
+    2300028: Sphere06
+    2300030: Sphere07
+    2300032: Tube03
+    3300000: Box01
+    3300002: ChamferBox
+    3300004: ChamferCy0
+    3300006: ChamferCy1
+    3300008: ChamferCyl
+    3300010: Cylinder01
+    3300012: Cylinder02
+    3300014: Cylinder03
+    3300016: Loft02
+    3300018: Sphere01
+    3300020: Sphere02
+    3300022: Sphere03
+    3300024: Sphere04
+    3300026: Sphere05
+    3300028: Sphere06
+    3300030: Sphere07
+    3300032: Tube03
+    4300000: ChamferCyl
+    4300002: Loft02
+    4300004: Cylinder02
+    4300006: Cylinder01
+    4300008: Tube03
+    4300010: Box01
+    4300012: Cylinder03
+    4300014: ChamferBox
+    4300016: ChamferCy0
+    4300018: ChamferCy1
+    4300020: Sphere03
+    4300022: Sphere04
+    4300024: Sphere02
+    4300026: Sphere01
+    4300028: Sphere05
+    4300030: Sphere07
+    4300032: Sphere06
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
