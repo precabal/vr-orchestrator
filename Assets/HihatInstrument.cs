@@ -18,10 +18,11 @@ namespace AssemblyCSharp
 		{
 			_objects = new List<GameObject> ();
 
-			_centerPosition = new Vector3 (3, 5, -2);
+			_centerPosition = new Vector3 (15, 100, 15);
 
 			//surrounding shperes - estela
-			_objects.AddRange(ObjectFactory.InitializeRandomSpheres (100, 100, _centerPosition));
+			//_objects.AddRange(ObjectFactory.InitializeRandomSpheres (100, 100, _centerPosition));
+			_objects.AddRange( ObjectFactory.InitializeRandomSpheresInSphere(_centerPosition) );
 			_objects.ForEach (o => o.tag = "hihat1_estela");
 
 			//main object

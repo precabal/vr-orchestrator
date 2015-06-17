@@ -88,7 +88,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4286611584
-  m_Size: 4
+  m_Size: 5
 --- !u!135 &13509408
 SphereCollider:
   m_ObjectHideFlags: 1
