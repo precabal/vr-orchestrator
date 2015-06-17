@@ -235,7 +235,7 @@ public class OSPManager : MonoBehaviour
 		int samplerate;
 		int bufsize;
 		int numbuf;
-#if (!UNITY_5_0)
+#if (!UNITY_5_0 || UNITY_5_1)
 		// Used to override samplerate and buffer size with optimal values
 		bool setvalues = true;
 
@@ -255,7 +255,7 @@ public class OSPManager : MonoBehaviour
 		if((samplerate == 48000) && (bufsize == 960))
 		{
 			Debug.LogWarning("OSP: Native OpenSL ENABLED");
-#if (!UNITY_5_0)
+#if (!UNITY_5_0 || UNITY_5_1)
 			setvalues = false;
 #endif
 		}
@@ -268,7 +268,7 @@ public class OSPManager : MonoBehaviour
 // We will only set values IF we are not Unity 5 (the ability to set DSP settings does not exist)
 // NOTE: Unity 4 does not switch DSP buffer sizes using ProjectSettings->Audio, but Unity 5 does.
 // At some point along Unity 5 maturity, the functionality to set DSP values directly might be removed.
-#if (!UNITY_5_0)
+#if (!UNITY_5_0 || UNITY_5_1)
 		if(setvalues == true)
 		{
 // NOTE: When setting DSP values in Unity 4, there may be a situation where using PlayOnAwake on 

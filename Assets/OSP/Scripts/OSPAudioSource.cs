@@ -151,8 +151,8 @@ public class OSPAudioSource : MonoBehaviour
 			// and native 2D panning
 			if((Bypass == true) || (OSPManager.GetBypass() == true))
 			{
-#if (!UNITY_5_0)
-				audio.panLevel = panLevel;
+#if (!UNITY_5_0 || UNITY_5_1)
+				GetComponent<AudioSource>().spatialBlend = panLevel;
 #else
 				GetComponent<AudioSource>().spatialBlend = panLevel;
 #endif
@@ -160,8 +160,8 @@ public class OSPAudioSource : MonoBehaviour
 			}
 			else
 			{
-#if (!UNITY_5_0)
-				audio.panLevel = sSetPanLevel;
+#if (!UNITY_5_0 || UNITY_5_1)
+				GetComponent<AudioSource>().spatialBlend = sSetPanLevel;
 #else
 				GetComponent<AudioSource>().spatialBlend = sSetPanLevel;
 #endif
@@ -249,8 +249,8 @@ public class OSPAudioSource : MonoBehaviour
 		if(!AudioSourceExists())return;
 
 		// Cache pan and spread
-#if (!UNITY_5_0)
-		panLevel = audio.panLevel;
+#if (!UNITY_5_0 || UNITY_5_1)
+		panLevel = GetComponent<AudioSource>().spatialBlend;
 #else
 		panLevel = GetComponent<AudioSource>().spatialBlend;
 #endif
@@ -275,8 +275,8 @@ public class OSPAudioSource : MonoBehaviour
 
 		// Set pan to full (spread at 180 will keep attenuation curve working, but all 2D
 		// panning will be removed)
-#if (!UNITY_5_0)
-		audio.panLevel = sSetPanLevel;
+#if (!UNITY_5_0 || UNITY_5_1)
+		GetComponent<AudioSource>().spatialBlend = sSetPanLevel;
 #else
 		GetComponent<AudioSource>().spatialBlend = sSetPanLevel;
 #endif
@@ -291,8 +291,8 @@ public class OSPAudioSource : MonoBehaviour
 		if(!AudioSourceExists())return;
 
 		// Reset all audio variables that were changed during play
-#if (!UNITY_5_0)
-		audio.panLevel = panLevel;
+#if (!UNITY_5_0 || UNITY_5_1)
+		GetComponent<AudioSource>().spatialBlend = panLevel;
 #else
 		GetComponent<AudioSource>().spatialBlend = panLevel;
 #endif

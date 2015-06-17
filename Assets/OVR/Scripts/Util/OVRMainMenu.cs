@@ -22,7 +22,7 @@ limitations under the License.
 // #define SHOW_DK2_VARIABLES
 
 // Use the Unity new GUI with Unity 4.6 or above.
-#if UNITY_4_6 || UNITY_5_0
+#if UNITY_4_6 || UNITY_5_0 || UNITY_5_1
 #define USE_NEW_GUI
 #endif
 
@@ -315,11 +315,11 @@ public class OVRMainMenu : MonoBehaviour
 		// Make sure to hide cursor 
 		if(Application.isEditor == false)
 		{
-#if UNITY_5_0
+#if UNITY_5_0 || UNITY_5_1
 			Cursor.visible = false; 
 			Cursor.lockState = CursorLockMode.Locked;
 #else
-			Screen.showCursor = false; 
+			Cursor.visible = false; 
 			Screen.lockCursor = true;
 #endif
 		}
