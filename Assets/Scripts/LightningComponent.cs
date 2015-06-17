@@ -28,7 +28,7 @@ public class LightningComponent : MonoBehaviour
 		_binsToStepsRatio = (float)(numberOfBinsInEnvelope - 1) / (float)(_numberOfStepsInPeriod - 1);
 
 		//shuffle list
-		//objectsToLight = objectsToLight.OrderBy(a => randomGenerator.Next()) as List<GameObject>;
+		Shuffle(objectsToLight);
 		 
 	}
 	void FixedUpdate ()

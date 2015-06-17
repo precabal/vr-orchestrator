@@ -11,8 +11,8 @@ TagManager:
   - tilesB
   - tilesC
   - tiles3_2
-  - lightning1
-  - lightningMaster
+  - hihat1
+  - hihat1_estela
   layers:
   - Default
   - TransparentFX

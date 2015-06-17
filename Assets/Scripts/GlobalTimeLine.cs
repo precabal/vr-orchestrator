@@ -133,20 +133,58 @@ namespace AssemblyCSharp
 //			allObjectsTimeLine.AddEvent( new HideEvent(200.0f) );
 //			_timeLines.Add (allObjectsTimeLine);
 
-			float[] envelope = new float[32];
-			for (int i  = 0; i< 16; i++) 
-			{
-				envelope[i] = (float)2f*i/31f;
-			}
-			for (int i  = 31; i >= 16; i--) 
-			{
-				envelope[i] = (float)2f*(32 - i - 1)/31f;
-			}
+			float[] envelope = new float[32]{0.2f,
+				0.4f,
+				0.6f,
+				0.8f,
+				1f,
+				0.95f,
+				0.9f,
+				0.85f,
+				0.8f,
+				0.75f,
+				0.7f,
+				0.65f,
+				0.6f,
+				0.55f,
+				0.5f,
+				0.45f,
+				0.4f,
+				0.35f,
+				0.3f,
+				0.25f,
+				0.2f,
+				0.15f,
+				0.1f,
+				0.05f,
+				0f,
+				0f,
+				0f,
+				0f,
+				0f,
+				0f,
+				0f,
+				0f};
+
+//			for (int i  = 0; i< 16; i++) 
+//			{
+//				envelope[i] = (float)2f*i/31f;
+//			}
+//			for (int i  = 31; i >= 16; i--) 
+//			{
+//				envelope[i] = (float)2f*(32 - i - 1)/31f;
+//			}
 
 
 
-			SingleTimeLine lightningTestGroup = new SingleTimeLine (_orchestra.GetObjects ("lightningMaster"));
-			lightningTestGroup.AddEvent (new LightningEvent (5.0f, _orchestra.GetObjects ("lightning1"), envelope));
+
+
+			HihatInstrument hihat1 = new HihatInstrument ();
+			_orchestra.AddGroup (hihat1);
+
+			SingleTimeLine lightningTestGroup = new SingleTimeLine (hihat1.Objects);
+
+			lightningTestGroup.AddEvent (new LightningEvent (5.0f, _orchestra.GetObjects ("hihat1_estela"), envelope));
 			_timeLines.Add (lightningTestGroup);
 
 		}
