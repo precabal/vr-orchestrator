@@ -13,6 +13,20 @@ namespace AssemblyCSharp
 		private float _simulationLength = 60f; 
 		private Figure _headFigure, _godFigure;
 
+		private IInstrument hihat_1, hihat_2, baseSounds, leadSynth_R, leadSynth_L, cymbal_1, cymbal_2, snare_1, snare_2;
+		private SingleTimeLine 	hihat_1_TimeLine, 
+								hihat_2_TimeLine, 
+								cymbal_1_TimeLine, 
+								cymbal_2_TimeLine, 
+								leadSynth_L_TimeLine,
+								leadSynth_R_TimeLine, 
+								tiles_TimeLine,
+								tiles_A_TimeLine, 
+								tiles_B_TimeLine, 
+								tiles_C_TimeLine,
+								allObjects_TimeLine;
+
+		
 		public List<SingleTimeLine> TimeLines
 		{
 			get { return _timeLines;}
@@ -31,16 +45,124 @@ namespace AssemblyCSharp
 		public GlobalTimeLine ()
 		{
 			LoadTextFiles ();
+			InitializeInstruments ();
+			InitializeTimeLines ();
 			PopulateTimelines();
+		}
+
+		private void InitializeInstruments()
+		{
+			baseSounds = new BaseSounds ();
+			_orchestra.AddGroup (baseSounds);
+
+			cymbal_1 = new Cymbal_1 ();
+			_orchestra.AddGroup (cymbal_1);
+
+			cymbal_2 = new Cymbal_2 ();
+			_orchestra.AddGroup (cymbal_2);
+
+			hihat_1 = new Hihat_1 ();
+			_orchestra.AddGroup (hihat_1);
+			
+			hihat_2 = new Hihat_2 ();
+			_orchestra.AddGroup (hihat_2);
+
+			leadSynth_L = new LeadSynth_L ();
+			_orchestra.AddGroup (leadSynth_L);
+
+			leadSynth_R = new LeadSynth_R ();
+			_orchestra.AddGroup (leadSynth_R);
+
+		}
+		private void InitializeTimeLines ()
+		{
+			tiles_A_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_A"));
+			_timeLines.Add (tiles_A_TimeLine);
+
+			tiles_B_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_B"));
+			_timeLines.Add (tiles_B_TimeLine);
+
+			tiles_C_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_C"));
+			_timeLines.Add (tiles_C_TimeLine);
+
+			tiles_TimeLine = new SingleTimeLine(_scenery.GetObjects("tiles"));
+			_timeLines.Add (tiles_TimeLine);
+
+			allObjects_TimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
+			_timeLines.Add (allObjects_TimeLine);
+
+			hihat_1_TimeLine = new SingleTimeLine (hihat_1.Objects);
+			_timeLines.Add (hihat_1_TimeLine);
+
+			hihat_2_TimeLine = new SingleTimeLine (hihat_2.Objects);
+			_timeLines.Add (hihat_2_TimeLine);
+
+			cymbal_1_TimeLine = new SingleTimeLine (cymbal_1.Objects);
+			_timeLines.Add (cymbal_1_TimeLine);
+			
+			cymbal_2_TimeLine = new SingleTimeLine (cymbal_2.Objects);
+			_timeLines.Add (cymbal_2_TimeLine);
+
+			leadSynth_L_TimeLine = new SingleTimeLine (leadSynth_L.Objects);
+			_timeLines.Add (leadSynth_L_TimeLine);
+
+			leadSynth_R_TimeLine = new SingleTimeLine (leadSynth_R.Objects);
+			_timeLines.Add (leadSynth_R_TimeLine);
+		}
+
+		
+		private void PopulateTimelines()
+		{
+
+			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
+
+			tiles_A_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 0), 180, 0.4f, 2*120f/118f));
+
+			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
+
+			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
+
+
+			leadSynth_L_TimeLine.AddEvent (new GlowEvent (4.8f));
+          	leadSynth_R_TimeLine.AddEvent (new GlowEvent (4.8f));
+
+			leadSynth_R_TimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(-35f, 3f, -22f), 5f));
+			leadSynth_L_TimeLine.AddEvent( new OrbitEvent(12.0f,45) );
+
+			cymbal_1_TimeLine.AddEvent (new GlowEvent (4.0f));
+			cymbal_2_TimeLine.AddEvent (new GlowEvent (4.0f));
+
+			hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1_group"), Envelopes.sharpAttackEnvelope));
+
+			hihat_2_TimeLine.AddEvent (new LightningEvent (7.3f, _orchestra.GetObjects ("hihat_2_group"), Envelopes.sharpAttackEnvelope));
+			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (16.0f, _headFigure));
+
+			allObjects_TimeLine.AddEvent( new PlayAudioEvent(6.0f) );
+
+			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (27.0f, _godFigure));
+
+			allObjects_TimeLine.AddEvent( new HideEvent(200.0f) );
+
+		}
+		
+		public SingleTimeLine GetSingleTimeLine(int timeLineIndex)
+		{
+			if (timeLineIndex < 0 || timeLineIndex >= _timeLines.Count)
+				throw new System.AccessViolationException("TimeLine index out of range");
+
+			return _timeLines [timeLineIndex];
+
 		}
 
 		private void LoadTextFiles()
 		{
 			//TODO handle I/O exceptions
-
+			
 			_headFigure = new Figure ();
 			_godFigure = new Figure ();
-
+			
 			FileInfo theSourceFile = null;
 			StreamReader reader = null;
 			
@@ -61,10 +183,10 @@ namespace AssemblyCSharp
 					String[] result = txt.Split(',');
 					_headFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
 				}
-			
+				
 			}
-
-
+			
+			
 			theSourceFile = new FileInfo (Application.dataPath + "/positionsGod.txt");
 			if ( theSourceFile != null && theSourceFile.Exists )
 				reader = theSourceFile.OpenText();
@@ -84,123 +206,17 @@ namespace AssemblyCSharp
 				}
 				
 			}
-
-
+			
 			reader.Close ();
-
-
-		}
-		
-		private void PopulateTimelines()
-		{
-
-//			SingleTimeLine tilesATimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesA"));
-//			tilesATimeLine.AddEvent (new ShowEvent (2.0f));
-//			tilesATimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 0), 180, 0.4f, 2*120f/118f));
-//
-//			_timeLines.Add (tilesATimeLine);
-//
-//			SingleTimeLine tilesBTimeLine = new SingleTimeLine (_scenery.GetObjects ("tilesB"));
-//			tilesBTimeLine.AddEvent (new ShowEvent (2.0f));
-//			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
-//			tilesBTimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
-//			_timeLines.Add (tilesBTimeLine);
-//
-//			SingleTimeLine tiles3_2TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles3_2"));
-//			tiles3_2TimeLine.AddEvent (new ShowEvent (2.0f));
-//			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
-//			tiles3_2TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
-//			_timeLines.Add (tiles3_2TimeLine);
-//
-//			SingleTimeLine swarmTimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm"));
-//
-//			swarmTimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(5f, 3f, 2f), 5f));
-//			swarmTimeLine.AddEvent( new OrbitEvent(12.0f,45) );
-//			swarmTimeLine.AddEvent( new ShowEvent(4.0f) );
-//
-//			_timeLines.Add (swarmTimeLine);
-//
-//			SingleTimeLine spheresTimeLine = new SingleTimeLine (_orchestra.GetObjects ("spheres"));
-//			spheresTimeLine.AddEvent( new ShowEvent(3.0f) );
-//			spheresTimeLine.AddEvent( new GlowEvent(6.0f) );
-//			//spheresTimeLine.AddEvent( new HideEvent(9.0f) );
-//			//spheresTimeLine.AddEvent (new DrawFigureEvent (8.0f, _headFigure));
-//			//spheresTimeLine.AddEvent (new DrawFigureEvent (17.0f, _godFigure));
-//			_timeLines.Add (spheresTimeLine);
-//
-//			SingleTimeLine allObjectsTimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
-//			allObjectsTimeLine.AddEvent( new PlayAudioEvent(6.0f) );
-//			allObjectsTimeLine.AddEvent( new HideEvent(200.0f) );
-//			_timeLines.Add (allObjectsTimeLine);
-
-			float[] envelope = new float[32]{0.2f,
-				0.4f,
-				0.6f,
-				0.8f,
-				1f,
-				0.95f,
-				0.9f,
-				0.85f,
-				0.8f,
-				0.75f,
-				0.7f,
-				0.65f,
-				0.6f,
-				0.55f,
-				0.5f,
-				0.45f,
-				0.4f,
-				0.35f,
-				0.3f,
-				0.25f,
-				0.2f,
-				0.15f,
-				0.1f,
-				0.05f,
-				0f,
-				0f,
-				0f,
-				0f,
-				0f,
-				0f,
-				0f,
-				0f};
-
-//			for (int i  = 0; i< 16; i++) 
-//			{
-//				envelope[i] = (float)2f*i/31f;
-//			}
-//			for (int i  = 31; i >= 16; i--) 
-//			{
-//				envelope[i] = (float)2f*(32 - i - 1)/31f;
-//			}
-
-
-
-
-
-			HihatInstrument hihat1 = new HihatInstrument ();
-			_orchestra.AddGroup (hihat1);
-
-			SingleTimeLine lightningTestGroup = new SingleTimeLine (hihat1.Objects);
-
-			lightningTestGroup.AddEvent (new LightningEvent (5.0f, _orchestra.GetObjects ("hihat1_estela"), envelope));
-			_timeLines.Add (lightningTestGroup);
-
-		}
-		
-		public SingleTimeLine GetSingleTimeLine(int timeLineIndex)
-		{
-			if (timeLineIndex < 0 || timeLineIndex >= _timeLines.Count)
-				throw new System.AccessViolationException("TimeLine index out of range");
-
-			return _timeLines [timeLineIndex];
-
+			
+			
 		}
 
 		public void DestroyObjects()
 		{
 			_orchestra.DestroyObjects();
+
+			//TODO Unload loaded assets with Resources.UnloadAsset( gameObject );
 		}
 
 	}

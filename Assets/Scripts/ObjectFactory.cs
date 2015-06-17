@@ -16,7 +16,7 @@ namespace AssemblyCSharp
 			return GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		}
 
-		public static GameObject CreateFromPrefab(GameObject objectPrefab, Vector3 atPosition, String withTag, float withScale=0.0f)
+		public static GameObject CreateFromPrefab(GameObject objectPrefab, Vector3 atPosition = default(Vector3), String withTag ="Untagged", float withScale=0.0f)
 		{
 			GameObject result = MonoBehaviour.Instantiate (objectPrefab, atPosition, Quaternion.identity) as GameObject;
 			result.transform.localScale += new Vector3(withScale, withScale, withScale);
@@ -24,10 +24,6 @@ namespace AssemblyCSharp
 			return result;
 		}
 
-		public GameObject CreateFromPrefab(GameObject objectPrefab)
-		{
-			return MonoBehaviour.Instantiate (objectPrefab, new Vector3(0,0,0), Quaternion.identity) as GameObject;
-		}
 		public static List<GameObject> InitializeRandomSpheres(int numberOfSpheres=100, float length=100f, Vector3 center = default(Vector3))
 		{
 			List<GameObject> shperes = new List<GameObject> ();
@@ -46,7 +42,7 @@ namespace AssemblyCSharp
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
-				GameObject sphere = CreateFromPrefab(_spherePrefab, position, "spheres", scale);
+				GameObject sphere = CreateFromPrefab(_spherePrefab, position, "Untagged", scale);
 				shperes.Add(sphere);
 			}
 
@@ -91,13 +87,12 @@ namespace AssemblyCSharp
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
-				GameObject sphere = CreateFromPrefab(_spherePrefab, positionCartesian, "spheres", scale);
+				GameObject sphere = CreateFromPrefab(_spherePrefab, positionCartesian, "Untagged", scale);
 				shperes.Add(sphere);
 			}
-			
+
 			return shperes;
-			
-			//TODO: see if we can unload asset here: Resources.UnloadAsset(_spherePrefab);
+
 		}
 
 	}
