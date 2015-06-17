@@ -36,7 +36,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f2e9528e5920634fb5b677d18cd1faf, type: 3}
+  m_Script: {fileID: 11500000, guid: 16cc3f67ed6314c27958fbab56a7a932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bypass: 0
@@ -45,11 +45,11 @@ MonoBehaviour:
   gain: 0
   enableReflections: 0
   enableReverb: 0
-  dimensions: {x: 10, y: 10, z: 10}
+  dimensions: {x: 1, y: 1, z: 1}
   rK01: {x: 0, y: 0}
   rK23: {x: 0, y: 0}
   rK45: {x: 0, y: 0}
-  reflRangeMax: 100
+  reflRangeMax: 10000
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -61,4 +61,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
-  m_IsExploded: 1

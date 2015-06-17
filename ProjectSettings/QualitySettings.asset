@@ -93,7 +93,7 @@ QualitySettings:
     softVegetation: 1
     realtimeReflectionProbes: 1
     billboardsFaceCameraPosition: 1
-    vSyncCount: 1
+    vSyncCount: 0
     lodBias: 1
     maximumLODLevel: 0
     particleRaycastBudget: 256
@@ -144,21 +144,4 @@ QualitySettings:
     maximumLODLevel: 0
     particleRaycastBudget: 4096
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality:
-    Android: 3
-    BlackBerry: 3
-    GLES Emulation: 5
-    PS3: 5
-    PS4: 5
-    PSM: 5
-    PSP2: 5
-    Samsung TV: 2
-    Standalone: 3
-    Tizen: 2
-    WP8: 5
-    Web: 3
-    WebGL: 3
-    Windows Store Apps: 5
-    XBOX360: 5
-    XboxOne: 5
-    iPhone: 3
+  m_PerPlatformDefaultQuality: {}

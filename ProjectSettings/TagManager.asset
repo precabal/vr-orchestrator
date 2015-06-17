@@ -4,15 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - beacons
-  - spheres
-  - swarm
-  - tilesA
-  - tilesB
-  - tilesC
-  - tiles3_2
-  - hihat1
-  - hihat1_estela
+  - tiles_A
+  - tiles_B
+  - tiles_C
+  - tiles_fixed
+  - hihat_1
+  - hihat_1_group
+  - hihat_2
+  - hihat_2_group
+  - cymbal_1
+  - cymbal_1_group
+  - cymbal_2
+  - cymbal_2_group
+  - leadSynth_L
+  - leadSynth_L_group
+  - leadSynth_R
+  - leadSynth_R_group
   layers:
   - Default
   - TransparentFX
