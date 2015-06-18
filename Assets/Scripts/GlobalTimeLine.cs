@@ -10,8 +10,8 @@ namespace AssemblyCSharp
 		private Orchestra _orchestra = new Orchestra();
 		private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
-		private float _simulationLength =300f; 
-		private Figure _headFigure, _godFigure;
+		private float _simulationLength = 300f; 
+		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure;
 
 		private IInstrument hihat_1, hihat_2, baseSounds, leadSynth_R, leadSynth_L, cymbal_1, cymbal_2, snare_1, snare_2;
 		private SingleTimeLine 	hihat_1_TimeLine, 
@@ -136,12 +136,15 @@ namespace AssemblyCSharp
 
 			hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1_group"), Envelopes.sharpAttackEnvelope));
 
-			hihat_2_TimeLine.AddEvent (new LightningEvent (7.3f, _orchestra.GetObjects ("hihat_2_group"), Envelopes.sharpAttackEnvelope));
-			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (16.0f, _headFigure));
+			hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (16.0f, _faceAFigure));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (23.0f, _faceBFigure));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (27.0f, _faceAFigure));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (32.0f, _faceBFigure));
 
 			allObjects_TimeLine.AddEvent( new PlayAudioEvent(6.0f) );
 
-			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (27.0f, _godFigure));
+
 
 			allObjects_TimeLine.AddEvent( new HideEvent(200.0f) );
 
@@ -160,19 +163,63 @@ namespace AssemblyCSharp
 		{
 			//TODO handle I/O exceptions
 			
-			_headFigure = new Figure ();
-			_godFigure = new Figure ();
+			//_headFigure = new Figure ();
+			//_godFigure = new Figure ();
+			_faceAFigure = new Figure ();
+			_faceBFigure = new Figure ();
 			
 			FileInfo theSourceFile = null;
 			StreamReader reader = null;
 			
-			theSourceFile = new FileInfo (Application.dataPath + "/positionsHead.txt");
+//			theSourceFile = new FileInfo (Application.dataPath + "/positionsHead.txt");
+//			if ( theSourceFile != null && theSourceFile.Exists )
+//				reader = theSourceFile.OpenText();
+//			
+//			if ( reader == null )
+//			{
+//				Debug.Log("positionsHead.txt not found or not readable");
+//			}
+//			else
+//			{
+//				string txt;
+//				// Read each line from the file
+//				while ( ( txt = reader.ReadLine()) != null ){
+//					//parse the line
+//					String[] result = txt.Split(',');
+//					_headFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
+//				}
+//				
+//			}
+//			
+//			
+//			theSourceFile = new FileInfo (Application.dataPath + "/positionsGod.txt");
+//			if ( theSourceFile != null && theSourceFile.Exists )
+//				reader = theSourceFile.OpenText();
+//			
+//			if ( reader == null )
+//			{
+//				Debug.Log("positionsGod.txt not found or not readable");
+//			}
+//			else
+//			{
+//				string txt;
+//				// Read each line from the file
+//				while ( ( txt = reader.ReadLine()) != null ){
+//					//parse the line
+//					String[] result = txt.Split(',');
+//					_godFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
+//				}
+//				
+//			}
+
+
+			theSourceFile = new FileInfo (Application.dataPath + "/caraA.txt");
 			if ( theSourceFile != null && theSourceFile.Exists )
 				reader = theSourceFile.OpenText();
 			
 			if ( reader == null )
 			{
-				Debug.Log("positionsHead.txt not found or not readable");
+				Debug.Log("caraA.txt not found or not readable");
 			}
 			else
 			{
@@ -181,31 +228,32 @@ namespace AssemblyCSharp
 				while ( ( txt = reader.ReadLine()) != null ){
 					//parse the line
 					String[] result = txt.Split(',');
-					_headFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
+					_faceAFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
 				}
 				
 			}
-			
-			
-			theSourceFile = new FileInfo (Application.dataPath + "/positionsGod.txt");
-			if ( theSourceFile != null && theSourceFile.Exists )
-				reader = theSourceFile.OpenText();
-			
-			if ( reader == null )
-			{
-				Debug.Log("positionsGod.txt not found or not readable");
-			}
-			else
-			{
-				string txt;
-				// Read each line from the file
-				while ( ( txt = reader.ReadLine()) != null ){
-					//parse the line
-					String[] result = txt.Split(',');
-					_godFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
-				}
-				
-			}
+
+
+//			theSourceFile = new FileInfo (Application.dataPath + "/caraB.txt");
+//			if ( theSourceFile != null && theSourceFile.Exists )
+//				reader = theSourceFile.OpenText();
+//			
+//			if ( reader == null )
+//			{
+//				Debug.Log("caraB.txt not found or not readable");
+//			}
+//			else
+//			{
+//				string txt;
+//				// Read each line from the file
+//				while ( ( txt = reader.ReadLine()) != null ){
+//					//parse the line
+//					String[] result = txt.Split(',');
+//					_faceBFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
+//				}
+//				
+//			}
+
 			
 			reader.Close ();
 			
