@@ -265,6 +265,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!20 &2000002
 Camera:
   m_ObjectHideFlags: 1
@@ -297,6 +298,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!81 &8100000
 AudioListener:
   m_ObjectHideFlags: 1
@@ -317,13 +319,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nativeTextureScale: 1
   virtualTextureScale: 1
-  usePositionTracking: 1
   eyeTextureFormat: 7
+  eyeTextureAntiAliasing: 2
   eyeTextureDepth: 24
+  usePositionTracking: 1
   timeWarp: 1
   freezeTimeWarp: 0
   resetTrackerOnLoad: 1
   monoscopic: 0
+  hdr: 0
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,6 +405,9 @@ CharacterController:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
   m_Radius: .5
@@ -420,4 +427,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100008}
   m_IsPrefabParent: 1
-  m_IsExploded: 1

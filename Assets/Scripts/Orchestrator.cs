@@ -23,7 +23,7 @@ public class Orchestrator : MonoBehaviour
 
 		if ( _timer > _globalTimeLine.SimulationLength ) 
 		{
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 			_globalTimeLine.DestroyObjects();
 			//Application.Quit ();
 		}

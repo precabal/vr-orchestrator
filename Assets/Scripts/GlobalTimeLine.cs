@@ -10,7 +10,7 @@ namespace AssemblyCSharp
 		private Orchestra _orchestra = new Orchestra();
 		private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
-		private float _simulationLength = 60f; 
+		private float _simulationLength =300f; 
 		private Figure _headFigure, _godFigure;
 
 		private IInstrument hihat_1, hihat_2, baseSounds, leadSynth_R, leadSynth_L, cymbal_1, cymbal_2, snare_1, snare_2;
