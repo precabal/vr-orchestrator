@@ -25,7 +25,7 @@ namespace AssemblyCSharp
 			_centerPosition = new Vector3 (10, 5, 5);
 			
 			//surrounding objects:
-			_objects.AddRange( ObjectFactory.InitializeRandomSpheresInSphere(_centerPosition, 8, 1.0f, 5.0f, 5.0f) );
+			_objects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(ObjectFactory.sphere, _centerPosition, 8, 1.0f, 5.0f, 5.0f) );
 			
 			foreach (GameObject obj in _objects) 
 			{
@@ -35,7 +35,7 @@ namespace AssemblyCSharp
 			
 			//main object:
 			AudioClip audioClip = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.L") as AudioClip;
-			GameObject mainObject = ObjectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, _centerPosition, "leadSynth_L");
+			GameObject mainObject = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, _centerPosition, "leadSynth_L");
 			mainObject.name = "Source";
 			mainObject.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
 			_objects.Add (mainObject);

@@ -25,7 +25,7 @@ public class MoveComponent : MonoBehaviour
 	void FixedUpdate ()
 	{
 
-
+		//TODO: change for steps as in rotateComponent or LightingComponent
 		if (_timer <= _translationTime/2)
 		{
 			rb.velocity = rb.velocity + _acceleration * Time.deltaTime;

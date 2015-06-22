@@ -28,6 +28,36 @@ namespace AssemblyCSharp
 			return new VectorSpherical(pointInCartesian.magnitude, elevation, azimuth);
 		}
 
+		public static Vector3 AddSphericalToCartesian (Vector3 inputCartesian, VectorSpherical inputSpherical)
+		{
+			VectorSpherical sphericalPosition = Utils.CartesianToSpherical (inputCartesian);
+			
+			sphericalPosition.r += inputSpherical.r;
+			sphericalPosition.theta += inputSpherical.theta;
+			sphericalPosition.phi += inputSpherical.phi;
+			
+			return SphericalToCartesian(sphericalPosition);
+
+
+//			Vector3 cartesianToAdd = Utils.SphericalToCartesian (inputSpherical);
+
+//			return inputCartesian + cartesianToAdd;
+
+		}
+		//returns cartesianA - cartesianB in spherical coordinates
+		public static VectorSpherical GetDeltaFromCartesianInSpherical(Vector3 cartesianA, Vector3 cartesianB)
+		{
+			VectorSpherical sphericalA = Utils.CartesianToSpherical (cartesianA);
+			VectorSpherical sphericalB = Utils.CartesianToSpherical (cartesianB);
+			
+			VectorSpherical delta;
+			delta.r = sphericalA.r - sphericalB.r;
+			delta.theta = sphericalA.theta - sphericalB.theta;
+			delta.phi = sphericalA.phi - sphericalB.phi;
+
+			return delta;
+		}
+
 	}
 }
 

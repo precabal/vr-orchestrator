@@ -23,20 +23,30 @@ namespace AssemblyCSharp
 		
 		public void Perform(List<GameObject> objects)
 		{
-			//objects.ForEach (o => o.GetComponent<Renderer>().enabled = true);
 			//N objects to be mapped at M points of _figure
 			int i = 0;
 			float ratio = (float)(_figure.NumberOfPoints () - 1) / (float)(objects.Count - 1);
-			Debug.Log (objects.Count + " / " + _figure.NumberOfPoints ());
+
+			MoveComponent testComponent;
+			//Debug.Log (objects.Count + " / " + _figure.NumberOfPoints ());
 			foreach(GameObject obj in objects)
 			{
 				int destinationIndex = (int) Math.Round((float)i * ratio) ; 
-				Debug.Log (destinationIndex);
+
+				//Debug.Log (destinationIndex);
+
 				//calculate distance between the actual and target positions
 				Vector3 distanceToTravel = _figure.getPoint(destinationIndex) - obj.transform.position;
 
 				//calculate the time to go there with a fixed velocity
 				float translationTime = distanceToTravel.magnitude / _speed;
+
+				//search and destroy existing component
+
+				if(testComponent = obj.GetComponent<MoveComponent>())
+				{
+					testComponent.StopMovement();
+				}
 
 				CreateComponent(obj, _figure.getPoint(destinationIndex), translationTime);
 

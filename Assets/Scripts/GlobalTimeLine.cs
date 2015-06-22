@@ -136,11 +136,11 @@ namespace AssemblyCSharp
 
 			hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1_group"), Envelopes.sharpAttackEnvelope));
 
-			hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (16.0f, _faceAFigure));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (23.0f, _faceBFigure));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (27.0f, _faceAFigure));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (32.0f, _faceBFigure));
+			//hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
+			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (8.0f, _faceAFigure));
+			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (12.0f, _faceBFigure));
+			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (26.0f, _faceAFigure));
+			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (34.0f, _faceBFigure));
 
 			allObjects_TimeLine.AddEvent( new PlayAudioEvent(6.0f) );
 
@@ -228,31 +228,33 @@ namespace AssemblyCSharp
 				while ( ( txt = reader.ReadLine()) != null ){
 					//parse the line
 					String[] result = txt.Split(',');
-					_faceAFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
+					_faceAFigure.Add2DPoint( float.Parse(result[0]) , float.Parse(result[1]) );
 				}
 				
 			}
 
 
-//			theSourceFile = new FileInfo (Application.dataPath + "/caraB.txt");
-//			if ( theSourceFile != null && theSourceFile.Exists )
-//				reader = theSourceFile.OpenText();
-//			
-//			if ( reader == null )
-//			{
-//				Debug.Log("caraB.txt not found or not readable");
-//			}
-//			else
-//			{
-//				string txt;
-//				// Read each line from the file
-//				while ( ( txt = reader.ReadLine()) != null ){
-//					//parse the line
-//					String[] result = txt.Split(',');
-//					_faceBFigure.AddPoint( new Vector3(Int32.Parse(result[0]), Int32.Parse(result[1]), 20.0f)  );
-//				}
-//				
-//			}
+			theSourceFile = new FileInfo (Application.dataPath + "/caraB.txt");
+			if ( theSourceFile != null && theSourceFile.Exists )
+				reader = theSourceFile.OpenText();
+			
+			if ( reader == null )
+			{
+				Debug.Log("caraB.txt not found or not readable");
+			}
+			else
+			{
+				string txt;
+				// Read each line from the file
+				while ( ( txt = reader.ReadLine()) != null ){
+					//parse the line
+					String[] result = txt.Split(',');
+					_faceBFigure.Add2DPoint( float.Parse(result[0]) , float.Parse(result[1]) );
+				}
+				
+			}
+
+			_faceBFigure.SetImageCenter (new Vector3 (90, 100, 120));
 
 			
 			reader.Close ();

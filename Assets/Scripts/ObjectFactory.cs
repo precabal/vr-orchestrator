@@ -6,6 +6,11 @@ namespace AssemblyCSharp
 {
 	public class ObjectFactory
 	{
+		public static GameObject sphere = Resources.Load("sphere_prefab") as GameObject;
+		public static GameObject light = Resources.Load("light_prefab") as GameObject;
+		public static GameObject soundSource = Resources.Load("soundSource_prefab") as GameObject;
+
+
 		public GameObject CreateCube()
 		{
 			return GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -16,9 +21,9 @@ namespace AssemblyCSharp
 			return GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		}
 
-		public static GameObject CreateFromPrefab(GameObject objectPrefab, Vector3 atPosition = default(Vector3), String withTag ="Untagged", float withScale=0.0f)
+		public static GameObject CreateFromPrefab(GameObject prefab, Vector3 atPosition = default(Vector3), String withTag ="Untagged", float withScale=0.0f)
 		{
-			GameObject result = MonoBehaviour.Instantiate (objectPrefab, atPosition, Quaternion.identity) as GameObject;
+			GameObject result = MonoBehaviour.Instantiate (prefab, atPosition, Quaternion.identity) as GameObject;
 			result.transform.localScale += new Vector3(withScale, withScale, withScale);
 			result.tag = withTag;
 			return result;
@@ -28,7 +33,7 @@ namespace AssemblyCSharp
 		{
 			List<GameObject> shperes = new List<GameObject> ();
 		
-			GameObject _spherePrefab = Resources.Load("sphere_prefab") as GameObject;
+			//GameObject _spherePrefab = Resources.Load("sphere_prefab") as GameObject;
 			
 			System.Random random = new System.Random();
 
@@ -42,8 +47,8 @@ namespace AssemblyCSharp
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
-				GameObject sphere = CreateFromPrefab(_spherePrefab, position, "Untagged", scale);
-				shperes.Add(sphere);
+				GameObject sphereInstance = CreateFromPrefab(sphere, position, "Untagged", scale);
+				shperes.Add(sphereInstance);
 			}
 
 			return shperes;
@@ -52,16 +57,15 @@ namespace AssemblyCSharp
 			
 		}
 
-		public static List<GameObject> InitializeRandomSpheresInSphere(Vector3 centerPoint = default(Vector3),
+		public static List<GameObject> InitializeRandomPrefabsInSphere(GameObject prefab, Vector3 centerPoint = default(Vector3),
 		                                                               int numberOfSpheres=100, 
 		                                                               float thickness = 2f,
 		                                                               float azimuthWidthDegrees = 20f,
-		                                                               float elevationWidthDegrees =80f
+		                                                               float elevationWidthDegrees = 80f
 		                                                               )
 		{
 			List<GameObject> shperes = new List<GameObject> ();
-			
-			GameObject _spherePrefab = Resources.Load("sphere_prefab") as GameObject;
+
 			
 			System.Random random = new System.Random();
 
@@ -82,13 +86,11 @@ namespace AssemblyCSharp
 
 				positionCartesian = Utils.SphericalToCartesian(tempVector);
 
-
-
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
-				GameObject sphere = CreateFromPrefab(_spherePrefab, positionCartesian, "Untagged", scale);
-				shperes.Add(sphere);
+				GameObject sphereInstance = CreateFromPrefab(prefab, positionCartesian, "Untagged", scale);
+				shperes.Add(sphereInstance);
 			}
 
 			return shperes;

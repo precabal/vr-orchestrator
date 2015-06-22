@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class Cymbal_1 : IInstrument
+	public class LeadSynth_R : IInstrument
 	{
 		private List<GameObject> _objects;
 		
@@ -14,35 +14,35 @@ namespace AssemblyCSharp
 			get { return _objects; }
 			set { _objects = value; }
 		}
-		public Cymbal_1 ()
+		public LeadSynth_R ()
 		{
-
-			GameObject container = new GameObject ("Cymbal_1");
+			GameObject container = new GameObject ("LeadSynth_R");
 			GameObject flareContainer = new GameObject ("Flare");
 			flareContainer.transform.parent = container.transform;
-
+			
 			_objects = new List<GameObject> ();
 			
-			_centerPosition = new Vector3 (-30, 4, 12);
+			_centerPosition = new Vector3 (10, 5, -5);
 			
 			//surrounding objects:
-			_objects.AddRange( ObjectFactory.InitializeRandomSpheresInSphere(_centerPosition, 22, 4.0f, 20.0f, 30.0f) );
+			_objects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(ObjectFactory.sphere, _centerPosition, 8, 1.0f, 5.0f, 5.0f) );
+			
 			foreach (GameObject obj in _objects) 
 			{
-				obj.tag = "cymbal_1_group";
+				obj.tag = "leadSynth_R_group";
 				obj.transform.parent = flareContainer.transform;
 			}
 			
 			//main object:
-			AudioClip audioClip = Resources.Load("Binaries/audioTracks/CYMBALS_03") as AudioClip;
-			GameObject mainObject = ObjectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, _centerPosition, "cymbal_1");
+			AudioClip audioClip = Resources.Load("Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.R") as AudioClip;
+			GameObject mainObject = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, _centerPosition, "leadSynth_R");
 			mainObject.name = "Source";
 			mainObject.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
 			_objects.Add (mainObject);
 			mainObject.transform.parent = container.transform;
 
-
 		}
+		
 		
 	}
 }

@@ -35,12 +35,12 @@ namespace AssemblyCSharp
 			//AudioClip snare3 = Resources.Load("Binaries/audioTracks/SNARE1_VERB_02") as AudioClip;
 				
 			//Source #7 - Snare 1
-			GameObject snare1Obj = ObjectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(-3,8,-2), "spheres");			
+			GameObject snare1Obj = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, new Vector3(-3,8,-2), "spheres");			
 			snare1Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = snare1;
 			_members.Add (snare1Obj);
 			
 			//Source #8 - Snare 2
-			GameObject snare2Obj = ObjectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, new Vector3(-3,8,2), "spheres");			
+			GameObject snare2Obj = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, new Vector3(-3,8,2), "spheres");			
 			snare2Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = snare2;
 			_members.Add (snare2Obj);
 

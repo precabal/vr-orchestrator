@@ -25,7 +25,7 @@ namespace AssemblyCSharp
 			_centerPosition = new Vector3 (-15, 30, 15);
 			
 			//surrounding objects:
-			_objects.AddRange( ObjectFactory.InitializeRandomSpheresInSphere(_centerPosition) );
+			_objects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(ObjectFactory.light, _centerPosition) );
 			foreach (GameObject obj in _objects) 
 			{
 				obj.tag = "hihat_2_group";
@@ -34,7 +34,7 @@ namespace AssemblyCSharp
 
 			//main object
 			AudioClip audioClip = Resources.Load("Binaries/audioTracks/HI_HAT_OPEN_RR_02") as AudioClip;
-			GameObject mainObject = ObjectFactory.CreateFromPrefab(Resources.Load("soundSource_prefab") as GameObject, _centerPosition, "hihat_2");	
+			GameObject mainObject = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, _centerPosition, "hihat_2");	
 			mainObject.name = "Source";
 			mainObject.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
 			_objects.Add (mainObject);
