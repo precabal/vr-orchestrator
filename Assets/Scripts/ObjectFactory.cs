@@ -10,7 +10,6 @@ namespace AssemblyCSharp
 		public static GameObject light = Resources.Load("light_prefab") as GameObject;
 		public static GameObject soundSource = Resources.Load("soundSource_prefab") as GameObject;
 
-
 		public GameObject CreateCube()
 		{
 			return GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -57,16 +56,30 @@ namespace AssemblyCSharp
 			
 		}
 
-		public static List<GameObject> InitializeRandomPrefabsInSphere(GameObject prefab, Vector3 centerPoint = default(Vector3),
+		public static List<GameObject> InitializeRandomPrefabsInSphere(PrefabType type, Vector3 centerPoint = default(Vector3),
 		                                                               int numberOfSpheres=100, 
 		                                                               float thickness = 2f,
 		                                                               float azimuthWidthDegrees = 20f,
 		                                                               float elevationWidthDegrees = 80f
 		                                                               )
 		{
-			List<GameObject> shperes = new List<GameObject> ();
+			GameObject prefab = null;
+			switch(type)
+			{
+			case PrefabType.sphere:
+				prefab = sphere;
+				break;
+			case PrefabType.light:
+				prefab = light;
+				break;
+			case PrefabType.soundSource:
+				prefab = soundSource;
+				break;
+			}
 
-			
+			List<GameObject> prefabCollection = new List<GameObject> ();
+
+			//TODO: these random should be global			
 			System.Random random = new System.Random();
 
 			Vector3 positionCartesian;
@@ -90,10 +103,10 @@ namespace AssemblyCSharp
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
 				GameObject sphereInstance = CreateFromPrefab(prefab, positionCartesian, "Untagged", scale);
-				shperes.Add(sphereInstance);
+				prefabCollection.Add(sphereInstance);
 			}
 
-			return shperes;
+			return prefabCollection;
 
 		}
 

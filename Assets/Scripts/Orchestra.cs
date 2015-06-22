@@ -7,61 +7,51 @@ namespace AssemblyCSharp
 {
 	public class Orchestra
 	{
-		private List<GameObject> _members = new List<GameObject>();
+		private List<GameObject> _performers = new List<GameObject>();
+		private List<Track> _tracks = new List<Track>();
 
 		public Orchestra ()
 		{
-			Initialize ();
-		}
-		public void AddGroup(IInstrument instrument)
-		{
-			_members.AddRange (instrument.Objects);
-
+			InitializeStage ();
 		}
 
-		public void Initialize()
+		public void InitializeStage()
 		{
+			_tracks.Add (new BaseSounds ());
+			_tracks.Add (new Cymbal_1 ());
+			_tracks.Add (new Cymbal_2 ());
+			_tracks.Add (new Hihat_1 ());
+			_tracks.Add (new Hihat_2 ());
+			_tracks.Add (new LeadSynth_L ());
+			_tracks.Add (new LeadSynth_R ());
+			_tracks.Add (new Snare_1 ());
+			_tracks.Add (new Snare_2 ());
+			_tracks.Add (new Snare_3 ());
 
-			//InitializeSoundSources ();
-			//InitializeBeacons ();
-
-		}
-
-		public void InitializeSoundSources()
-		{
-
-			AudioClip snare1 = Resources.Load("Binaries/audioTracks/SNARE_1_RR_02") as AudioClip;
-			AudioClip snare2 = Resources.Load("Binaries/audioTracks/SNARE_2_RR_02") as AudioClip;
-			//AudioClip snare3 = Resources.Load("Binaries/audioTracks/SNARE1_VERB_02") as AudioClip;
-				
-			//Source #7 - Snare 1
-			GameObject snare1Obj = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, new Vector3(-3,8,-2), "spheres");			
-			snare1Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = snare1;
-			_members.Add (snare1Obj);
-			
-			//Source #8 - Snare 2
-			GameObject snare2Obj = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, new Vector3(-3,8,2), "spheres");			
-			snare2Obj.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = snare2;
-			_members.Add (snare2Obj);
-
-			
+			foreach (Track track in _tracks) 
+			{
+				_performers.Add (track.SoundSource);
+				_performers.AddRange (InitializePerformersAssociatedToTrack (track));
+			}
 			
 		}
-		
-		public void InitializeBeacons()
-		{
 
-			GameObject beacon1 = ObjectFactory.CreateFromPrefab(Resources.Load("beacon_1_prefab") as GameObject, new Vector3(10,20,10));
-			_members.Add (beacon1); 
+		private List<GameObject> InitializePerformersAssociatedToTrack (Track track)	{
 
-			GameObject beacon2 = ObjectFactory.CreateFromPrefab(Resources.Load("beacon_2_prefab") as GameObject, new Vector3(10,20,-10));
-			_members.Add (beacon2);
+			List<GameObject> associatedObjects = new List<GameObject> ();
+			if (track.hasAssociatedObjects)
+			{
 
-			GameObject beacon3 = ObjectFactory.CreateFromPrefab(Resources.Load("beacon_3_prefab") as GameObject, new Vector3(-10,20,10), "Untagged");
-			_members.Add (beacon3);
+				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(track.prefabType, track.CenterPosition, 22, 4.0f, 20.0f, 30.0f) );
 
-			GameObject beacon4 = ObjectFactory.CreateFromPrefab(Resources.Load("beacon_4_prefab") as GameObject, new Vector3(-10,20,-10), "Untagged");
-			_members.Add (beacon4);
+				foreach (GameObject associatedObject in associatedObjects) 
+				{
+					associatedObject.tag = String.Concat(track.GetTag (),"_group");
+					associatedObject.transform.parent = track.GetTransform();
+				}
+			}
+
+			return associatedObjects;
 
 		}
 
@@ -73,10 +63,11 @@ namespace AssemblyCSharp
 			switch(specifier)
 			{
 			case "all":
-				selectedObjects = _members;
+				selectedObjects = _performers;
 				break;
 			default:
 				selectedObjects = GameObject.FindGameObjectsWithTag(specifier).ToList();
+				selectedObjects.AddRange(  GameObject.FindGameObjectsWithTag( String.Concat(specifier,"_group")).ToList()   );
 				break;
 				
 			}
@@ -86,7 +77,7 @@ namespace AssemblyCSharp
 
 		public void DestroyObjects()
 		{
-			foreach (GameObject obj in _members)
+			foreach (GameObject obj in _performers)
 			{
 				MonoBehaviour.Destroy(obj);
 			}

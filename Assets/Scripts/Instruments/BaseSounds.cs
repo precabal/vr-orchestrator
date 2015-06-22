@@ -4,34 +4,20 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class BaseSounds : IInstrument
+	public class BaseSounds : Track
 	{
-		private List<GameObject> _objects;
-		
-		private Vector3 _centerPosition;
-		public List<GameObject> Objects
+
+		public BaseSounds () : base ()
 		{
-			get { return _objects; }
-			set { _objects = value; }
-		}
-		public BaseSounds ()
-		{
-			_objects = new List<GameObject> ();
-			
-			//surrounding objects: none
-			
-			//main object:
-			AudioClip audioClip = Resources.Load("Binaries/audioTracks/base") as AudioClip;
-			GameObject mainObject = ObjectFactory.CreateFromPrefab(Resources.Load("OSPAudioSource_prefab") as GameObject);
-			mainObject.name = "Base Sounds";
-			mainObject.GetComponent<AudioSource> ().clip = audioClip;
-			mainObject.GetComponent<AudioSource> ().spatialBlend = 0;
-			mainObject.GetComponent<AudioSource> ().volume = 0.1f;
-			mainObject.GetComponent<OSPAudioSource> ().Bypass = true;
-			_objects.Add (mainObject);		
-			
-			
-			
+			audioClip = Resources.Load("Binaries/audioTracks/base") as AudioClip;
+			soundSource = ObjectFactory.CreateFromPrefab(Resources.Load("OSPAudioSource_prefab") as GameObject);
+			soundSource.name = "Base Sounds";
+			soundSource.GetComponent<AudioSource> ().clip = audioClip;
+			soundSource.GetComponent<AudioSource> ().spatialBlend = 0;
+			soundSource.GetComponent<AudioSource> ().volume = 0.1f;
+			soundSource.GetComponent<OSPAudioSource> ().Bypass = true;
+			hasAssociatedObjects = false;
+
 		}
 		
 	}
