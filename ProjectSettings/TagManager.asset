@@ -20,6 +20,12 @@ TagManager:
   - leadSynth_L_group
   - leadSynth_R
   - leadSynth_R_group
+  - snare_1
+  - snare_1_group
+  - snare_2
+  - snare_2_group
+  - snare_3
+  - snare_3_group
   layers:
   - Default
   - TransparentFX
