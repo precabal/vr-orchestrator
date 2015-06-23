@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AssemblyCSharp
@@ -13,7 +11,7 @@ namespace AssemblyCSharp
 			centerPosition = new Vector3 (-15, 30, 15);
 			audioPath = "Binaries/audioTracks/HI_HAT_OPEN_RR_02";
 			tag = "hihat_2";
-			prefabType = PrefabType.light;
+			associatedObjectsPrefabType = PrefabType.light;
 
 			AssignTrackParameters();
 

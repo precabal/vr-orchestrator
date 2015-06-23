@@ -17,16 +17,18 @@ namespace AssemblyCSharp
 
 		public void InitializeStage()
 		{
-			_tracks.Add (new BaseSounds ());
-			_tracks.Add (new Cymbal_1 ());
-			_tracks.Add (new Cymbal_2 ());
-			_tracks.Add (new Hihat_1 ());
-			_tracks.Add (new Hihat_2 ());
-			_tracks.Add (new LeadSynth_L ());
-			_tracks.Add (new LeadSynth_R ());
-			_tracks.Add (new Snare_1 ());
-			_tracks.Add (new Snare_2 ());
-			_tracks.Add (new Snare_3 ());
+			_tracks.Add (	new BaseSounds ()		);
+			_tracks.Add (	new Cymbal_1 ()			);
+			_tracks.Add (	new Cymbal_2 ()			);
+			_tracks.Add (	new Hihat_1 ()			);
+			_tracks.Add (	new Hihat_2 ()			);
+			_tracks.Add (	new LeadSynth_L ()		);
+			_tracks.Add (	new LeadSynth_R ()		);
+			_tracks.Add (	new Snare_1 ()			);
+			_tracks.Add (	new Snare_2 ()			);
+			_tracks.Add (	new Snare_3 ()			);
+			_tracks.Add (	new pingpongBass_L () 	);
+			_tracks.Add (	new pingpongBass_R () 	);
 
 			foreach (Track track in _tracks) 
 			{
@@ -42,7 +44,7 @@ namespace AssemblyCSharp
 			if (track.hasAssociatedObjects)
 			{
 
-				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(track.prefabType, track.CenterPosition, 22, 4.0f, 20.0f, 30.0f) );
+				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(track.associatedObjectsPrefabType, track.CenterPosition, 22, 4.0f, 20.0f, 30.0f) );
 
 				foreach (GameObject associatedObject in associatedObjects) 
 				{
@@ -64,6 +66,10 @@ namespace AssemblyCSharp
 			{
 			case "all":
 				selectedObjects = _performers;
+				break;
+			case "pingpongBass":
+				selectedObjects = GameObject.FindGameObjectsWithTag("pingpongBass_L").ToList();
+				selectedObjects.AddRange( GameObject.FindGameObjectsWithTag("pingpongBass_R").ToList() );
 				break;
 			default:
 				selectedObjects = GameObject.FindGameObjectsWithTag(specifier).ToList();

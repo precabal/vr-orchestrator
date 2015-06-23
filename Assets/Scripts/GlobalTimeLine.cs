@@ -23,6 +23,7 @@ namespace AssemblyCSharp
 								tiles_A_TimeLine, 
 								tiles_B_TimeLine, 
 								tiles_C_TimeLine,
+								pingpongBassTimeLine,
 								allObjects_TimeLine;
 
 		
@@ -84,6 +85,9 @@ namespace AssemblyCSharp
 
 			leadSynth_R_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R"));
 			_timeLines.Add (leadSynth_R_TimeLine);
+
+			pingpongBassTimeLine = new SingleTimeLine (_orchestra.GetObjects("pingpongBass"));
+			_timeLines.Add (pingpongBassTimeLine);
 		}
 
 		
@@ -92,25 +96,34 @@ namespace AssemblyCSharp
 
 			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
 
+			allObjects_TimeLine.AddEvent( new PlayAudioEvent(6.0f) );
+
+			pingpongBassTimeLine.AddEvent (new ShowEvent (48.0f));
+
+
+
+
+			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
 			tiles_A_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 0), 180, 0.4f, 2*120f/118f));
 
-			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
-			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f + 8*120f/118f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f + 8*120f/118f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
 
-			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f + 4*120f/118f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f + 4*120f/118f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
 
 
-			leadSynth_L_TimeLine.AddEvent (new GlowEvent (4.8f));
-          	leadSynth_R_TimeLine.AddEvent (new GlowEvent (4.8f));
 
-			leadSynth_R_TimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(-35f, 3f, -22f), 5f));
-			leadSynth_L_TimeLine.AddEvent( new OrbitEvent(12.0f,45) );
+          	//leadSynth_R_TimeLine.AddEvent (new GlowEvent (25.8f));
+			//leadSynth_R_TimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(-35f, 3f, -22f), 5f));
 
-			cymbal_1_TimeLine.AddEvent (new GlowEvent (4.0f));
-			cymbal_2_TimeLine.AddEvent (new GlowEvent (4.0f));
+			//leadSynth_L_TimeLine.AddEvent (new GlowEvent (25.8f));
+			//leadSynth_L_TimeLine.AddEvent( new OrbitEvent(12.0f,45) );
 
-			hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1"), Envelopes.sharpAttackEnvelope));
+			//cymbal_1_TimeLine.AddEvent (new GlowEvent (14.0f));
+			//cymbal_2_TimeLine.AddEvent (new GlowEvent (14.0f));
+
+			//hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1"), Envelopes.sharpAttackEnvelope));
 
 			//hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
 			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (8.0f, _faceAFigure));
@@ -118,7 +131,7 @@ namespace AssemblyCSharp
 			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (26.0f, _faceAFigure));
 			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (34.0f, _faceBFigure));
 
-			allObjects_TimeLine.AddEvent( new PlayAudioEvent(6.0f) );
+
 
 
 

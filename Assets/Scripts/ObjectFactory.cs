@@ -6,9 +6,14 @@ namespace AssemblyCSharp
 {
 	public class ObjectFactory
 	{
-		public static GameObject sphere = Resources.Load("sphere_prefab") as GameObject;
-		public static GameObject light = Resources.Load("light_prefab") as GameObject;
-		public static GameObject soundSource = Resources.Load("soundSource_prefab") as GameObject;
+		private static GameObject sphere = Resources.Load("sphere_prefab") as GameObject;
+		private static GameObject light = Resources.Load("light_prefab") as GameObject;
+
+		//TODO: merge these two
+		private static GameObject soundSource = Resources.Load("soundSource_prefab") as GameObject;
+		private static GameObject looseSoundSource = Resources.Load ("OSPAudioSource_prefab") as GameObject;
+		private static GameObject speaker = Resources.Load("speaker_prefab") as GameObject;
+		private static GameObject tilePrefab = Resources.Load("tile_prefab") as GameObject;
 
 		public GameObject CreateCube()
 		{
@@ -20,19 +25,52 @@ namespace AssemblyCSharp
 			return GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		}
 
-		public static GameObject CreateFromPrefab(GameObject prefab, Vector3 atPosition = default(Vector3), String withTag ="Untagged", float withScale=0.0f)
+		public static GameObject CreateFromPrefab(PrefabType prefabType, Vector3 atPosition = default(Vector3), String withTag ="Untagged", float withScale=0.0f)
 		{
+			GameObject prefab = null;
+			float rotationYdegrees = 0f;
+			switch(prefabType)
+			{
+			case PrefabType.sphere:
+				prefab = sphere;
+				break;
+			case PrefabType.light:
+				prefab = light;
+				break;
+			case PrefabType.soundSource:
+				prefab = soundSource;
+				break;
+			case PrefabType.speaker:
+				prefab = speaker;
+
+				float angleRadians = Utils.CartesianToSpherical(atPosition).phi;
+				//int sign = Math.Sign(Math.Cos (angleRadians));
+
+				//rotationYdegrees = 180f * (float) ( ( Math.PI/2 * Math.Ceiling( angleRadians / Math.PI/2 ) - Math.Abs (angleRadians)) / Math.PI ) ;
+				rotationYdegrees = 180f * (float) ((angleRadians + Math.PI ) / Math.PI) ;
+				break;
+			case PrefabType.tile:
+				prefab = tilePrefab;
+				break;
+			case PrefabType.looseSoundSource:
+				prefab = looseSoundSource;
+				break;
+
+			}
+
+
 			GameObject result = MonoBehaviour.Instantiate (prefab, atPosition, Quaternion.identity) as GameObject;
+
+			result.transform.RotateAround(atPosition, Vector3.up, rotationYdegrees);
 			result.transform.localScale += new Vector3(withScale, withScale, withScale);
 			result.tag = withTag;
+
 			return result;
 		}
 
 		public static List<GameObject> InitializeRandomSpheres(int numberOfSpheres=100, float length=100f, Vector3 center = default(Vector3))
 		{
 			List<GameObject> shperes = new List<GameObject> ();
-		
-			//GameObject _spherePrefab = Resources.Load("sphere_prefab") as GameObject;
 			
 			System.Random random = new System.Random();
 
@@ -46,13 +84,11 @@ namespace AssemblyCSharp
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
-				GameObject sphereInstance = CreateFromPrefab(sphere, position, "Untagged", scale);
+				GameObject sphereInstance = CreateFromPrefab(PrefabType.sphere, position, "Untagged", scale);
 				shperes.Add(sphereInstance);
 			}
 
 			return shperes;
-			
-			//TODO: see if we can unload asset here: Resources.UnloadAsset(_spherePrefab);
 			
 		}
 
@@ -63,23 +99,9 @@ namespace AssemblyCSharp
 		                                                               float elevationWidthDegrees = 80f
 		                                                               )
 		{
-			GameObject prefab = null;
-			switch(type)
-			{
-			case PrefabType.sphere:
-				prefab = sphere;
-				break;
-			case PrefabType.light:
-				prefab = light;
-				break;
-			case PrefabType.soundSource:
-				prefab = soundSource;
-				break;
-			}
-
 			List<GameObject> prefabCollection = new List<GameObject> ();
 
-			//TODO: these random should be global			
+			//TODO: these random should be global?		
 			System.Random random = new System.Random();
 
 			Vector3 positionCartesian;
@@ -102,8 +124,9 @@ namespace AssemblyCSharp
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);
 				
-				GameObject sphereInstance = CreateFromPrefab(prefab, positionCartesian, "Untagged", scale);
-				prefabCollection.Add(sphereInstance);
+				GameObject prefabInstance = CreateFromPrefab(type, positionCartesian, "Untagged", scale);
+
+				prefabCollection.Add(prefabInstance);
 			}
 
 			return prefabCollection;

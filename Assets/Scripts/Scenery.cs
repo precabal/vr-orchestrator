@@ -30,7 +30,7 @@ namespace AssemblyCSharp
 			{
 				for (int j = 0; j < _baseNumberOfTiles; j++)
 				{
-					GameObject tile = ObjectFactory.CreateFromPrefab(tilePrefab);
+					GameObject tile = ObjectFactory.CreateFromPrefab(PrefabType.tile);
 					tile.transform.position = new Vector3( tileDimensionX*(i - _baseNumberOfTiles/2), 0, tileDimensionZ*(j - _baseNumberOfTiles/2));
 					tile.transform.parent = tilesContainer.transform;
 

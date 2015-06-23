@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AssemblyCSharp
@@ -11,7 +10,8 @@ namespace AssemblyCSharp
 		protected AudioClip audioClip;
 		protected string audioPath;
 		protected string tag;
-		public PrefabType prefabType;
+		public PrefabType associatedObjectsPrefabType;
+		public PrefabType mainObjectPrefabType;
 
 		public bool hasAssociatedObjects;
 
@@ -32,7 +32,8 @@ namespace AssemblyCSharp
 		{
 			centerPosition = new Vector3 (0, -10, 0);
 			hasAssociatedObjects = true;
-			prefabType = PrefabType.sphere;
+			mainObjectPrefabType = PrefabType.soundSource;
+			associatedObjectsPrefabType = PrefabType.sphere;
 		}
 
 		public string GetTag ()
@@ -47,7 +48,7 @@ namespace AssemblyCSharp
 
 		protected void AssignTrackParameters()
 		{
-			soundSource = ObjectFactory.CreateFromPrefab(ObjectFactory.soundSource, centerPosition, tag);
+			soundSource = ObjectFactory.CreateFromPrefab(mainObjectPrefabType, centerPosition, tag);
 			soundSource.name = char.ToUpper(tag[0]) + tag.Substring(1);
 
 			audioClip = Resources.Load(audioPath) as AudioClip;

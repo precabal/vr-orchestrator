@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace AssemblyCSharp
@@ -10,7 +8,7 @@ namespace AssemblyCSharp
 		public BaseSounds () : base ()
 		{
 			audioClip = Resources.Load("Binaries/audioTracks/base") as AudioClip;
-			soundSource = ObjectFactory.CreateFromPrefab(Resources.Load("OSPAudioSource_prefab") as GameObject);
+			soundSource = ObjectFactory.CreateFromPrefab(PrefabType.looseSoundSource);
 			soundSource.name = "Base Sounds";
 			soundSource.GetComponent<AudioSource> ().clip = audioClip;
 			soundSource.GetComponent<AudioSource> ().spatialBlend = 0;

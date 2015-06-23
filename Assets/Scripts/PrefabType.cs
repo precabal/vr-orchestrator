@@ -3,7 +3,10 @@ namespace AssemblyCSharp
 	public enum PrefabType{
 		sphere,
 		light,
-		soundSource
+		soundSource,
+		speaker,
+		tile,
+		looseSoundSource
 	}
 }
 

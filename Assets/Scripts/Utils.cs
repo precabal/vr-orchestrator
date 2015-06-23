@@ -21,7 +21,7 @@ namespace AssemblyCSharp
 		public static VectorSpherical CartesianToSpherical(Vector3 pointInCartesian)
 		{
 			float elevation = (float) Math.Asin (pointInCartesian.y / pointInCartesian.magnitude);	
-			float azimuth = (float)  Math.Atan2 (pointInCartesian.z, pointInCartesian.x);
+			float azimuth = (float)  Math.Atan2 (pointInCartesian.x, pointInCartesian.z);
 
 
 
