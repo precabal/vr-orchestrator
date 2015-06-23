@@ -94,23 +94,31 @@ namespace AssemblyCSharp
 		private void PopulateTimelines()
 		{
 
+			float songStart = 6.0f;
+			float bpm = 120f / 118f; //beats per minute
+			int meter = 4 / 1; //4 beats in one measure
+			float measureLength = bpm * meter;
+
+			Vector3 diagonalX = new Vector3 (1, 0, -1);
+			Vector3 diagonalY = new Vector3 (1, 0, 1);
+
+
 			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
 
-			allObjects_TimeLine.AddEvent( new PlayAudioEvent(6.0f) );
+			allObjects_TimeLine.AddEvent( new PlayAudioEvent(songStart) );
 
 			pingpongBassTimeLine.AddEvent (new ShowEvent (48.0f));
 
-
-
-
 			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
-			tiles_A_TimeLine.AddEvent (new RotateEvent (6.0f, new Vector3 (1, 0, 0), 180, 0.4f, 2*120f/118f));
+			tiles_A_TimeLine.AddEvent (new RotateEvent (songStart, Vector3.forward, 180, 0.4f, measureLength/2));
 
-			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f + 8*120f/118f, new Vector3 (0, 0, 1), 180, 0.4f, 2*120f/118f));
-			tiles_B_TimeLine.AddEvent (new RotateEvent (6.0f + 8*120f/118f, new Vector3 (0, 0, 1), 180, 0.4f, 4*120f/118f, 0.125f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart + measureLength, diagonalX, 180, 0.2f, bpm));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 90, 0.1f, measureLength, 0.8175f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 90, 0.2f, measureLength, 0.875f));
 
-			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f + 4*120f/118f, new Vector3 (1, 0, 1), 180, 0.4f, 120f/118f));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (6.0f + 4*120f/118f, new Vector3 (1, 0, 1), 180, 0.4f, 4*120f/118f, 0.875f));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * measureLength, Vector3.left, 180, 0.4f, measureLength/2));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * measureLength, Vector3.left, 180, 0.4f, measureLength, 0.125f));
+
 
 
 
