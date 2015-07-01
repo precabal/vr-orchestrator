@@ -29,7 +29,6 @@ public class SwarmComponent : MonoBehaviour
 			
 			Rigidbody rb = obj.GetComponent<Rigidbody> ();
 
-
 			rb.AddForce (separate);
 			rb.AddForce (align);
 			rb.AddForce (cohesion);
