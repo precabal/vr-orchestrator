@@ -57,9 +57,8 @@ namespace AssemblyCSharp
 
 		}
 
-		public List<GameObject> GetObjects(String specifier)
+		public List<GameObject> GetObjects(String specifier, bool includeGroupedObjects = true)
 		{
-			//TODO consider the case where a single object wants to be selected. better to use tag? see http://docs.unity3d.com/ScriptReference/GameObject.Find.html
 			List<GameObject> selectedObjects = null;
 
 			switch(specifier)
@@ -73,7 +72,11 @@ namespace AssemblyCSharp
 				break;
 			default:
 				selectedObjects = GameObject.FindGameObjectsWithTag(specifier).ToList();
-				selectedObjects.AddRange(  GameObject.FindGameObjectsWithTag( String.Concat(specifier,"_group")).ToList()   );
+				if(includeGroupedObjects)
+				{
+					selectedObjects.AddRange(  GameObject.FindGameObjectsWithTag( String.Concat(specifier,"_group")).ToList()   );
+				}
+
 				break;
 				
 			}

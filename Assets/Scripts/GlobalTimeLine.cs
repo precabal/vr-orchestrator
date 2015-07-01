@@ -71,7 +71,7 @@ namespace AssemblyCSharp
 			hihat_1_TimeLine = new SingleTimeLine (_orchestra.GetObjects("hihat_1"));
 			_timeLines.Add (hihat_1_TimeLine);
 
-			hihat_2_TimeLine = new SingleTimeLine (_orchestra.GetObjects("hihat_2"));
+			hihat_2_TimeLine = new SingleTimeLine (_orchestra.GetObjects("hihat_2", false));
 			_timeLines.Add (hihat_2_TimeLine);
 
 			cymbal_1_TimeLine = new SingleTimeLine (_orchestra.GetObjects("cymbal_1"));
@@ -134,10 +134,14 @@ namespace AssemblyCSharp
 			//hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1"), Envelopes.sharpAttackEnvelope));
 
 			//hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
-			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (8.0f, _faceAFigure));
-			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (12.0f, _faceBFigure));
-			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (26.0f, _faceAFigure));
-			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (34.0f, _faceBFigure));
+
+
+			hihat_2_TimeLine.AddEvent( new StartSwarmEvent(10.0f, _orchestra.GetObjects ("hihat_2") )  );
+
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (8.0f, _faceAFigure));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (12.0f, _faceBFigure));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (26.0f, _faceAFigure));
+//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (34.0f, _faceBFigure));
 
 
 
