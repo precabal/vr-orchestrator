@@ -14,6 +14,7 @@ namespace AssemblyCSharp
 		private static GameObject looseSoundSource = Resources.Load ("OSPAudioSource_prefab") as GameObject;
 		private static GameObject speaker = Resources.Load("speaker_prefab") as GameObject;
 		private static GameObject tilePrefab = Resources.Load("tile_prefab") as GameObject;
+		private static GameObject swarmObject = Resources.Load("swarm_prefab") as GameObject;
 
 		public GameObject CreateCube()
 		{
@@ -40,14 +41,12 @@ namespace AssemblyCSharp
 			case PrefabType.soundSource:
 				prefab = soundSource;
 				break;
+			case PrefabType.swarmObject:
+				prefab = swarmObject;
+				break;
 			case PrefabType.speaker:
 				prefab = speaker;
-
-				float angleRadians = Utils.CartesianToSpherical(atPosition).phi;
-				//int sign = Math.Sign(Math.Cos (angleRadians));
-
-				//rotationYdegrees = 180f * (float) ( ( Math.PI/2 * Math.Ceiling( angleRadians / Math.PI/2 ) - Math.Abs (angleRadians)) / Math.PI ) ;
-				rotationYdegrees = 180f * (float) ((angleRadians + Math.PI ) / Math.PI) ;
+				rotationYdegrees = 180f * (float) ((Utils.CartesianToSpherical(atPosition).phi + Math.PI ) / Math.PI) ;
 				break;
 			case PrefabType.tile:
 				prefab = tilePrefab;

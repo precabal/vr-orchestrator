@@ -6,7 +6,8 @@ namespace AssemblyCSharp
 		soundSource,
 		speaker,
 		tile,
-		looseSoundSource
+		looseSoundSource,
+		swarmObject
 	}
 }
 
