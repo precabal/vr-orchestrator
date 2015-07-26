@@ -14,8 +14,6 @@ namespace AssemblyCSharp
 			
 			AssignTrackParameters();
 
-
-
 		}
 		
 		

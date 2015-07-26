@@ -18,17 +18,9 @@ namespace AssemblyCSharp
 		public void InitializeStage()
 		{
 			_tracks.Add (	new BaseSounds ()		);
-			_tracks.Add (	new Cymbal_1 ()			);
-			_tracks.Add (	new Cymbal_2 ()			);
-			_tracks.Add (	new Hihat_1 ()			);
-			_tracks.Add (	new Hihat_2 ()			);
 			_tracks.Add (	new LeadSynth_L ()		);
 			_tracks.Add (	new LeadSynth_R ()		);
-			_tracks.Add (	new Snare_1 ()			);
-			_tracks.Add (	new Snare_2 ()			);
-			_tracks.Add (	new Snare_3 ()			);
-			_tracks.Add (	new pingpongBass_L () 	);
-			_tracks.Add (	new pingpongBass_R () 	);
+
 
 			foreach (Track track in _tracks) 
 			{
