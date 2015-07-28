@@ -61,7 +61,7 @@ namespace AssemblyCSharp
 			GameObject result = MonoBehaviour.Instantiate (prefab, atPosition, Quaternion.identity) as GameObject;
 
 			result.transform.RotateAround(atPosition, Vector3.up, rotationYdegrees);
-			result.transform.localScale += new Vector3(withScale, withScale, withScale);
+			result.transform.localScale *= (1 + withScale);
 			result.tag = withTag;
 
 			return result;
@@ -104,7 +104,6 @@ namespace AssemblyCSharp
 			System.Random random = new System.Random();
 
 			Vector3 positionCartesian;
-			VectorSpherical positionSpherical = Utils.CartesianToSpherical (centerPoint);
 			VectorSpherical tempVector;
 
 			for (int i = 0; i < numberOfSpheres; i++)
@@ -114,11 +113,7 @@ namespace AssemblyCSharp
 				tempVector.theta =  (float)Math.PI*elevationWidthDegrees*((float)random.NextDouble()  - 0.5f)/180f;
 				tempVector.phi = (float)Math.PI*azimuthWidthDegrees*((float)random.NextDouble()  - 0.5f)/180f;
 
-				tempVector.r += positionSpherical.r;
-				tempVector.theta += positionSpherical.theta;
-				tempVector.phi += positionSpherical.phi;
-
-				positionCartesian = Utils.SphericalToCartesian(tempVector);
+				positionCartesian = Utils.SphericalToCartesian(tempVector) + centerPoint;
 
 				//scale goes between [-0.27, 0.63) 
 				float scale = 0.9f*((float)random.NextDouble() - 0.3f);

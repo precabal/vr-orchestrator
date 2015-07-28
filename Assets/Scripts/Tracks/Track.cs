@@ -10,8 +10,14 @@ namespace AssemblyCSharp
 		protected AudioClip audioClip;
 		protected string audioPath;
 		protected string tag;
+		protected float widthOfAssociatedObjects;
+
 		public PrefabType associatedObjectsPrefabType;
 		public PrefabType mainObjectPrefabType;
+
+		public float WidthOfAssociatedObjects {
+			get { return widthOfAssociatedObjects; }
+		}
 
 		public bool hasAssociatedObjects;
 
@@ -34,6 +40,7 @@ namespace AssemblyCSharp
 			hasAssociatedObjects = true;
 			mainObjectPrefabType = PrefabType.soundSource;
 			associatedObjectsPrefabType = PrefabType.sphere;
+			widthOfAssociatedObjects = 2;
 		}
 
 		public string GetTag ()

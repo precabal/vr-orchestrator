@@ -26,8 +26,8 @@ TagManager:
   - snare_2_group
   - snare_3
   - snare_3_group
-  - pingpongBass_L
-  - pingpongBass_R
+  - staticSpeakerSource_L
+  - staticSpeakerSource_R
   layers:
   - Default
   - TransparentFX
