@@ -2,31 +2,32 @@ using System;
 
 namespace AssemblyCSharp
 {
-	public class pingpongBass_R : Track
+	public class StaticSpeakerSource_L : Track
 	{
 		
-		public pingpongBass_R ()
+		public StaticSpeakerSource_L ()
 		{
 			float speakerHeight = 0.554f;
-			float angle = -45f;
-			
+			float angle = 45f;
+
 			VectorSpherical groundPosition = new VectorSpherical (3.5f, 0, (float)Math.PI*angle/180f);
 			centerPosition = Utils.SphericalToCartesian (groundPosition);
 			centerPosition.y += speakerHeight;
-			
-			audioPath = "Binaries/audioTracks/WURLY_PINGPONG_RR_02.R";
-			tag = "pingpongBass_R";
-			
+
+			audioPath = "Binaries/audioTracks/allButSwarm.L";
+			tag = "staticSpeakerSource_L";
+
 			mainObjectPrefabType = PrefabType.speaker;
-			
+
 			hasAssociatedObjects = false;
-			
+
 			AssignTrackParameters();
 			
-			
+
 			
 		}
 		
 		
 	}
 }
+

@@ -16,7 +16,8 @@ public class OrbitComponent : MonoBehaviour
 	{
 		//Get object's position
 
-	
+		//this.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+
 		//Calculate angular velocity
 		this.transform.RotateAround (Vector3.zero, Vector3.up, angularVelocity * Time.deltaTime);
 

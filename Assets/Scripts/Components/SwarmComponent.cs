@@ -4,14 +4,19 @@ using System.Collections.Generic;
 public class SwarmComponent : MonoBehaviour
 {
 	public List<GameObject> objectsInSwarm;
-	
-	private float maximumSpeed = 200f;
-	private float maximumForce = 50f;
+	private List<GameObject> objectsAndLeader;
+
+	private float maximumSpeed = 12f;
+	private float maximumForce = 10f;
+
+	//private float maxRadius = 20f;
 
 
 	void Start ()
 	{
 		//set initial variables
+		objectsAndLeader = new List<GameObject>(objectsInSwarm);
+		objectsAndLeader.Add (this.gameObject);
 		
 	}
 	void FixedUpdate ()
@@ -19,13 +24,13 @@ public class SwarmComponent : MonoBehaviour
 
 		foreach (GameObject obj in objectsInSwarm) {
 
-			Vector3 separate = Separate (obj, objectsInSwarm);
-			Vector3 align = Align (obj, objectsInSwarm);
-			Vector3 cohesion = Cohesion (obj, objectsInSwarm);
+			Vector3 separate = Separate (obj, objectsAndLeader);
+			Vector3 align = Align (obj, objectsAndLeader);
+			Vector3 cohesion = Cohesion (obj, objectsAndLeader);
 		
-			separate = separate * 2.0f;
-			align = align * 0.1f;
-			cohesion = cohesion * 0.5f;
+			separate = separate * 1f;
+			align = align * 0.01f;
+			cohesion = cohesion * 1f;
 			
 			Rigidbody rb = obj.GetComponent<Rigidbody> ();
 
@@ -33,7 +38,9 @@ public class SwarmComponent : MonoBehaviour
 			rb.AddForce (align);
 			rb.AddForce (cohesion);
 
-			//Debug.Log(separate + "/" + align + "/" + cohesion);
+			//float inverseForce = -1f / (maxRadius * (maxRadius - this.transform.position.magnitude));
+			//rb.AddForce(this.transform.position*inverseForce);
+
 
 		}
 		
@@ -41,14 +48,14 @@ public class SwarmComponent : MonoBehaviour
 
 	private Vector3 Separate(GameObject obj, List<GameObject> objects)
 	{
-		float desiredSeparation = 1.0f;
+		float desiredSeparation = 0.5f;
 		Vector3 steer = new Vector3 (0, 0, 0);
 		int count = 0;
 		
 		foreach (GameObject other in objects)
 		{
 			float distance =  Vector3.Distance(obj.transform.position, other.transform.position);
-			
+
 			if (0 < distance && distance < desiredSeparation)
 			{
 				Vector3 diff = obj.transform.position - other.transform.position;
@@ -63,7 +70,7 @@ public class SwarmComponent : MonoBehaviour
 		{
 			steer = steer / count;
 		}
-		
+
 		if (steer.magnitude > 0)
 		{
 			steer.Normalize();
@@ -77,7 +84,7 @@ public class SwarmComponent : MonoBehaviour
 	
 	private Vector3 Align(GameObject obj, List<GameObject> objects)
 	{
-		float neighborDistance = 50;
+		float neighborDistance = 6f;
 		Vector3 sum = new Vector3(0, 0, 0);
 		int count = 0;
 		foreach (GameObject other in objects)
@@ -107,7 +114,7 @@ public class SwarmComponent : MonoBehaviour
 	
 	private Vector3 Cohesion(GameObject obj, List<GameObject> objects)
 	{
-		float neighborDistance = 50;
+		float neighborDistance = 25f;
 		Vector3 sum = new Vector3(0, 0, 0);
 		int count = 0;
 		foreach (GameObject other in objects)

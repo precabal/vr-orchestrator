@@ -17,13 +17,14 @@ namespace AssemblyCSharp
 								hihat_2_TimeLine, 
 								cymbal_1_TimeLine, 
 								cymbal_2_TimeLine, 
-								leadSynth_L_TimeLine,
+								leadSynth_L_solo_TimeLine,
+								leadSynth_L_group_TimeLine,
 								leadSynth_R_TimeLine, 
 								tiles_TimeLine,
 								tiles_A_TimeLine, 
 								tiles_B_TimeLine, 
 								tiles_C_TimeLine,
-								pingpongBassTimeLine,
+								staticSources_TimeLine,
 								allObjects_TimeLine;
 
 		
@@ -65,29 +66,25 @@ namespace AssemblyCSharp
 			tiles_TimeLine = new SingleTimeLine(_scenery.GetObjects("tiles"));
 			_timeLines.Add (tiles_TimeLine);
 
+
 			allObjects_TimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
 			_timeLines.Add (allObjects_TimeLine);
 
-			hihat_1_TimeLine = new SingleTimeLine (_orchestra.GetObjects("hihat_1"));
-			_timeLines.Add (hihat_1_TimeLine);
 
-			hihat_2_TimeLine = new SingleTimeLine (_orchestra.GetObjects("hihat_2", false));
-			_timeLines.Add (hihat_2_TimeLine);
 
-			cymbal_1_TimeLine = new SingleTimeLine (_orchestra.GetObjects("cymbal_1"));
-			_timeLines.Add (cymbal_1_TimeLine);
-			
-			cymbal_2_TimeLine = new SingleTimeLine (_orchestra.GetObjects("cymbal_2"));
-			_timeLines.Add (cymbal_2_TimeLine);
 
-			leadSynth_L_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L"));
-			_timeLines.Add (leadSynth_L_TimeLine);
+			leadSynth_L_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L", false));
+			_timeLines.Add (leadSynth_L_solo_TimeLine);
+
+			leadSynth_L_group_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L_group", false));
+			_timeLines.Add (leadSynth_L_group_TimeLine);
+
 
 			leadSynth_R_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R"));
 			_timeLines.Add (leadSynth_R_TimeLine);
 
-			pingpongBassTimeLine = new SingleTimeLine (_orchestra.GetObjects("pingpongBass"));
-			_timeLines.Add (pingpongBassTimeLine);
+			staticSources_TimeLine = new SingleTimeLine (_orchestra.GetObjects("staticObjects"));
+			_timeLines.Add (staticSources_TimeLine);
 		}
 
 		
@@ -107,7 +104,9 @@ namespace AssemblyCSharp
 
 			allObjects_TimeLine.AddEvent( new PlayAudioEvent(songStart) );
 
-			pingpongBassTimeLine.AddEvent (new ShowEvent (48.0f));
+			staticSources_TimeLine.AddEvent (new ShowEvent (3.0f));
+
+
 
 			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
 			tiles_A_TimeLine.AddEvent (new RotateEvent (songStart, Vector3.forward, 180, 0.4f, measureLength/2));
@@ -122,11 +121,16 @@ namespace AssemblyCSharp
 
 
 
-          	//leadSynth_R_TimeLine.AddEvent (new GlowEvent (25.8f));
-			//leadSynth_R_TimeLine.AddEvent( new MoveEvent(7.0f, new Vector3(-35f, 3f, -22f), 5f));
+          	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
+			//leadSynth_R_TimeLine.AddEvent( new TranslateEvent(9.0f, new Vector3(-13f, 1f, 10f), 25f, 405f));
 
-			//leadSynth_L_TimeLine.AddEvent (new GlowEvent (25.8f));
-			//leadSynth_L_TimeLine.AddEvent( new OrbitEvent(12.0f,45) );
+			leadSynth_L_group_TimeLine.AddEvent( new GlowEvent (5.0f) );
+			leadSynth_L_solo_TimeLine.AddEvent( new GlowEvent (3.0f) );
+
+			leadSynth_L_solo_TimeLine.AddEvent( new OrbitEvent(6.1f,15) );
+
+			leadSynth_L_solo_TimeLine.AddEvent( new StartSwarmEvent(6.5f, _orchestra.GetObjects ("leadSynth_L_group", false) )  );
+
 
 			//cymbal_1_TimeLine.AddEvent (new GlowEvent (14.0f));
 			//cymbal_2_TimeLine.AddEvent (new GlowEvent (14.0f));
@@ -136,7 +140,6 @@ namespace AssemblyCSharp
 			//hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
 
 
-			hihat_2_TimeLine.AddEvent( new StartSwarmEvent(10.0f, _orchestra.GetObjects ("hihat_2") )  );
 
 //			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (8.0f, _faceAFigure));
 //			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (12.0f, _faceBFigure));

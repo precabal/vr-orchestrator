@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace AssemblyCSharp
 {
@@ -7,11 +8,19 @@ namespace AssemblyCSharp
 		public LeadSynth_R ()
 		{
 
-			centerPosition = new Vector3 (10, 5, -5);
-
-			audioPath = "Binaries/audioTracks/16b - REPTILIANREGIONS_TRACKnoBASS.R";
-			tag = "leadSynth_R";
+			float speakerHeight = 0.3353f;
+			float angle = -45f;
 			
+			VectorSpherical groundPosition = new VectorSpherical (3.5f, 0, (float)Math.PI*angle/180f);
+			centerPosition = Utils.SphericalToCartesian (groundPosition);
+			centerPosition.y += speakerHeight;
+			
+			audioPath = "Binaries/audioTracks/swarmComponent.R";
+			tag = "leadSynth_R";
+
+			//associatedObjectsPrefabType = PrefabType.light;
+			widthOfAssociatedObjects = 0.025f;
+
 			AssignTrackParameters();
 
 		}
