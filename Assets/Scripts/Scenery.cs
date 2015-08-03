@@ -8,7 +8,7 @@ namespace AssemblyCSharp
 	public class Scenery
 	{
 		private List<GameObject> _gameObjects = new List<GameObject>();
-		private int _baseNumberOfTiles = 14;
+		private int _baseNumberOfTiles = 28;
 		private System.Random random = new System.Random ();
 
 		public Scenery ()

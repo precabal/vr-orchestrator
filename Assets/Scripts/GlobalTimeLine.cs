@@ -13,17 +13,18 @@ namespace AssemblyCSharp
 		private float _simulationLength = 300f; 
 		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure;
 
-		private SingleTimeLine 	hihat_1_TimeLine, 
-								hihat_2_TimeLine, 
-								cymbal_1_TimeLine, 
-								cymbal_2_TimeLine, 
-								leadSynth_L_solo_TimeLine,
+		private SingleTimeLine	leadSynth_L_solo_TimeLine,
 								leadSynth_L_group_TimeLine,
+								
 								leadSynth_R_TimeLine, 
+								leadSynth_R_solo_TimeLine,
+								leadSynth_R_group_TimeLine,
+								
 								tiles_TimeLine,
 								tiles_A_TimeLine, 
 								tiles_B_TimeLine, 
 								tiles_C_TimeLine,
+								
 								staticSources_TimeLine,
 								allObjects_TimeLine;
 
@@ -46,7 +47,7 @@ namespace AssemblyCSharp
 		public GlobalTimeLine ()
 		{
 
-			LoadTextFiles ();
+			//LoadTextFiles ();
 			InitializeTimeLines ();
 			PopulateTimelines();
 		}
@@ -80,8 +81,16 @@ namespace AssemblyCSharp
 			_timeLines.Add (leadSynth_L_group_TimeLine);
 
 
+
 			leadSynth_R_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R"));
 			_timeLines.Add (leadSynth_R_TimeLine);
+
+			leadSynth_R_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R", false));
+			_timeLines.Add (leadSynth_R_solo_TimeLine);
+
+			leadSynth_R_group_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R_group", false));
+			_timeLines.Add (leadSynth_R_group_TimeLine);
+
 
 			staticSources_TimeLine = new SingleTimeLine (_orchestra.GetObjects("staticObjects"));
 			_timeLines.Add (staticSources_TimeLine);
@@ -121,31 +130,20 @@ namespace AssemblyCSharp
 
 
 
-          	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
-			//leadSynth_R_TimeLine.AddEvent( new TranslateEvent(9.0f, new Vector3(-13f, 1f, 10f), 25f, 405f));
+          	leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
+			leadSynth_R_solo_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 50f));
 
-			leadSynth_L_group_TimeLine.AddEvent( new GlowEvent (5.0f) );
-			leadSynth_L_solo_TimeLine.AddEvent( new GlowEvent (3.0f) );
+			//leadSynth_R_solo_TimeLine.AddEvent( new OrbitEvent(35f,15) );
 
-			leadSynth_L_solo_TimeLine.AddEvent( new OrbitEvent(6.1f,15) );
-
-			leadSynth_L_solo_TimeLine.AddEvent( new StartSwarmEvent(6.5f, _orchestra.GetObjects ("leadSynth_L_group", false) )  );
-
-
-			//cymbal_1_TimeLine.AddEvent (new GlowEvent (14.0f));
-			//cymbal_2_TimeLine.AddEvent (new GlowEvent (14.0f));
-
-			//hihat_1_TimeLine.AddEvent (new LightningEvent (8.0f, _orchestra.GetObjects ("hihat_1"), Envelopes.sharpAttackEnvelope));
-
-			//hihat_2_TimeLine.AddEvent (new ShowEvent (3.3f));
-
-
-
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (8.0f, _faceAFigure));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (12.0f, _faceBFigure));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (26.0f, _faceAFigure));
-//			hihat_2_TimeLine.AddEvent (new DrawFigureEvent (34.0f, _faceBFigure));
-
+//			leadSynth_L_group_TimeLine.AddEvent( new GlowEvent (5.0f) );
+//			leadSynth_L_solo_TimeLine.AddEvent( new GlowEvent (3.0f) );
+//
+//			leadSynth_L_group_TimeLine.AddEvent( new TranslateEvent(10.0f, new Vector3(13f, 1f, 10f), 25f, 405f));
+//			leadSynth_L_solo_TimeLine.AddEvent( new TranslateEvent(10.0f, new Vector3(13f, 1f, 10f), 25f, 405f));
+//
+//			leadSynth_L_solo_TimeLine.AddEvent( new OrbitEvent(15.1f,15) );
+//
+//			leadSynth_L_solo_TimeLine.AddEvent( new StartSwarmEvent(15.5f, _orchestra.GetObjects ("leadSynth_L_group", false) )  );
 
 
 
@@ -216,8 +214,9 @@ namespace AssemblyCSharp
 //				
 //			}
 
+			//theSourceFile = Resources.Load (caraA) as FileInfo;
 
-			theSourceFile = new FileInfo (Application.dataPath + "/caraA.txt");
+			theSourceFile = new FileInfo (Application.dataPath + "/Resources/caraA.txt");
 			if ( theSourceFile != null && theSourceFile.Exists )
 				reader = theSourceFile.OpenText();
 			
@@ -238,7 +237,7 @@ namespace AssemblyCSharp
 			}
 
 
-			theSourceFile = new FileInfo (Application.dataPath + "/caraB.txt");
+			theSourceFile = new FileInfo (Application.dataPath + "/Resources/caraB.txt");
 			if ( theSourceFile != null && theSourceFile.Exists )
 				reader = theSourceFile.OpenText();
 			

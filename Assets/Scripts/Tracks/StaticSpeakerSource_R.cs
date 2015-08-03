@@ -7,12 +7,8 @@ namespace AssemblyCSharp
 		
 		public StaticSpeakerSource_R ()
 		{
-			float speakerHeight = 0.554f;
-			float angle = -45f;
-			
-			VectorSpherical groundPosition = new VectorSpherical (3.5f, 0, (float)Math.PI*angle/180f);
-			centerPosition = Utils.SphericalToCartesian (groundPosition);
-			centerPosition.y += speakerHeight;
+
+			centerPosition = Definitions.speakerPositionRight;
 			
 			audioPath = "Binaries/audioTracks/allButSwarm.R";
 			tag = "staticSpeakerSource_R";
