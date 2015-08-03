@@ -131,8 +131,17 @@ namespace AssemblyCSharp
 
 
           	leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
-			leadSynth_R_solo_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 50f));
+			leadSynth_R_group_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 70f));
 
+			float[] envelope = new float[32];
+
+			for(int i =0; i<32; i++)
+			{
+				envelope[i] = (float)i/32.0f;
+			}
+
+
+			leadSynth_R_TimeLine.AddEvent( new LightningEvent(7.0f, _orchestra.GetObjects ("leadSynth_R_group", false), envelope) );
 			//leadSynth_R_solo_TimeLine.AddEvent( new OrbitEvent(35f,15) );
 
 //			leadSynth_L_group_TimeLine.AddEvent( new GlowEvent (5.0f) );

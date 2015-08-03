@@ -37,6 +37,7 @@ namespace AssemblyCSharp
 			if (track.hasAssociatedObjects)
 			{
 
+				//TODO: declaration of these objects and the hierarchy should be done in the track initialization?
 				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(track.associatedObjectsPrefabType, track.CenterPosition, 20, track.WidthOfAssociatedObjects, 360.0f, 180.0f) );
 
 				foreach (GameObject associatedObject in associatedObjects) 
