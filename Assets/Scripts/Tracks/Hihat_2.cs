@@ -10,7 +10,7 @@ namespace AssemblyCSharp
 
 			centerPosition = new Vector3 (-15, 30, 15);
 			audioPath = "Binaries/audioTracks/HI_HAT_OPEN_RR_02";
-			tag = "hihat_2";
+			internalTag = "hihat_2";
 			associatedObjectsPrefabType = PrefabType.light;
 
 			AssignTrackParameters();

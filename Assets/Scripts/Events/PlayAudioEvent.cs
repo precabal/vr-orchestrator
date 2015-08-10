@@ -25,17 +25,12 @@ namespace AssemblyCSharp
 
 			foreach (GameObject obj in objects)
 			{
-				//if the audiosource is attached to a rigidbody the OSPAudioSource object will be a child of it
-				if( (child = obj.transform.Find ("OSPAudioSource")) != null )
+
+				if(obj.GetComponentInChildren<OSPAudioSource>()!=null)
 				{
-					child.gameObject.GetComponent<OSPAudioSource> ().Play();
-				
+					obj.GetComponentInChildren<OSPAudioSource>().Play ();
 				}
-				//if the audiosource is not attached to a rigidbody (i.e. 2D sound), we access the component directly
-				else if(obj.GetComponent<OSPAudioSource>()!=null)
-				{
-					obj.GetComponent<OSPAudioSource>().Play ();
-				}
+
 
 				//TODO: evaluate the case where this is a normal AudioSource?
 			}

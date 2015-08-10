@@ -48,12 +48,40 @@ namespace AssemblyCSharp
 		{
 
 			//LoadTextFiles ();
-			InitializeTimeLines ();
+			InitializeNonTrackTimeLines ();
+			InitializeTrackTimeLines ();
 			PopulateTimelines();
 		}
 
+		private void InitializeTrackTimeLines() {
 
-		private void InitializeTimeLines ()
+			//TODO: make this automatic according to the tracks htat have been placed on the scene			
+
+
+
+			leadSynth_L_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L", false));
+			_timeLines.Add (leadSynth_L_solo_TimeLine);
+			
+			leadSynth_L_group_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L_group", false));
+			_timeLines.Add (leadSynth_L_group_TimeLine);
+			
+
+
+			leadSynth_R_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R"));
+			_timeLines.Add (leadSynth_R_TimeLine);
+			
+			leadSynth_R_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R", false));
+			_timeLines.Add (leadSynth_R_solo_TimeLine);
+			
+			leadSynth_R_group_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R_group", false));
+			_timeLines.Add (leadSynth_R_group_TimeLine);
+			
+			
+			staticSources_TimeLine = new SingleTimeLine (_orchestra.GetObjects("staticObjects"));
+			_timeLines.Add (staticSources_TimeLine);
+
+		}
+		private void InitializeNonTrackTimeLines ()
 		{
 			tiles_A_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_A"));
 			_timeLines.Add (tiles_A_TimeLine);
@@ -68,33 +96,12 @@ namespace AssemblyCSharp
 			_timeLines.Add (tiles_TimeLine);
 
 
+
 			allObjects_TimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
 			_timeLines.Add (allObjects_TimeLine);
 
-
-
-
-			leadSynth_L_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L", false));
-			_timeLines.Add (leadSynth_L_solo_TimeLine);
-
-			leadSynth_L_group_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L_group", false));
-			_timeLines.Add (leadSynth_L_group_TimeLine);
-
-
-
-			leadSynth_R_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R"));
-			_timeLines.Add (leadSynth_R_TimeLine);
-
-			leadSynth_R_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R", false));
-			_timeLines.Add (leadSynth_R_solo_TimeLine);
-
-			leadSynth_R_group_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_R_group", false));
-			_timeLines.Add (leadSynth_R_group_TimeLine);
-
-
-			staticSources_TimeLine = new SingleTimeLine (_orchestra.GetObjects("staticObjects"));
-			_timeLines.Add (staticSources_TimeLine);
 		}
+
 
 		
 		private void PopulateTimelines()
@@ -102,8 +109,10 @@ namespace AssemblyCSharp
 
 			float songStart = 6.0f;
 			float bpm = 120f / 118f; //beats per minute
+			//TODO fix meter definition.
 			int meter = 4 / 1; //4 beats in one measure
-			float measureLength = bpm * meter;
+			float wholeNote = bpm * meter;
+			float quarterNote = bpm;
 
 			Vector3 diagonalX = new Vector3 (1, 0, -1);
 			Vector3 diagonalY = new Vector3 (1, 0, 1);
@@ -118,30 +127,27 @@ namespace AssemblyCSharp
 
 
 			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
-			tiles_A_TimeLine.AddEvent (new RotateEvent (songStart, Vector3.forward, 180, 0.4f, measureLength/2));
+			tiles_A_TimeLine.AddEvent (new RotateEvent (songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
 
-			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart + measureLength, diagonalX, 180, 0.2f, bpm));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 90, 0.1f, measureLength, 0.8175f));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 90, 0.2f, measureLength, 0.875f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart + wholeNote, diagonalX, 180, 0.2f, quarterNote));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 180, 0.1f, 2*wholeNote, 0.8175f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 180, 0.2f, 3*wholeNote, 0.875f));
 
-			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * measureLength, Vector3.left, 180, 0.4f, measureLength/2));
-			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * measureLength, Vector3.left, 180, 0.4f, measureLength, 0.125f));
-
-
+			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, 2*wholeNote, 0.125f));
 
 
-          	leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
-			leadSynth_R_group_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 70f));
-
-			float[] envelope = new float[32];
-
-			for(int i =0; i<32; i++)
-			{
-				envelope[i] = (float)i/32.0f;
-			}
 
 
-			leadSynth_R_TimeLine.AddEvent( new LightningEvent(7.0f, _orchestra.GetObjects ("leadSynth_R_group", false), envelope) );
+          	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
+			//leadSynth_R_group_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 70f));
+
+			//leadSynth_R_TimeLine.AddEvent( new LightningEvent(7.0f, _orchestra.GetObjects ("leadSynth_R_group", false), Envelopes.sharpAttackEnvelope) );
+
+
+
+
+
 			//leadSynth_R_solo_TimeLine.AddEvent( new OrbitEvent(35f,15) );
 
 //			leadSynth_L_group_TimeLine.AddEvent( new GlowEvent (5.0f) );

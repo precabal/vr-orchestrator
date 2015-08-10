@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class Track
+	public class TrackForPrefab : MonoBehaviour
 	{
 		//deprecated TODO: remove and fix for manual tracks
 		protected GameObject soundSource;
@@ -43,7 +43,8 @@ namespace AssemblyCSharp
 			get { return centerPosition; }
 			set { centerPosition = value; }
 		}
-		public Track ()
+		//TODO: this never gets called because the inheritance from MonoBehaviour. Put in Start() if necessar (so remove from orchestra). 
+		public TrackForPrefab ()
 		{
 			centerPosition = new Vector3 (0, -10, 0);
 			hasAssociatedObjects = true;
@@ -56,13 +57,13 @@ namespace AssemblyCSharp
 
 		public string GetTag ()
 		{
-			return this.internalTag;
+			return this.transform.tag;
 
 		}
 
 		public Transform GetTransform ()
 		{
-			return soundSource.transform;
+			return this.transform;
 		}
 
 		protected void AssignTrackParameters()

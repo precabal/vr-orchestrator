@@ -8,24 +8,62 @@ namespace AssemblyCSharp
 	public class Orchestra
 	{
 		private List<GameObject> _performers = new List<GameObject>();
+		//TODO: unify these two
 		private List<Track> _tracks = new List<Track>();
+		private List<TrackForPrefab> _tracksForPrefabs = new List<TrackForPrefab>();
 
 		public Orchestra ()
 		{
-			InitializeStage ();
+			InitializeTracksProcedurally ();
+			InitializeTracksFromPrefabs ();
+			InitializeTrackFlare ();
 		}
 
-		public void InitializeStage()
+		//TODO: fix so these can be initiated. Alt 1: don't inherit from mono behavior. Alt 2: create alternate track object for this purpose. 
+		public void InitializeTracksProcedurally()
 		{
-			_tracks.Add (	new StaticSpeakerSource_L ()		);
-			_tracks.Add (	new StaticSpeakerSource_R ()		);
-			_tracks.Add (	new LeadSynth_L ()		);
-			_tracks.Add (	new LeadSynth_R ()		);
+			//add tracks manually
+			_tracks.Add (new StaticSpeakerSource_L ());
 
+
+			_tracks.Add (new StaticSpeakerSource_R ());
+			//_tracks.Add (new LeadSynth_L ());
+			//_tracks.Add (new LeadSynth_R ());
+		
 
 			foreach (Track track in _tracks) 
 			{
 				_performers.Add (track.SoundSource);
+			}
+
+		}
+		public void InitializeTracksFromPrefabs()
+		{
+		//TODO: fill here
+			List<GameObject> trackPrefafsOnStage = GameObject.FindGameObjectsWithTag("audioTrack").ToList();
+
+			foreach(GameObject trackPrefab in trackPrefafsOnStage)
+			{
+				trackPrefab.GetComponent<TrackForPrefab>().CenterPosition = trackPrefab.transform.position;
+
+				_tracksForPrefabs.Add(trackPrefab.GetComponent<TrackForPrefab>());
+				_performers.Add (trackPrefab);
+
+			}
+
+		}
+
+		public void InitializeTrackFlare()
+		{
+			//TODO: unify
+			//add Every object in the hierarchy
+			foreach (Track track in _tracks) 
+			{
+
+				_performers.AddRange (InitializePerformersAssociatedToTrack (track));
+			}
+			foreach (TrackForPrefab track in _tracksForPrefabs) 
+			{
 				_performers.AddRange (InitializePerformersAssociatedToTrack (track));
 			}
 			
@@ -50,6 +88,25 @@ namespace AssemblyCSharp
 			return associatedObjects;
 
 		}
+		private List<GameObject> InitializePerformersAssociatedToTrack (TrackForPrefab track)	{
+			
+			List<GameObject> associatedObjects = new List<GameObject> ();
+			if (track.hasAssociatedObjects)
+			{
+				
+				//TODO: declaration of these objects and the hierarchy should be done in the track initialization?
+				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(track.associatedObjectsPrefabType, track.CenterPosition, 20, track.WidthOfAssociatedObjects, 360.0f, 180.0f) );
+				
+				foreach (GameObject associatedObject in associatedObjects) 
+				{
+					associatedObject.tag = String.Concat(track.GetTag (),"_group");
+					associatedObject.transform.parent = track.GetTransform();
+				}
+			}
+			
+			return associatedObjects;
+			
+		}
 
 		public List<GameObject> GetObjects(String specifier, bool includeGroupedObjects = true)
 		{
@@ -62,6 +119,9 @@ namespace AssemblyCSharp
 				break;
 			case "staticObjects":
 				selectedObjects = GameObject.FindGameObjectsWithTag("staticSpeakerSource_L").ToList();
+
+				//_performers.FindAll(FindComputer(specifier));
+
 				selectedObjects.AddRange( GameObject.FindGameObjectsWithTag("staticSpeakerSource_R").ToList() );
 				break;
 			default:
@@ -76,6 +136,21 @@ namespace AssemblyCSharp
 			}
 			return selectedObjects;	
 		}
+
+		/*
+		private bool FindComputer(GameObject gO, String tag)
+		{
+			
+			if (gO.tag == tag)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			
+		}*/
 
 
 		public void DestroyObjects()

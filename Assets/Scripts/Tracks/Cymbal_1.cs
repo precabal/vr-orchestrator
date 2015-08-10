@@ -10,7 +10,7 @@ namespace AssemblyCSharp
 		{
 			centerPosition = new Vector3 (-30, 4, 12);
 			audioPath = "Binaries/audioTracks/CYMBALS_03";
-			tag = "cymbal_1";
+			internalTag = "cymbal_1";
 
 
 			AssignTrackParameters();

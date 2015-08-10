@@ -8,7 +8,7 @@ namespace AssemblyCSharp
 	public class Scenery
 	{
 		private List<GameObject> _gameObjects = new List<GameObject>();
-		private int _baseNumberOfTiles = 28;
+		private int _baseNumberOfTiles = 10;
 		private System.Random random = new System.Random ();
 
 		public Scenery ()
@@ -83,23 +83,24 @@ namespace AssemblyCSharp
 				break;
 			case "random":
 				
-				switch (random.Next (0, 3))
+				switch (random.Next (0, 4))
 				{
-				case 0: 
-					tile.tag = "tiles_A";
-					break;
-				case 1:
+				case 0:
 					tile.tag = "tiles_B";
 					break;
-				case 2:
+				case 1:
 					tile.tag = "tiles_C";
 					break;
+				default: 
+					tile.tag = "tiles_A";
+					break;
+
 				}
 				
 				break;
 			case "scatter":
 				
-				if (random.Next (0, 8) != 1) 
+				if (random.Next (0, 25) != 1) 
 				{
 					tile.tag = "tiles_fixed";
 				}

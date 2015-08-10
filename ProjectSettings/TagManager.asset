@@ -28,6 +28,8 @@ TagManager:
   - snare_3_group
   - staticSpeakerSource_L
   - staticSpeakerSource_R
+  - audioTrack
+  - audioTrack_group
   layers:
   - Default
   - TransparentFX

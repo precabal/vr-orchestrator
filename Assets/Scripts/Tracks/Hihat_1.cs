@@ -10,7 +10,7 @@ namespace AssemblyCSharp
 
 			centerPosition = new Vector3 (15, 50, 15);
 			audioPath = "Binaries/audioTracks/HI_HAT_CL_RR_02";
-			tag = "hihat_1";
+			internalTag = "hihat_1";
 
 			AssignTrackParameters();
 

@@ -11,7 +11,7 @@ namespace AssemblyCSharp
 			
 			centerPosition = new Vector3 (35, 50, 35);
 			audioPath = "Binaries/audioTracks/SNARE_1_RR_02";
-			tag = "snare_1";
+			internalTag = "snare_1";
 			
 			AssignTrackParameters();
 			

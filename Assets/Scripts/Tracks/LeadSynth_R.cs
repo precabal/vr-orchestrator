@@ -11,7 +11,7 @@ namespace AssemblyCSharp
 			centerPosition = Definitions.speakerPositionRight;
 			
 			audioPath = "Binaries/audioTracks/swarmComponent.R";
-			tag = "leadSynth_R";
+			internalTag = "leadSynth_R";
 
 			//associatedObjectsPrefabType = PrefabType.light;
 			widthOfAssociatedObjects = 0.025f;

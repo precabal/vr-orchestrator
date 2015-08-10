@@ -10,8 +10,8 @@ namespace AssemblyCSharp
 
 			centerPosition = Definitions.speakerPositionRight;
 			
-			audioPath = "Binaries/audioTracks/allButSwarm.R";
-			tag = "staticSpeakerSource_R";
+			audioPath = "Binaries/audioTracks/newBase.R";
+			internalTag = "staticSpeakerSource_R";
 			
 			mainObjectPrefabType = PrefabType.speaker;
 			
