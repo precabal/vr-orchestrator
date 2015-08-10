@@ -5,13 +5,14 @@ using AssemblyCSharp;
 
 public class ObjectSelector : MonoBehaviour
 {
-	public Transform forwardDirection;
+	private Camera cameraFacing;
 	private System.Random randomGenerator;
 	// Use this for initialization
 	void Start ()
 	{
 		randomGenerator = new System.Random ();
-	
+		cameraFacing = Camera.allCameras[0];
+		Debug.Log (cameraFacing);
 	}
 	
 	// Update is called once per frame
@@ -27,7 +28,7 @@ public class ObjectSelector : MonoBehaviour
 
 			//TODO: restore last painted object's color, or move this component to each object. It is as if all the rays are coming from my selectable objects.
 
-			if (Physics.Raycast (this.transform.position, forwardDirection.rotation * Vector3.forward, out hitInformation)) {
+			if (Physics.Raycast (cameraFacing.transform.position, cameraFacing.transform.rotation * Vector3.forward, out hitInformation)) {
 				//if we caught an object, we mark it as:
 					//selected-locked = green
 					//volume change = red

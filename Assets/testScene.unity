@@ -531,7 +531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9008292c52ff749ad97096a5b8d5a86d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardDirection: {fileID: 1329890829}
 --- !u!1001 &1477605254
 Prefab:
   m_ObjectHideFlags: 0

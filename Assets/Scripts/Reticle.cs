@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Reticle : MonoBehaviour {
+	//TODO do procedurally
+	//TODO. Integrate with object selector?
 	public Camera CameraFacing;
 	private Vector3 originalScale;
 	
