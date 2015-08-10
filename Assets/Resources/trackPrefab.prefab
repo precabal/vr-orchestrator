@@ -31,6 +31,7 @@ GameObject:
   - 122: {fileID: 12276650}
   - 108: {fileID: 10868594}
   - 114: {fileID: 11494144}
+  - 114: {fileID: 11493678}
   m_Layer: 0
   m_Name: trackPrefab
   m_TagString: audioTrack
@@ -211,6 +212,17 @@ MonoBehaviour:
   priority: 0
   frequencyHint: 0
   useSimple: 0
+--- !u!114 &11493678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1993cdd17153b49368a8fb51a7ebfccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11494144
 MonoBehaviour:
   m_ObjectHideFlags: 1
