@@ -44,14 +44,9 @@ public class ObjectSelector : MonoBehaviour
 			RaycastHit hitInformation;
 
 			if (Physics.Raycast (cameraFacing.transform.position, cameraFacing.transform.rotation * Vector3.forward, out hitInformation)) {
-				
-				
-				ObjectStates state = hitInformation.transform.gameObject.GetComponent<StateMachine>().ToggleMute();
-				//If object has a light compoment, select it and paint it green
-				if(hitInformation.transform.gameObject.GetComponent<Light> () != null)
-				{
-					hitInformation.transform.gameObject.GetComponent<Light> ().color = GetColorFromState (state);
-				}
+								
+				hitInformation.transform.gameObject.GetComponent<StateMachine>().ToggleMute();
+
 			}
 		}
 		
@@ -64,19 +59,19 @@ public class ObjectSelector : MonoBehaviour
 		case ObjectStates.unselected:
 			color = Color.white;
 			break;
-		case ObjectStates.locked:
+		case ObjectStates.positionControl:
 			color = Color.green;
 			break;
-		case ObjectStates.muted:
+		case ObjectStates.muteControl:
 			color = Color.cyan;
 			break;
-		case ObjectStates.soloed:
+		case ObjectStates.soloControl:
 			color = Color.yellow;
 			break;
 		case ObjectStates.writeAutomation:
 			color = Color.red;
 			break;
-		case ObjectStates.volumeChange:
+		case ObjectStates.volumeControl:
 			color = Color.magenta;
 			break;
 		}

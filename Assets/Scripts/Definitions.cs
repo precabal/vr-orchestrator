@@ -10,6 +10,9 @@ namespace AssemblyCSharp
 		public static Vector3 speakerPositionLeft = GetPositionWithAngle(45f);
 		public static Vector3 speakerPositionRight = GetPositionWithAngle(-45f);
 
+		public static float minLight = 0.6f;
+		public static float maxLight = 6.9f;
+
 
 
 		private static Vector3 GetPositionWithAngle(float angle)
