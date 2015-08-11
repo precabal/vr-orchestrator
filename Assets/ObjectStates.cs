@@ -5,6 +5,7 @@ namespace AssemblyCSharp
 		locked,
 		soloed,
 		muted,
+		writeAutomation,
 		volumeChange
 	
 	}

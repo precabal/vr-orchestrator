@@ -19,35 +19,44 @@ public class ObjectSelector : MonoBehaviour
 	void Update ()
 	{
 		int number = 0;
-		if (MidiInput.GetKeyDown (number) ) {
+		if (MidiInput.GetKeyDown (number)) {
 
-			//TODO: get the vector where the oculus is looking
-			//Vector3 gazeDirection = this.transform.TransformVector (-this.transform.forward);
-			//Debug.Log ("got note 0");
 			RaycastHit hitInformation;
 
 			//TODO: restore last painted object's color, or move this component to each object. It is as if all the rays are coming from my selectable objects.
 
 			if (Physics.Raycast (cameraFacing.transform.position, cameraFacing.transform.rotation * Vector3.forward, out hitInformation)) {
-				//if we caught an object, we mark it as:
-					//selected-locked = green
-					//volume change = red
-					//solo = yellow
-					//mute = light blue
 
-				ObjectStates state = hitInformation.transform.gameObject.GetComponent<StateMachine>().ChangeState();
+
+				ObjectStates state = hitInformation.transform.gameObject.GetComponent<StateMachine> ().ChangeState ();
 
 				//If object has a light compoment, select it and paint it green
-				if(hitInformation.transform.gameObject.GetComponent<Light> () != null)
-				{
+				if (hitInformation.transform.gameObject.GetComponent<Light> () != null) {
 					hitInformation.transform.gameObject.GetComponent<Light> ().color = GetColorFromState (state);
 				}
 			}
 			//Ray ray = oculusCamera.ScreenPointToRay(Input.mousePosition);
 			//Debug.DrawRay(this.transform.position, forwardDirection.rotation * Vector3.forward * 20 * 100, Color.red);
 		}
+
+		if (MidiInput.GetKeyDown (6) ) {
+			
+			RaycastHit hitInformation;
+
+			if (Physics.Raycast (cameraFacing.transform.position, cameraFacing.transform.rotation * Vector3.forward, out hitInformation)) {
+				
+				
+				ObjectStates state = hitInformation.transform.gameObject.GetComponent<StateMachine>().ToggleMute();
+				//If object has a light compoment, select it and paint it green
+				if(hitInformation.transform.gameObject.GetComponent<Light> () != null)
+				{
+					hitInformation.transform.gameObject.GetComponent<Light> ().color = GetColorFromState (state);
+				}
+			}
+		}
 		
 	}
+	//TODO migrate this fnc to State machine
 	private Color GetColorFromState(ObjectStates state)
 	{
 		Color color = Color.black;
@@ -64,8 +73,11 @@ public class ObjectSelector : MonoBehaviour
 		case ObjectStates.soloed:
 			color = Color.yellow;
 			break;
-		case ObjectStates.volumeChange:
+		case ObjectStates.writeAutomation:
 			color = Color.red;
+			break;
+		case ObjectStates.volumeChange:
+			color = Color.magenta;
 			break;
 		}
 		return color;
