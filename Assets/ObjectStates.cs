@@ -2,11 +2,11 @@ namespace AssemblyCSharp
 {
 	public enum ObjectStates{
 		unselected,
-		locked,
-		soloed,
-		muted,
+		positionControl,
+		soloControl,
+		muteControl,
 		writeAutomation,
-		volumeChange
+		volumeControl
 	
 	}
 }

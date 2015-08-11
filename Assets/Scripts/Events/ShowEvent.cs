@@ -21,10 +21,7 @@ namespace AssemblyCSharp
 
 		public void Perform(List<GameObject> objects)
 		{
-			//TODO iterate through children and show all that have mesh renderer
-			//objects.ForEach (o => o.GetComponent<Renderer>().enabled = true);
-
-
+	
 			foreach (GameObject obj in objects) {
 				Renderer[] a = obj.GetComponentsInChildren<Renderer> ();
 				foreach(Renderer rend in a)

@@ -44,6 +44,7 @@ namespace AssemblyCSharp
 			set { centerPosition = value; }
 		}
 		//TODO: this never gets called because the inheritance from MonoBehaviour. Put in Start() if necessar (so remove from orchestra). 
+		//STart function should also handle prefab selection/creation
 		public TrackForPrefab ()
 		{
 			centerPosition = new Vector3 (0, -10, 0);
