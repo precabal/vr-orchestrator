@@ -13,6 +13,7 @@ namespace AssemblyCSharp
 		public static float minLight = 0.6f;
 		public static float maxLight = 6.9f;
 
+		public static float songStart = 6.0f;
 
 
 		private static Vector3 GetPositionWithAngle(float angle)

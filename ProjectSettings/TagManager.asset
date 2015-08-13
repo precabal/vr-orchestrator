@@ -30,6 +30,7 @@ TagManager:
   - staticSpeakerSource_R
   - audioTrack
   - audioTrack_group
+  - audioSource
   layers:
   - Default
   - TransparentFX

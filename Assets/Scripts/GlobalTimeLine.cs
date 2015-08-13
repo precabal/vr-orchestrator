@@ -107,7 +107,7 @@ namespace AssemblyCSharp
 		private void PopulateTimelines()
 		{
 
-			float songStart = 6.0f;
+
 			float bpm = 120f / 118f; //beats per minute
 			//TODO fix meter definition.
 			int meter = 4 / 1; //4 beats in one measure
@@ -120,21 +120,21 @@ namespace AssemblyCSharp
 
 			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
 
-			allObjects_TimeLine.AddEvent( new PlayAudioEvent(songStart) );
+			allObjects_TimeLine.AddEvent( new PlayAudioEvent(Definitions.songStart) );
 
 			staticSources_TimeLine.AddEvent (new ShowEvent (3.0f));
 
 
 
 			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
-			tiles_A_TimeLine.AddEvent (new RotateEvent (songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
+			tiles_A_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
 
-			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart + wholeNote, diagonalX, 180, 0.2f, quarterNote));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 180, 0.1f, 2*wholeNote, 0.8175f));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (songStart, diagonalY, 180, 0.2f, 3*wholeNote, 0.875f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + wholeNote, diagonalX, 180, 0.2f, quarterNote));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 180, 0.1f, 2*wholeNote, 0.8175f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 180, 0.2f, 3*wholeNote, 0.875f));
 
-			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote));
-			tiles_B_TimeLine.AddEvent (new RotateEvent (songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, 2*wholeNote, 0.125f));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, 2*wholeNote, 0.125f));
 
 
 
