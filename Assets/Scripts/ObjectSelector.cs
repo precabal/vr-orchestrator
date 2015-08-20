@@ -12,12 +12,13 @@ public class ObjectSelector : MonoBehaviour
 	{
 		randomGenerator = new System.Random ();
 		cameraFacing = Camera.allCameras[0];
-		Debug.Log (cameraFacing);
+		//Debug.Log (cameraFacing);
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+
 		int number = 0;
 		if (MidiInput.GetKeyDown (number)) {
 
@@ -30,7 +31,7 @@ public class ObjectSelector : MonoBehaviour
 
 				ObjectStates state = hitInformation.transform.gameObject.GetComponent<StateMachine> ().ChangeState ();
 
-				//If object has a light compoment, select it and paint it green
+				//If object has a light compoment, select it and paint it
 				if (hitInformation.transform.gameObject.GetComponent<Light> () != null) {
 					hitInformation.transform.gameObject.GetComponent<Light> ().color = GetColorFromState (state);
 				}
@@ -65,12 +66,14 @@ public class ObjectSelector : MonoBehaviour
 		case ObjectStates.muteControl:
 			color = Color.cyan;
 			break;
+			/*
 		case ObjectStates.soloControl:
 			color = Color.yellow;
 			break;
 		case ObjectStates.writeAutomation:
 			color = Color.red;
 			break;
+			*/
 		case ObjectStates.volumeControl:
 			color = Color.magenta;
 			break;

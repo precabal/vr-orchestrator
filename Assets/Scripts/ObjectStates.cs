@@ -3,9 +3,9 @@ namespace AssemblyCSharp
 	public enum ObjectStates{
 		unselected,
 		positionControl,
-		soloControl,
+		/*writeAutomation,
+		soloControl,*/
 		muteControl,
-		writeAutomation,
 		volumeControl
 	
 	}

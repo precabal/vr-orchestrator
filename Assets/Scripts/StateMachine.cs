@@ -14,7 +14,7 @@ public class StateMachine : MonoBehaviour
 	{
 		state = ObjectStates.unselected;
 		enumLength = Enum.GetNames(typeof(ObjectStates)).Length;
-		cameraFacing = Camera.allCameras[1];
+		cameraFacing = Camera.allCameras[0];
 		translationStep = 0.3f;
 
 	}
@@ -28,6 +28,7 @@ public class StateMachine : MonoBehaviour
 			float distanceToCamera = (transform.position - cameraFacing.transform.position).magnitude ; 
 			transform.position = cameraFacing.transform.position +
 				cameraFacing.transform.rotation * Vector3.forward * distanceToCamera;
+
 		}
 
 		if (MidiInput.GetKeyDown (1) )
@@ -46,9 +47,9 @@ public class StateMachine : MonoBehaviour
 				GetComponentInChildren<AudioSource> ().volume -= 0.05f;//volumeChange
 				GetComponent<Light>().range -= 0.05f;
 				break;
-			case ObjectStates.soloControl:
+			//case ObjectStates.soloControl:
 				//solo
-				break;
+			//	break;
 			}
 		}else if (MidiInput.GetKeyDown (3) ) 
 		{
@@ -68,9 +69,9 @@ public class StateMachine : MonoBehaviour
 				GetComponentInChildren<AudioSource> ().volume += 0.05f;
 				GetComponent<Light>().range += 0.05f;
 				break;
-			case ObjectStates.soloControl:
+			//case ObjectStates.soloControl:
 				//solo
-				break;
+	//			break;
 			}
 	
 		}
@@ -93,11 +94,15 @@ public class StateMachine : MonoBehaviour
 		state = (ObjectStates)stateNumber ; 
 		Debug.Log (state);
 
-		/*
-		if (state.Equals (ObjectStates.locked)) {
-			//TODO store relative position of object on screen
-		}*/
+		Definitions.selectedObjects.Add(this.name);
 
+		switch(state)
+		{
+	
+		case ObjectStates.unselected:
+			Definitions.selectedObjects.Remove(this.name);
+			break;
+		}
 
 		return state;
 	}

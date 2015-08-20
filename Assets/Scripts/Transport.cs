@@ -2,23 +2,24 @@
 using System.Collections;
 using System;
 using AssemblyCSharp;
+using UnityEngine.UI;
 
 public class Transport : MonoBehaviour {
 
 	public float rewindTime;
-	// Use this for initialization
+
 	void Start () {
 		rewindTime = 5f;
+
 	}
 
 	void Update () {
 		//rewind
-		/*if(Input.GetKeyDown("space"))
+		if(MidiInput.GetKeyDown(24))
 		{
 
 			GameObject[] audioSources =  GameObject.FindGameObjectsWithTag("audioSource");
 
-			//float currentSongTime = Time.time - Definitions.songStart;
 			float currentSongTime = audioSources[0].GetComponent<AudioSource>().time;
 
 			float targetTime = Math.Max(0f, currentSongTime - rewindTime);
@@ -28,8 +29,11 @@ public class Transport : MonoBehaviour {
 				obj.GetComponent<AudioSource>().time = targetTime;
 			}
 
-		}*/
+		}
+
 		//pause //resume
+
+
 		if(Input.GetKeyDown("space"))
 		{
 			GameObject[] audioSources =  GameObject.FindGameObjectsWithTag("audioSource");

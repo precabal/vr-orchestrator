@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace AssemblyCSharp
 {
@@ -15,6 +16,7 @@ namespace AssemblyCSharp
 
 		public static float songStart = 6.0f;
 
+		public static HashSet<string> selectedObjects = new HashSet<String>();
 
 		private static Vector3 GetPositionWithAngle(float angle)
 		{
