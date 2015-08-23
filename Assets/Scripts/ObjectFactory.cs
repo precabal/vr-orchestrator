@@ -6,15 +6,15 @@ namespace AssemblyCSharp
 {
 	public class ObjectFactory
 	{
-		private static GameObject sphere = Resources.Load("sphere_prefab") as GameObject;
-		private static GameObject light = Resources.Load("light_prefab") as GameObject;
+		private static GameObject sphere = Resources.Load("OwnPrefabs/sphere_prefab") as GameObject;
+		private static GameObject light = Resources.Load("OwnPrefabs/light_prefab") as GameObject;
 
 		//TODO: merge these two
-		private static GameObject soundSource = Resources.Load("soundSource_prefab") as GameObject;
-		private static GameObject looseSoundSource = Resources.Load ("OSPAudioSource_prefab") as GameObject;
-		private static GameObject speaker = Resources.Load("speaker_prefab") as GameObject;
-		private static GameObject tilePrefab = Resources.Load("tile_prefab") as GameObject;
-		private static GameObject swarmObject = Resources.Load("swarm_prefab") as GameObject;
+		private static GameObject soundSource = Resources.Load("OwnPrefabs/soundSource_prefab") as GameObject;
+		private static GameObject looseSoundSource = Resources.Load ("OwnPrefabs/OSPAudioSource_prefab") as GameObject;
+		private static GameObject speaker = Resources.Load("OwnPrefabs/speaker_prefab") as GameObject;
+		private static GameObject tilePrefab = Resources.Load("OwnPrefabs/tile_prefab") as GameObject;
+		private static GameObject swarmObject = Resources.Load("OwnPrefabs/swarm_prefab") as GameObject;
 
 		public GameObject CreateCube()
 		{

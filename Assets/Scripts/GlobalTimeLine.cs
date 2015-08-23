@@ -8,7 +8,7 @@ namespace AssemblyCSharp
 	public class GlobalTimeLine
 	{
 		private Orchestra _orchestra = new Orchestra();
-		private Scenery _scenery = new Scenery();
+		//private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
 		private float _simulationLength = 2000f; 
 		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure;
@@ -19,12 +19,7 @@ namespace AssemblyCSharp
 								leadSynth_R_TimeLine, 
 								leadSynth_R_solo_TimeLine,
 								leadSynth_R_group_TimeLine,
-								
-								tiles_TimeLine,
-								tiles_A_TimeLine, 
-								tiles_B_TimeLine, 
-								tiles_C_TimeLine,
-								
+							
 								staticSources_TimeLine,
 								allObjects_TimeLine;
 
@@ -55,8 +50,7 @@ namespace AssemblyCSharp
 
 		private void InitializeTrackTimeLines() {
 
-			//TODO: make this automatic according to the tracks htat have been placed on the scene			
-
+			//TODO: make this automatic according to the tracks that have been placed on the scene			
 
 
 			leadSynth_L_solo_TimeLine = new SingleTimeLine (_orchestra.GetObjects("leadSynth_L", false));
@@ -83,19 +77,6 @@ namespace AssemblyCSharp
 		}
 		private void InitializeNonTrackTimeLines ()
 		{
-			tiles_A_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_A"));
-			_timeLines.Add (tiles_A_TimeLine);
-
-			tiles_B_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_B"));
-			_timeLines.Add (tiles_B_TimeLine);
-
-			tiles_C_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_C"));
-			_timeLines.Add (tiles_C_TimeLine);
-
-			tiles_TimeLine = new SingleTimeLine(_scenery.GetObjects("tiles"));
-			_timeLines.Add (tiles_TimeLine);
-
-
 
 			allObjects_TimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
 			_timeLines.Add (allObjects_TimeLine);
@@ -117,26 +98,10 @@ namespace AssemblyCSharp
 			Vector3 diagonalX = new Vector3 (1, 0, -1);
 			Vector3 diagonalY = new Vector3 (1, 0, 1);
 
-
-			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
-
 			allObjects_TimeLine.AddEvent( new PlayAudioEvent(Definitions.songStart) );
 
 			staticSources_TimeLine.AddEvent (new ShowEvent (3.0f));
 
-
-
-			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
-			/*
-			tiles_A_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
-
-			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + wholeNote, diagonalX, 180, 0.2f, quarterNote));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 180, 0.1f, 2*wholeNote, 0.8175f));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 180, 0.2f, 3*wholeNote, 0.875f));
-
-			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote));
-			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, 2*wholeNote, 0.125f));
-			*/
 
 
 
@@ -165,7 +130,7 @@ namespace AssemblyCSharp
 
 
 
-			allObjects_TimeLine.AddEvent( new HideEvent(200.0f) );
+//			allObjects_TimeLine.AddEvent( new HideEvent(200.0f) );
 
 		}
 		

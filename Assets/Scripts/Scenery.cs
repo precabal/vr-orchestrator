@@ -21,7 +21,7 @@ namespace AssemblyCSharp
 		{
 			GameObject tilesContainer = new GameObject ("Tiles");
 
-			GameObject tilePrefab = Resources.Load("tile_prefab") as GameObject;
+			GameObject tilePrefab = Resources.Load("OwnPrefabs/tile_prefab") as GameObject;
 
 			float tileDimensionX = tilePrefab.transform.localScale.x;
 			float tileDimensionZ = tilePrefab.transform.localScale.z;
