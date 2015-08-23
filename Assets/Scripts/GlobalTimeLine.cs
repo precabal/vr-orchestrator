@@ -105,14 +105,10 @@ namespace AssemblyCSharp
 
 
 
-
           	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
 			//leadSynth_R_group_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 70f));
 
 			//leadSynth_R_TimeLine.AddEvent( new LightningEvent(7.0f, _orchestra.GetObjects ("leadSynth_R_group", false), Envelopes.sharpAttackEnvelope) );
-
-
-
 
 
 			//leadSynth_R_solo_TimeLine.AddEvent( new OrbitEvent(35f,15) );
@@ -127,9 +123,7 @@ namespace AssemblyCSharp
 //
 //			leadSynth_L_solo_TimeLine.AddEvent( new StartSwarmEvent(15.5f, _orchestra.GetObjects ("leadSynth_L_group", false) )  );
 
-
-
-
+		
 //			allObjects_TimeLine.AddEvent( new HideEvent(200.0f) );
 
 		}

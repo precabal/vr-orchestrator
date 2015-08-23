@@ -19,9 +19,8 @@ public class ObjectSelector : MonoBehaviour
 	void Update ()
 	{
 
-		int number = 0;
-		if (MidiInput.GetKeyDown (number)) {
-
+		if (Input.GetButtonDown("A")) {
+			Debug.Log ("poto");
 			RaycastHit hitInformation;
 
 			//TODO: restore last painted object's color, or move this component to each object. It is as if all the rays are coming from my selectable objects.
