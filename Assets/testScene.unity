@@ -287,7 +287,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 482690, guid: 259101bc75fd94b808ae1ebe5885c6e6, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 194644, guid: 259101bc75fd94b808ae1ebe5885c6e6, type: 2}
       propertyPath: m_IsActive
