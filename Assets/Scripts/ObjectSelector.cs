@@ -5,13 +5,13 @@ using AssemblyCSharp;
 
 public class ObjectSelector : MonoBehaviour
 {
-	private Camera cameraFacing;
+	public Camera cameraFacing;
 	private System.Random randomGenerator;
 	// Use this for initialization
 	void Start ()
 	{
 		randomGenerator = new System.Random ();
-		cameraFacing = Camera.allCameras[0];
+		//cameraFacing = Camera.allCameras[0];
 		//Debug.Log (cameraFacing);
 	}
 	

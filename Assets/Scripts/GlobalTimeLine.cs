@@ -10,7 +10,7 @@ namespace AssemblyCSharp
 		private Orchestra _orchestra = new Orchestra();
 		private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
-		private float _simulationLength = 300f; 
+		private float _simulationLength = 2000f; 
 		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure;
 
 		private SingleTimeLine	leadSynth_L_solo_TimeLine,
@@ -127,6 +127,7 @@ namespace AssemblyCSharp
 
 
 			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
+			/*
 			tiles_A_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
 
 			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + wholeNote, diagonalX, 180, 0.2f, quarterNote));
@@ -135,6 +136,7 @@ namespace AssemblyCSharp
 
 			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote));
 			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, 2*wholeNote, 0.125f));
+			*/
 
 
 

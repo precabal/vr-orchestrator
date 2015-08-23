@@ -223,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1993cdd17153b49368a8fb51a7ebfccc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFacing: {fileID: 0}
 --- !u!114 &11494144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,7 +258,7 @@ SphereCollider:
   m_GameObject: {fileID: 127894}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
   m_Center: {x: 0, y: 0, z: 0}

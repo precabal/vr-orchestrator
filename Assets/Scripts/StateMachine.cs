@@ -7,14 +7,14 @@ public class StateMachine : MonoBehaviour
 {
 	private ObjectStates state;
 	private int enumLength;
-	private Camera cameraFacing;
+	public Camera cameraFacing;
 	private float translationStep;
 
 	void Start ()
 	{
 		state = ObjectStates.unselected;
 		enumLength = Enum.GetNames(typeof(ObjectStates)).Length;
-		cameraFacing = Camera.allCameras[0];
+		//cameraFacing = Camera.allCameras[0];
 		translationStep = 0.3f;
 
 	}

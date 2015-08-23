@@ -21,8 +21,8 @@ public class GUIMenu : VRGUI
 
 
 
-		//TODO replace for song time
-		GUI.Label(new Rect(Screen.width/2, Screen.height - 50, 600f, 100f), "Time: " + audioSource.GetComponent<AudioSource>().time);
+
+		GUI.Label(new Rect(Screen.width/2 + 200, Screen.height - 350, 600f, 100f), "Time: " + audioSource.GetComponent<AudioSource>().time);
 
 		//TODO position next to crosshair
 		GUI.Label( new Rect(Screen.width/2, Screen.height - 100, 800, 100), GetFormattedListOfStrings()); 
@@ -38,7 +38,7 @@ public class GUIMenu : VRGUI
 
 			result = string.Concat(result,temp,"\n");
 		}
-		Debug.Log(result);
+		//Debug.Log(result);
 		return result;
 
 	}

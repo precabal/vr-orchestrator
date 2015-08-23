@@ -23,10 +23,10 @@ namespace AssemblyCSharp
 		public void InitializeTracksProcedurally()
 		{
 			//add tracks manually
-			_tracks.Add (new StaticSpeakerSource_L ());
+			//_tracks.Add (new StaticSpeakerSource_L ());
 
 
-			_tracks.Add (new StaticSpeakerSource_R ());
+			//_tracks.Add (new StaticSpeakerSource_R ());
 			//_tracks.Add (new LeadSynth_L ());
 			//_tracks.Add (new LeadSynth_R ());
 		
