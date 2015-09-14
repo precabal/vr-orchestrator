@@ -11,8 +11,7 @@ public class ObjectSelector : MonoBehaviour
 	void Start ()
 	{
 		randomGenerator = new System.Random ();
-		//cameraFacing = Camera.allCameras[0];
-		//Debug.Log (cameraFacing);
+
 	}
 	
 	// Update is called once per frame
@@ -20,10 +19,8 @@ public class ObjectSelector : MonoBehaviour
 	{
 
 		if (Input.GetButtonDown("A")) {
-			Debug.Log ("poto");
+	
 			RaycastHit hitInformation;
-
-			//TODO: restore last painted object's color, or move this component to each object. It is as if all the rays are coming from my selectable objects.
 
 			if (Physics.Raycast (cameraFacing.transform.position, cameraFacing.transform.rotation * Vector3.forward, out hitInformation)) {
 
@@ -35,11 +32,10 @@ public class ObjectSelector : MonoBehaviour
 					hitInformation.transform.gameObject.GetComponent<Light> ().color = GetColorFromState (state);
 				}
 			}
-			//Ray ray = oculusCamera.ScreenPointToRay(Input.mousePosition);
-			//Debug.DrawRay(this.transform.position, forwardDirection.rotation * Vector3.forward * 20 * 100, Color.red);
+
 		}
 
-		if (MidiInput.GetKeyDown (6) ) {
+		if (Input.GetButtonDown ("X") ) {
 			
 			RaycastHit hitInformation;
 

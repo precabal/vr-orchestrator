@@ -109,7 +109,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
-  Mute: 0
+  Mute: 1
   Priority: 128
   DopplerLevel: 0
   MinDistance: 1
@@ -174,7 +174,7 @@ Light:
   serializedVersion: 6
   m_Type: 2
   m_Color: {r: 1, g: .90507102, b: .735294104, a: 1}
-  m_Intensity: 6.9000001
+  m_Intensity: .600000024
   m_Range: .5
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -236,7 +236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainObjectPrefabType: 2
-  hasAssociatedObjects: 1
+  hasAssociatedObjects: 0
   associatedObjectsPrefabType: 0
   numberOfSurroundingObjects: 0
 --- !u!122 &12276650
@@ -287,7 +287,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Intensity
-      value: 6.9000001
+      value: .600000024
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
@@ -324,6 +324,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Color.b
       value: .735294104
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Mute
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: hasAssociatedObjects
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -31,7 +31,7 @@ public class StateMachine : MonoBehaviour
 
 		}
 
-		if (MidiInput.GetKeyDown (1) )
+		if (Input.GetButtonDown ("BumperL") )
 		{
 			//bring object closer / decrease volume / unmute / solo
 			switch(state)
@@ -51,7 +51,7 @@ public class StateMachine : MonoBehaviour
 				//solo
 			//	break;
 			}
-		}else if (MidiInput.GetKeyDown (3) ) 
+		}else if (Input.GetButtonDown ("BumperR") ) 
 		{
 			//move object away / increase volume / mute / unsolo
 			switch(state)
