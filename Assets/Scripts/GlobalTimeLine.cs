@@ -95,7 +95,7 @@ namespace AssemblyCSharp
 			_timeLines.Add (tiles_TimeLine);
 
 
-			swarm_A_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A"));
+			swarm_A_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A", false));
 			_timeLines.Add (swarm_A_TimeLine);
 
 //			swarm_A_group_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A_group"));
@@ -142,7 +142,7 @@ namespace AssemblyCSharp
 
 			//swarm_A_TimeLine.AddEvent (new DrawFigureEvent(1f, _faceBFigure)) ;
 			swarm_A_TimeLine.AddEvent (new StartSwarmEvent(6f, _orchestra.GetObjects ("swarm_A") )) ;
-			swarm_A_TimeLine.AddEvent (new StopSwarmEvent(16f)) ;
+			swarm_A_TimeLine.AddEvent (new StopSwarmEvent(10f)) ;
 			//swarm_A_TimeLine.AddEvent (new DrawFigureEvent(10f, _faceAFigure)) ;
 
           	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );

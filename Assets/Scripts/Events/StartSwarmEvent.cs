@@ -9,7 +9,7 @@ namespace AssemblyCSharp
 		private float _eventTime;
 
 		private List<GameObject> _objectsToMove;
-
+			
 		public float EventTime
 		{
 			get { return _eventTime; }
@@ -24,7 +24,7 @@ namespace AssemblyCSharp
 		
 		public void Perform(List<GameObject> objects)
 		{
-			MoveComponent testComponent;
+			//MoveComponent testComponent;
 			foreach (GameObject obj in objects)
 			{
 
