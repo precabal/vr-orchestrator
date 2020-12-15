@@ -10,13 +10,23 @@ namespace AssemblyCSharp
 		private List<GameObject> _performers = new List<GameObject>();
 		//TODO: unify these two
 		private List<Track> _tracks = new List<Track>();
+		private List<NonTrack> _nonTracks = new List<NonTrack>();
 		private List<TrackForPrefab> _tracksForPrefabs = new List<TrackForPrefab>();
 
 		public Orchestra ()
 		{
-			InitializeTracksProcedurally ();
-			InitializeTracksFromPrefabs ();
+			//InitializeTracksProcedurally ();
+			InitializeNonTracksProcedurally ();
+			//InitializeTracksFromPrefabs ();
 			InitializeTrackFlare ();
+		}
+
+
+		public void InitializeNonTracksProcedurally()
+		{
+			//add non tracks manually
+			_nonTracks.Add (new Swarm_A ());
+
 		}
 
 		//TODO: fix so these can be initiated. Alt 1: don't inherit from mono behavior. Alt 2: create alternate track object for this purpose. 
@@ -27,8 +37,8 @@ namespace AssemblyCSharp
 
 
 			//_tracks.Add (new StaticSpeakerSource_R ());
-			//_tracks.Add (new LeadSynth_L ());
-			//_tracks.Add (new LeadSynth_R ());
+			_tracks.Add (new LeadSynth_L ());
+			_tracks.Add (new LeadSynth_R ());
 		
 
 			foreach (Track track in _tracks) 
@@ -62,6 +72,12 @@ namespace AssemblyCSharp
 
 				_performers.AddRange (InitializePerformersAssociatedToTrack (track));
 			}
+			foreach (NonTrack nonTrack in _nonTracks) 
+			{
+
+				_performers.AddRange (InitializePerformersAssociatedToTrack (nonTrack));
+			}
+
 			foreach (TrackForPrefab track in _tracksForPrefabs) 
 			{
 				_performers.AddRange (InitializePerformersAssociatedToTrack (track));
@@ -88,6 +104,26 @@ namespace AssemblyCSharp
 			return associatedObjects;
 
 		}
+		private List<GameObject> InitializePerformersAssociatedToTrack (NonTrack nonTrack)	{
+
+			List<GameObject> associatedObjects = new List<GameObject> ();
+			if (nonTrack.hasAssociatedObjects)
+			{
+
+				//TODO: declaration of these objects and the hierarchy should be done in the track initialization?
+				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(nonTrack.associatedObjectsPrefabType, nonTrack.CenterPosition, 20, nonTrack.WidthOfAssociatedObjects, 360.0f, 180.0f) );
+
+				foreach (GameObject associatedObject in associatedObjects) 
+				{
+					associatedObject.tag = String.Concat(nonTrack.GetTag (),"_group");
+					associatedObject.transform.parent = nonTrack.GetTransform();
+				}
+			}
+
+			return associatedObjects;
+
+		}
+
 		private List<GameObject> InitializePerformersAssociatedToTrack (TrackForPrefab track)	{
 			
 			List<GameObject> associatedObjects = new List<GameObject> ();
@@ -128,7 +164,7 @@ namespace AssemblyCSharp
 				selectedObjects = GameObject.FindGameObjectsWithTag(specifier).ToList();
 				if(includeGroupedObjects)
 				{
-					selectedObjects.AddRange(  GameObject.FindGameObjectsWithTag( String.Concat(specifier,"_group")).ToList()   );
+					selectedObjects.AddRange( GameObject.FindGameObjectsWithTag( String.Concat(specifier,"_group")).ToList() );
 				}
 
 				break;

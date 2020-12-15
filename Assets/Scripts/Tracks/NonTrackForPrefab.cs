@@ -1,18 +1,12 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace AssemblyCSharp
 {
-	public class Track
+	public class NonTrackForPrefab : MonoBehaviour
 	{
-		//deprecated TODO: remove and fix for manual tracks
-		protected GameObject soundSource;
-		protected AudioClip audioClip;
-		protected string audioPath;
-
 
 		protected Vector3 centerPosition;
-
 
 		// TODO: this is redundant. Remove
 		protected string internalTag;
@@ -32,22 +26,19 @@ namespace AssemblyCSharp
 
 		public int numberOfSurroundingObjects;
 
-		public GameObject SoundSource
-		{
-			get { return soundSource; }
-			set { soundSource = value; }
-		}
 
 		public Vector3 CenterPosition
 		{
 			get { return centerPosition; }
 			set { centerPosition = value; }
 		}
-		public Track ()
+		//TODO: this never gets called because the inheritance from MonoBehaviour. Put in Start() if necessar (so remove from orchestra). 
+		//STart function should also handle prefab selection/creation
+		public NonTrackForPrefab ()
 		{
 			centerPosition = new Vector3 (0, -10, 0);
 			hasAssociatedObjects = true;
-			mainObjectPrefabType = PrefabType.soundSource;
+			mainObjectPrefabType = PrefabType.sphere;
 			associatedObjectsPrefabType = PrefabType.sphere;
 			widthOfAssociatedObjects = 2;
 
@@ -56,31 +47,21 @@ namespace AssemblyCSharp
 
 		public string GetTag ()
 		{
-			return this.internalTag;
+			return this.transform.tag;
 
 		}
 
 		public Transform GetTransform ()
 		{
-			return soundSource.transform;
+			return this.transform;
 		}
 
 		protected void AssignTrackParameters()
 		{
-			soundSource = ObjectFactory.CreateFromPrefab(mainObjectPrefabType, centerPosition, internalTag);
-			soundSource.name = char.ToUpper(internalTag[0]) + internalTag.Substring(1);
-
-			audioClip = Resources.Load(audioPath) as AudioClip;
-			soundSource.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
-
-
-
 		}
 
 
 	}
-	//TODO create custom editor to display associated objects option only if checkbox is selected	
-	
 }
 
 

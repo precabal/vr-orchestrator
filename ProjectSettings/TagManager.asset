@@ -31,6 +31,9 @@ TagManager:
   - audioTrack
   - audioTrack_group
   - audioSource
+  - nonAudioTrack
+  - swarm_A
+  - swarm_A_group
   layers:
   - Default
   - TransparentFX

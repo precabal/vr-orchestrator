@@ -1,18 +1,16 @@
-using System;
+﻿using System;
 using UnityEngine;
+
 
 namespace AssemblyCSharp
 {
-	public class Track
+	public class NonTrack
 	{
 		//deprecated TODO: remove and fix for manual tracks
-		protected GameObject soundSource;
-		protected AudioClip audioClip;
-		protected string audioPath;
 
 
 		protected Vector3 centerPosition;
-
+		protected GameObject source;
 
 		// TODO: this is redundant. Remove
 		protected string internalTag;
@@ -28,28 +26,26 @@ namespace AssemblyCSharp
 			get { return widthOfAssociatedObjects; }
 		}
 
-
+		public GameObject Source
+		{
+			get { return source; }
+			set { source = value; }
+		}
 
 		public int numberOfSurroundingObjects;
-
-		public GameObject SoundSource
-		{
-			get { return soundSource; }
-			set { soundSource = value; }
-		}
 
 		public Vector3 CenterPosition
 		{
 			get { return centerPosition; }
 			set { centerPosition = value; }
 		}
-		public Track ()
+		public NonTrack ()
 		{
 			centerPosition = new Vector3 (0, -10, 0);
 			hasAssociatedObjects = true;
-			mainObjectPrefabType = PrefabType.soundSource;
+			mainObjectPrefabType = PrefabType.sphere;
 			associatedObjectsPrefabType = PrefabType.sphere;
-			widthOfAssociatedObjects = 2;
+			widthOfAssociatedObjects = 20;
 
 			//internalTag = this.transform.tag;
 		}
@@ -62,25 +58,18 @@ namespace AssemblyCSharp
 
 		public Transform GetTransform ()
 		{
-			return soundSource.transform;
+			return source.transform;
 		}
 
 		protected void AssignTrackParameters()
 		{
-			soundSource = ObjectFactory.CreateFromPrefab(mainObjectPrefabType, centerPosition, internalTag);
-			soundSource.name = char.ToUpper(internalTag[0]) + internalTag.Substring(1);
-
-			audioClip = Resources.Load(audioPath) as AudioClip;
-			soundSource.transform.Find ("OSPAudioSource").gameObject.GetComponent<AudioSource> ().clip = audioClip;
-
-
-
+			source = ObjectFactory.CreateFromPrefab(mainObjectPrefabType, centerPosition, internalTag);
+			source.name = char.ToUpper(internalTag[0]) + internalTag.Substring(1);
 		}
 
 
 	}
 	//TODO create custom editor to display associated objects option only if checkbox is selected	
-	
-}
 
+}
 

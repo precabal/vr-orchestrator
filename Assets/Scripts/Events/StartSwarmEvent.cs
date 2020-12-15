@@ -24,8 +24,15 @@ namespace AssemblyCSharp
 		
 		public void Perform(List<GameObject> objects)
 		{
+			MoveComponent testComponent;
 			foreach (GameObject obj in objects)
 			{
+
+	//			//if exists, destroy moving component
+	//			if(testComponent = obj.GetComponent<MoveComponent>())
+	//			{
+	//				testComponent.StopMovement();
+	//			}
 				CreateComponent (obj, _objectsToMove);
 			}
 		}

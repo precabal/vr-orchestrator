@@ -42,7 +42,6 @@ namespace AssemblyCSharp
 				float translationTime = distanceToTravel.magnitude / _speed;
 
 				//search and destroy existing component
-
 				if(testComponent = obj.GetComponent<MoveComponent>())
 				{
 					testComponent.StopMovement();

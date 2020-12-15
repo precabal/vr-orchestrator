@@ -10,11 +10,11 @@ namespace AssemblyCSharp
 		private static GameObject light = Resources.Load("OwnPrefabs/light_prefab") as GameObject;
 
 		//TODO: merge these two
-		private static GameObject soundSource = Resources.Load("OwnPrefabs/soundSource_prefab") as GameObject;
-		private static GameObject looseSoundSource = Resources.Load ("OwnPrefabs/OSPAudioSource_prefab") as GameObject;
-		private static GameObject speaker = Resources.Load("OwnPrefabs/speaker_prefab") as GameObject;
-		private static GameObject tilePrefab = Resources.Load("OwnPrefabs/tile_prefab") as GameObject;
-		private static GameObject swarmObject = Resources.Load("OwnPrefabs/swarm_prefab") as GameObject;
+		private static GameObject soundSource 		= 	Resources.Load("OwnPrefabs/soundSource_prefab") as GameObject;
+		private static GameObject looseSoundSource 	= 	Resources.Load ("OwnPrefabs/OSPAudioSource_prefab") as GameObject;
+		private static GameObject speaker 			= 	Resources.Load("OwnPrefabs/speaker_prefab") as GameObject;
+		private static GameObject tilePrefab 		= 	Resources.Load("OwnPrefabs/tile_prefab") as GameObject;
+		private static GameObject swarmObject 		= 	Resources.Load("OwnPrefabs/swarm_prefab") as GameObject;
 
 		public GameObject CreateCube()
 		{
@@ -67,7 +67,7 @@ namespace AssemblyCSharp
 			return result;
 		}
 
-		public static List<GameObject> InitializeRandomSpheres(int numberOfSpheres=100, float length=100f, Vector3 center = default(Vector3))
+		public static List<GameObject> InitializeRandomSpheres(int numberOfSpheres=20, float length=100f, Vector3 center = default(Vector3))
 		{
 			List<GameObject> shperes = new List<GameObject> ();
 			
@@ -92,7 +92,7 @@ namespace AssemblyCSharp
 		}
 
 		public static List<GameObject> InitializeRandomPrefabsInSphere(PrefabType type, Vector3 centerPoint = default(Vector3),
-		                                                               int numberOfSpheres=100, 
+		                                                               int numberOfSpheres=20, 
 		                                                               float thickness = 2f,
 		                                                               float azimuthWidthDegrees = 20f,
 		                                                               float elevationWidthDegrees = 80f

@@ -8,22 +8,27 @@ namespace AssemblyCSharp
 	public class GlobalTimeLine
 	{
 		private Orchestra _orchestra = new Orchestra();
-		//private Scenery _scenery = new Scenery();
+		private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
 		private float _simulationLength = 2000f; 
 		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure;
 
 		private SingleTimeLine	leadSynth_L_solo_TimeLine,
-								leadSynth_L_group_TimeLine,
+			leadSynth_L_group_TimeLine,
 								
-								leadSynth_R_TimeLine, 
-								leadSynth_R_solo_TimeLine,
-								leadSynth_R_group_TimeLine,
-							
-								staticSources_TimeLine,
-								allObjects_TimeLine;
+			leadSynth_R_TimeLine, 
+			leadSynth_R_solo_TimeLine,
+			leadSynth_R_group_TimeLine,
+			
+			staticSources_TimeLine,
+			allObjects_TimeLine,
+			swarm_A_TimeLine,
+			swarm_A_group_TimeLine,
+			tiles_TimeLine,
+			tiles_A_TimeLine, 
+			tiles_B_TimeLine, 
+			tiles_C_TimeLine;
 
-		
 		public List<SingleTimeLine> TimeLines
 		{
 			get { return _timeLines;}
@@ -42,7 +47,7 @@ namespace AssemblyCSharp
 		public GlobalTimeLine ()
 		{
 
-			//LoadTextFiles ();
+			LoadTextFiles ();
 			InitializeNonTrackTimeLines ();
 			InitializeTrackTimeLines ();
 			PopulateTimelines();
@@ -77,6 +82,24 @@ namespace AssemblyCSharp
 		}
 		private void InitializeNonTrackTimeLines ()
 		{
+			tiles_A_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_A"));
+			_timeLines.Add (tiles_A_TimeLine);
+
+			tiles_B_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_B"));
+			_timeLines.Add (tiles_B_TimeLine);
+
+			tiles_C_TimeLine = new SingleTimeLine (_scenery.GetObjects ("tiles_C"));
+			_timeLines.Add (tiles_C_TimeLine);
+
+			tiles_TimeLine = new SingleTimeLine(_scenery.GetObjects("tiles"));
+			_timeLines.Add (tiles_TimeLine);
+
+
+			swarm_A_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A"));
+			_timeLines.Add (swarm_A_TimeLine);
+
+//			swarm_A_group_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A_group"));
+//			_timeLines.Add (swarm_A_group_TimeLine);
 
 			allObjects_TimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
 			_timeLines.Add (allObjects_TimeLine);
@@ -98,12 +121,29 @@ namespace AssemblyCSharp
 			Vector3 diagonalX = new Vector3 (1, 0, -1);
 			Vector3 diagonalY = new Vector3 (1, 0, 1);
 
-			allObjects_TimeLine.AddEvent( new PlayAudioEvent(Definitions.songStart) );
+			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
 
-			staticSources_TimeLine.AddEvent (new ShowEvent (3.0f));
+			//allObjects_TimeLine.AddEvent( new PlayAudioEvent(Definitions.songStart) );
+
+			//staticSources_TimeLine.AddEvent (new ShowEvent (3.0f));
+
+			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
+			tiles_A_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
+
+			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + wholeNote, diagonalX, 180, 0.2f, bpm));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 90, 0.1f, wholeNote, 0.8175f));
+			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 90, 0.2f, wholeNote, 0.875f));
+
+			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote/2));
+			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote, 0.125f));
 
 
+			swarm_A_TimeLine.AddEvent (new ShowEvent (2.0f));
 
+			//swarm_A_TimeLine.AddEvent (new DrawFigureEvent(1f, _faceBFigure)) ;
+			swarm_A_TimeLine.AddEvent (new StartSwarmEvent(6f, _orchestra.GetObjects ("swarm_A") )) ;
+			swarm_A_TimeLine.AddEvent (new StopSwarmEvent(16f)) ;
+			//swarm_A_TimeLine.AddEvent (new DrawFigureEvent(10f, _faceAFigure)) ;
 
           	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
 			//leadSynth_R_group_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 70f));
@@ -192,12 +232,12 @@ namespace AssemblyCSharp
 
 			//theSourceFile = Resources.Load (caraA) as FileInfo;
 
-			theSourceFile = new FileInfo (Application.dataPath + "/Resources/caraA.txt");
+			theSourceFile = new FileInfo (Application.dataPath + "/Resources/Values/caraA.txt");
 			if ( theSourceFile != null && theSourceFile.Exists )
 				reader = theSourceFile.OpenText();
 			
 			if ( reader == null )
-			{
+			{ 
 				Debug.Log("caraA.txt not found or not readable");
 			}
 			else
@@ -211,9 +251,8 @@ namespace AssemblyCSharp
 				}
 				
 			}
-
-
-			theSourceFile = new FileInfo (Application.dataPath + "/Resources/caraB.txt");
+				
+			theSourceFile = new FileInfo (Application.dataPath + "/Resources/Values/caraB.txt");
 			if ( theSourceFile != null && theSourceFile.Exists )
 				reader = theSourceFile.OpenText();
 			
@@ -233,7 +272,7 @@ namespace AssemblyCSharp
 				
 			}
 
-			_faceBFigure.SetImageCenter (new Vector3 (90, 100, 120));
+			//_faceBFigure.SetImageCenter (new Vector3 (90, 100, 120));
 
 			
 			reader.Close ();
