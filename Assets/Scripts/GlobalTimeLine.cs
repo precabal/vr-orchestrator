@@ -11,7 +11,7 @@ namespace AssemblyCSharp
 		private Scenery _scenery = new Scenery();
 		private List<SingleTimeLine> _timeLines = new List<SingleTimeLine>();
 		private float _simulationLength = 2000f; 
-		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure;
+		private Figure _headFigure, _godFigure, _faceAFigure, _faceBFigure, _facePabloFigure;
 
 		private SingleTimeLine	leadSynth_L_solo_TimeLine,
 			leadSynth_L_group_TimeLine,
@@ -46,10 +46,11 @@ namespace AssemblyCSharp
 
 		public GlobalTimeLine ()
 		{
+			//Application.targetFrameRate = 5;
 
 			LoadTextFiles ();
 			InitializeNonTrackTimeLines ();
-			InitializeTrackTimeLines ();
+			//InitializeTrackTimeLines ();
 			PopulateTimelines();
 		}
 
@@ -98,8 +99,8 @@ namespace AssemblyCSharp
 			swarm_A_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A", false));
 			_timeLines.Add (swarm_A_TimeLine);
 
-//			swarm_A_group_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A_group"));
-//			_timeLines.Add (swarm_A_group_TimeLine);
+			swarm_A_group_TimeLine = new SingleTimeLine(_orchestra.GetObjects("swarm_A", true));
+			_timeLines.Add (swarm_A_group_TimeLine);
 
 			allObjects_TimeLine = new SingleTimeLine(_orchestra.GetObjects("all"));
 			_timeLines.Add (allObjects_TimeLine);
@@ -121,29 +122,32 @@ namespace AssemblyCSharp
 			Vector3 diagonalX = new Vector3 (1, 0, -1);
 			Vector3 diagonalY = new Vector3 (1, 0, 1);
 
-			tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
+			//tiles_TimeLine.AddEvent (new ShowEvent (2.0f));
 
 			//allObjects_TimeLine.AddEvent( new PlayAudioEvent(Definitions.songStart) );
 
 			//staticSources_TimeLine.AddEvent (new ShowEvent (3.0f));
 
 			//TODO introduce more randomness in rotation. add rotation for hihat not included yet. 
-			tiles_A_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
+			//tiles_A_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, Vector3.forward, 180, 0.4f, wholeNote/2));
 
-			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + wholeNote, diagonalX, 180, 0.2f, bpm));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 90, 0.1f, wholeNote, 0.8175f));
-			tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 90, 0.2f, wholeNote, 0.875f));
+			//tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + wholeNote, diagonalX, 180, 0.2f, bpm));
+			//tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 90, 0.1f, wholeNote, 0.8175f));
+			//tiles_C_TimeLine.AddEvent (new RotateEvent (Definitions.songStart, diagonalY, 90, 0.2f, wholeNote, 0.875f));
 
-			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote/2));
-			tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote, 0.125f));
+			//tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote/2));
+			//tiles_B_TimeLine.AddEvent (new RotateEvent (Definitions.songStart + 2 * wholeNote, Vector3.left, 180, 0.4f, wholeNote, 0.125f));
 
 
-			swarm_A_TimeLine.AddEvent (new ShowEvent (2.0f));
+			//swarm_A_TimeLine.AddEvent (new ShowEvent (1.0f));
 
-			//swarm_A_TimeLine.AddEvent (new DrawFigureEvent(1f, _faceBFigure)) ;
-			swarm_A_TimeLine.AddEvent (new StartSwarmEvent(6f, _orchestra.GetObjects ("swarm_A") )) ;
-			swarm_A_TimeLine.AddEvent (new StopSwarmEvent(10f)) ;
-			//swarm_A_TimeLine.AddEvent (new DrawFigureEvent(10f, _faceAFigure)) ;
+			swarm_A_group_TimeLine.AddEvent (new DrawFigureEvent(3f, _facePabloFigure, 5f)) ;
+
+			//swarm_A_TimeLine.AddEvent (new StartSwarmEvent(5f, _orchestra.GetObjects ("swarm_A_group", false) )) ;
+			//swarm_A_TimeLine.AddEvent (new StopSwarmEvent(48f)) ;
+
+			swarm_A_group_TimeLine.AddEvent (new LightningEvent(7.0f, _orchestra.GetObjects ("swarm_A", true), Envelopes.sharpAttackEnvelope));
+				
 
           	//leadSynth_R_TimeLine.AddEvent( new GlowEvent (5.0f) );
 			//leadSynth_R_group_TimeLine.AddEvent( new TranslateEvent(6.0f, new Vector3(-3f, 1f, 2f), 25f, 70f));
@@ -185,7 +189,8 @@ namespace AssemblyCSharp
 			//_godFigure = new Figure ();
 			_faceAFigure = new Figure ();
 			_faceBFigure = new Figure ();
-			
+			_facePabloFigure = new Figure ("/Resources/Values/contornoPablo.txt");
+
 			FileInfo theSourceFile = null;
 			StreamReader reader = null;
 			
@@ -273,6 +278,8 @@ namespace AssemblyCSharp
 			}
 
 			//_faceBFigure.SetImageCenter (new Vector3 (90, 100, 120));
+
+
 
 			
 			reader.Close ();

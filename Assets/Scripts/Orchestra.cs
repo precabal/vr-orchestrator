@@ -111,7 +111,7 @@ namespace AssemblyCSharp
 			{
 
 				//TODO: declaration of these objects and the hierarchy should be done in the track initialization?
-				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(nonTrack.associatedObjectsPrefabType, nonTrack.CenterPosition, 20, nonTrack.WidthOfAssociatedObjects, 360.0f, 180.0f) );
+				associatedObjects.AddRange( ObjectFactory.InitializeRandomPrefabsInSphere(nonTrack.associatedObjectsPrefabType, nonTrack.CenterPosition, 500, nonTrack.WidthOfAssociatedObjects, 360.0f, 180.0f) );
 
 				foreach (GameObject associatedObject in associatedObjects) 
 				{

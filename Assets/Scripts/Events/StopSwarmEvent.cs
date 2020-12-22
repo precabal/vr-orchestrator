@@ -18,9 +18,17 @@ namespace AssemblyCSharp
 		{
 			_eventTime = eventTime;
 		}
+
+
 		
 		public void Perform(List<GameObject> objects)
 		{
+			SwarmComponent testComponent;
+			foreach (GameObject obj in objects) {
+				if (testComponent = obj.GetComponent<SwarmComponent> ()) {
+					testComponent.StopMovement ();
+				}
+			}
 		}
 
 	}

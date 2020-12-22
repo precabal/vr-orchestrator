@@ -8,15 +8,17 @@ namespace AssemblyCSharp
 	{
 		private float _eventTime;
 		private Figure _figure;
-		private float _speed = 45.0f;
+		private float _speed = 25.0f;
+		private float _timeToDraw;
 		public float EventTime
 		{
 			get { return _eventTime; }
 			set { _eventTime = value; }
 		}
 
-		public DrawFigureEvent (float eventTime, Figure figure)
+		public DrawFigureEvent (float eventTime, Figure figure, float timeToDraw=-1f)
 		{
+			_timeToDraw = timeToDraw;
 			_eventTime = eventTime;
 			_figure = figure;
 		}
@@ -39,7 +41,9 @@ namespace AssemblyCSharp
 				Vector3 distanceToTravel = _figure.getPoint(destinationIndex) - obj.transform.position;
 
 				//calculate the time to go there with a fixed velocity
-				float translationTime = distanceToTravel.magnitude / _speed;
+				if (_timeToDraw == -1f) { 
+					_timeToDraw = distanceToTravel.magnitude / _speed;
+				}
 
 				//search and destroy existing component
 				if(testComponent = obj.GetComponent<MoveComponent>())
@@ -47,7 +51,7 @@ namespace AssemblyCSharp
 					testComponent.StopMovement();
 				}
 
-				CreateComponent(obj, _figure.getPoint(destinationIndex), translationTime);
+				CreateComponent(obj, _figure.getPoint(destinationIndex), _timeToDraw);
 
 				i++;
 
